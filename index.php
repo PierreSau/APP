@@ -12,9 +12,9 @@
 ini_set('display_errors', 1);
 
 // Appel des fonctions du contrôleur
-include("controleurs/fonctions.php");
+include("./controleurs/fonctions.php");
 // Appel des fonctions liées à l'affichage
-include("vues/fonctions.php");
+include("./vues/fonctions.php");
 
 // On identifie le contrôleur à appeler dont le nom est contenu dans cible passé en GET
 if(isset($_GET['cible']) && !empty($_GET['cible'])) {
@@ -27,4 +27,4 @@ if(isset($_GET['cible']) && !empty($_GET['cible'])) {
 }
 
 // On appelle le contrôleur
-include('controleurs/' . $url . '.php');
+include('./controleurs/' . $url . '.php');
