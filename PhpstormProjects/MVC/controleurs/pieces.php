@@ -49,15 +49,15 @@ switch ($function) {
         // Cette partie du code est appelée si le formulaire a été posté
         if (isset($_POST['name']) and isset($_POST['type'])) {
 
-            if( !estUneChaine($_POST['name'])) {
+            if (!estUneChaine($_POST['name'])) {
                 $alerte = "Le nom de la pièce doit être une chaîne de caractère.";
 
-            } else if( !estUneChaine($_POST['type'])) {
+            } else if (!estUneChaine($_POST['type'])) {
                 $alerte = "Le type du capteur doit être une chaîne de caractère.";
 
             } else {
 
-                $values =  [
+                $values = [
                     'name' => $_POST['name'],
                     'type' => $_POST['type']
                 ];
@@ -73,30 +73,6 @@ switch ($function) {
             }
         }
 
-        break;
-
-    case 'recherche':
-        // chercher des capteurs par type
-
-        $title = "Rechercher des capteurs";
-        $alerte = false;
-        $vue = "recherche";
-
-        // Cette partie du code est appelée si le formulaire a été posté
-        if (isset($_POST['type'])) {
-
-            if( !estUneChaine($_POST['type'])) {
-                $alerte = "Le type du capteur doit être une chaîne de caractère.";
-
-            } else {
-
-                $liste = rechercheParType($bdd, $table, $_POST['type']);
-
-                if(empty($liste)) {
-                    $alerte = "Aucun capteur ne correspond à votre recherche";
-                }
-            }
-        }
 
         break;
 
