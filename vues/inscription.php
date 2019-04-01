@@ -7,7 +7,7 @@
 <?php echo AfficheAlerte($alerte); ?>
 
 <form method="POST" action="">
-	
+	<h1> love</h1>
 	<label>Pseudo :</label>
 	<input type="text"  name="username" />
 	
