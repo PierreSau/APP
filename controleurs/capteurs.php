@@ -103,3 +103,4 @@ switch ($function) {
 include ('vues/header.php');
 include ('vues/' . $vue . '.php');
 include ('vues/footer.php');
+/** pq ya pas ma modif dans cette branche */
