@@ -5,43 +5,38 @@
  * Date: 2019-03-26
  * Time: 13:11
  */
-<?php
 /**
-* Vue : liste des capteurs déjà enregistrés
-*/
+ * Vue : des pièces
+ */
 ?>
 
-<p><?php echo $entete; ?></p>
+<?php require('header.php'); ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title><?php echo $title; ?></title>
 
+        <style>
+            h1 {
+                color:gray;
+            }
+            .boite{
+                display: grid;
+                width: 100%;
+                grid-template-columns: repeat(5, 1fr);
+                grid-auto-rows: 110px;
+                grid-column-gap: calc(2% - 15px);
+                grid-row-gap: 10px;
+            }
+        </style>
+    </head>
+<body>
+<?php foreach ($liste as $element) { ?>
 
-<table>
-	<thead>
-		<tr>
+    <div class="boite"> <?php echo $element['name']; ?> </div>
+    <header>
+        <h1><?php echo $title; ?></h1>
+    </header>
 
-			<th>Nom</th>
-			<th>Type</th>
-		</tr>
-	</thead>
-	<tbody>
-
-    <?php foreach ($liste as $element) { ?>
-
-        <tr>
-        		<td>
-				<?php echo $element['name']; ?>
-            	</td>
-        		<td>
-        			<?php echo $element['type']; ?>
-        		</td>
-        	</tr>
-
-    <?php } ?>
-
-	</tbody>
-</table>
-
-
-<?php echo AfficheAlerte($alerte); ?>
-
-
-<p><a href="index.php?cible=capteurs&fonction=ajout">Ajouter un capteur</a> | <a href="index.php?cible=capteurs&fonction=recherche">Chercher des capteurs</a> | <a href="index.php">Accueil</a></p>
+<?php } ?>
+<?php require('footer.php'); ?>
