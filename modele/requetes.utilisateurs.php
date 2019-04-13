@@ -49,4 +49,9 @@ function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
     
 }
 
+function recupererFAQ(){
+    global $bdd;
+    return $bdd-> query('SELECT * FROM faq');
+}
+
 ?>
