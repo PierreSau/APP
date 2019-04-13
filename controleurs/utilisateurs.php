@@ -79,6 +79,12 @@ switch ($function) {
         
         break;
         
+     case 'faq':
+        //affichage de la faq
+        $vue = "faq";
+        $faq=recupererfaq();
+        break;
+        
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
         $vue = "erreur404";
