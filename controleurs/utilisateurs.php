@@ -27,36 +27,44 @@ switch ($function) {
         $vue = "accueil";
         $title = "Accueil";
         break;
-        
-        
+
+
     case 'inscription':
-    // inscription d'un nouvel utilisateur
+        // inscription d'un nouvel utilisateur
         $vue = "inscription";
         $alerte = false;
-        
+
+
         // Cette partie du code est appelée si le formulaire a été posté
-        if (isset($_POST['username']) and isset($_POST['password'])) {
-            
-            if( !estUneChaine($_POST['username'])) {
+        if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
+
+            if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
-                
-            } else if( !estUnMotDePasse($_POST['password'])) {
+
+            } else if (!estUnMotDePasse($_POST['motDePasse'])) {
                 $alerte = "Le mot de passe n'est pas correct.";
-                
+
+            } else if (!estUnEntier($_POST['numDeTelephone'])) {
+                $alerte = "Ce n'est pas un numéro de téléphone";
+
             } else {
                 // Tout est ok, on peut inscrire le nouvel utilisateur
-                
-                // 
+
+                //
                 $values = [
-                    'username' => $_POST['username'],
-                    'password' => crypterMdp($_POST['password']) // on crypte le mot de passe
+                    'nom' => $_POST['nom'],
+                    'prenom' => $_POST['prenom'],
+                    'adresseMail' => $_POST['adresseMail'],
+                    'numDeTelephone'=> $_POST['numDeTelephone'],
+                    'motDePasse' => crypterMdp($_POST['motDePasse']) // on crypte le mot de passe
                 ];
 
                 // Appel à la BDD à travers une fonction du modèle.
                 $retour = ajouteUtilisateur($bdd, $values);
-                
+
                 if ($retour) {
                     $alerte = "Inscription réussie";
+
                 } else {
                     $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                 }
