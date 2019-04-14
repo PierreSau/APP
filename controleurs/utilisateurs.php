@@ -36,9 +36,9 @@ switch ($function) {
 
 
             // Cette partie du code est appelée si le formulaire a été posté
-            if (isset($_POST['nom']) and isset($_POST['prénom']) and isset($_POST['e-mail']) and isset($_POST['tel']) and isset($_POST['mdp'])) {
+            if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['e-mail']) and isset($_POST['tel']) and isset($_POST['mdp'])) {
 
-                if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prénom'])) {
+                if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                     $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
 
                 } else if (!estUnMotDePasse($_POST['mdp'])) {
@@ -53,7 +53,7 @@ switch ($function) {
                     //
                     $values = [
                         'nom' => $_POST['nom'],
-                        'prénom' => $_POST['prénom'],
+                        'prenom' => $_POST['prenom'],
                         'e-mail' => $_POST['e-mail'],
                         'tel'=> $_POST['tel'],
                         'mdp' => crypterMdp($_POST['mdp']) // on crypte le mot de passe

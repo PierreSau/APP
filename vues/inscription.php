@@ -15,8 +15,8 @@
     <input type="text" name="nom" id="nom" placeholder="Entrez votre nom ici" maxlength="30" required/> </p>
 
     <br />
-    <label for= "prénom"> Votre Prénom : </label>
-    <input type="text" name="prénom" id="prénom" placeholder="Entrez votre prénom ici" maxlength="30" required/> </p>
+    <label for= "prenom"> Votre Prénom : </label>
+    <input type="text" name="prenom" id="prenom" placeholder="Entrez votre prenom ici" maxlength="30" required/> </p>
 
     <br/>
     <label for= "email"> Votre e-mail : </label>
