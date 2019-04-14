@@ -1,0 +1,17 @@
+.modes{
+    display:flex;
+    justify-content: space-around;
+}
+
+
+.mode1, .mode2, .mode3{
+    width:25%;
+    text-align: center;
+    padding: 4px 0px;
+    border: 2px solid black;
+    background: green;
+}
+
+body{
+    background: linear-gradient(to right, rgba(29,179,67,0.4), rgba(29,179,67,0.1));
+}
