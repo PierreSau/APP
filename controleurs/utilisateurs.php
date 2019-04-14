@@ -11,7 +11,7 @@
  */
 
 // on inclut le fichier modèle contenant les appels à la BDD
-include('/modele/requetes.utilisateurs.php');
+include('modele/requetes.utilisateurs.php');
 
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
@@ -64,6 +64,7 @@ switch ($function) {
 
                     if ($retour) {
                         $alerte = "Inscription réussie";
+
                     } else {
                         $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                     }

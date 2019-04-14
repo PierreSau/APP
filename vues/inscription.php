@@ -8,7 +8,7 @@
 
 <p> Création d'un compte : </p>
 
-<form method="post" action="/controleurs/utilisateurs.php">
+<form method="post" action="">
 
     <fieldset>
     <label for= "nom"> Votre Nom : </label>
