@@ -1,13 +1,13 @@
 <?php
 
-include 'C:\Users\vince\APP\modele/panne.php';
+include 'modele/panne.php';
 
 if(empty($_POST['choix'])){
-    include 'C:\Users\vince\APP\vues/panne.php'; //Vue de choix
+    include 'vues/panne.php'; //Vue de choix
 }
 else{
 
-    include 'C:\Users\vince\APP\vues/panne2.php'; //Vue de validation
+    include 'vues/panne2.php'; //Vue de validation
     ajoutePanne($bdd,$_POST['choix']);
     //Parametrage de l'envoi du mail de confirmation
     $header="MIME-Version: 1.0"."\n";
