@@ -36,15 +36,15 @@ switch ($function) {
 
 
             // Cette partie du code est appelée si le formulaire a été posté
-            if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['e-mail']) and isset($_POST['tel']) and isset($_POST['mdp'])) {
+            if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
 
                 if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                     $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
 
-                } else if (!estUnMotDePasse($_POST['mdp'])) {
+                } else if (!estUnMotDePasse($_POST['motDePasse'])) {
                     $alerte = "Le mot de passe n'est pas correct.";
 
-                } else if (!estUnEntier($_POST['tel'])) {
+                } else if (!estUnEntier($_POST['numDeTelephone'])) {
                     $alerte = "Ce n'est pas un numéro de téléphone";
 
                 } else {
@@ -54,9 +54,9 @@ switch ($function) {
                     $values = [
                         'nom' => $_POST['nom'],
                         'prenom' => $_POST['prenom'],
-                        'e-mail' => $_POST['e-mail'],
-                        'tel'=> $_POST['tel'],
-                        'mdp' => crypterMdp($_POST['mdp']) // on crypte le mot de passe
+                        'adresseMail' => $_POST['adresseMail'],
+                        'numDeTelephone'=> $_POST['numDeTelephone'],
+                        'motDePasse' => crypterMdp($_POST['motDePasse']) // on crypte le mot de passe
                     ];
 
                     // Appel à la BDD à travers une fonction du modèle.
