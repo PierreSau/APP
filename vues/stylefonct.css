@@ -1,15 +1,13 @@
 .modes{
-    display:flex;
+    display: flow;
     justify-content: space-around;
-}
-
-
-.mode1, .mode2, .mode3{
-    width:25%;
-    text-align: center;
+    text-align: justify;
     padding: 4px 0px;
     border: 2px solid black;
-    background: green;
+    background: lightgreen;
+}
+h2{
+    text-align: center;
 }
 
 body{
