@@ -15,7 +15,9 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="header.css"/>
+    <link rel="stylesheet" href="vues/header.css"/>
+    <link rel="stylesheet" href="vues/footer.css"/>
+    <link rel="stylesheet" href="vues/stylefaq.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <header>
@@ -49,7 +51,6 @@
         <li><p><a href="../index.php?cible=vontact">Contactez Nous</a></p>
             <ul>
                 <li><a href="../index.php?cible=erreur404">Forum</a></li>
-                <li><a href="../index.php?cible=erreur404">FAQ</a></li>
             </ul>
         </li>
     </ul>

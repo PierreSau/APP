@@ -6,8 +6,9 @@
 
 <?php// echo AfficheAlerte($alerte); ?>
 
+<link rel="stylesheet" href="inscription.css"/>
+<body>
 <p> Création d'un compte : </p>
-
 <form method="post" action="">
 
     <fieldset>
@@ -41,3 +42,4 @@
 </form>
 
 <p><a href="index.php">Retour</a></p>
+</body>

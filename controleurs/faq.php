@@ -1,9 +1,9 @@
 <?php
 
-include('./modele/requetes.faq.php');
+include('modele/requetes.faq.php');
 
-$faq=recuperefaq();
+$faq=recupererFAQ();
 
-include ('./vues/header.php');
-include ('./vues/faq.php');
-include ('./vues/footer.php');
+include ('vues/header.php');
+include ('vues/faq.php');
+include ('vues/footer.php');

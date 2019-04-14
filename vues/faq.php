@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-
-
-<html>
-<meta charset="utf-8">
-<head>
-    <link rel="stylesheet" href="vues/stylefaq.css">
-    <title> FAQ </title>
-</head>
 
 <body>
 <h1>
@@ -35,6 +26,3 @@ echo"</section>";
 $faq->closeCursor(); // Termine le traitement de la requête
 
 ?>
-
-</body>
-</html>
