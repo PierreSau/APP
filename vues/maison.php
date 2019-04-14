@@ -1,11 +1,9 @@
-<?php
-?>
 
 
-<html>
+<!--<html>
 <head>
   <link rel="stylesheet" href="maison.css">
-</head>
+</head>-->
 
 
 
@@ -431,6 +429,3 @@
   </div>
 
 </div>
-</body>
-
-</html>

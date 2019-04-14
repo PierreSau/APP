@@ -1,12 +1,4 @@
-<!DOCTYPE html>
 
-
-<html>
-<meta charset="utf-8">
-<head>
-    <link rel="stylesheet" href="stylefonct.css">
-    <title> Mode de fonctionnement </title>
-</head>
 
 <body>
 <div class="tableau">
@@ -153,18 +145,6 @@
         <br/>
         <input type="submit" value="Enregistrer" />
     </div></div>
-<?php
-try {
-
-    $bdd = new PDO('mysql:host=localhost;dbname=bdd ecom;charset=utf8', 'root', 'root');
-}
-catch (Exception $e)
-{
-    die("La base de données n'a pas pu se charger");
-}
 
 
-?>
 
-</body>
-</html>

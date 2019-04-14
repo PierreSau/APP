@@ -1,67 +1,42 @@
-footer{
-    margin-top: 20vw;
-    font-family:'Lucida Grande';
-}
 
-#footer_font {
-    position:fixed;
+footer {
+    position: fixed;
     bottom: 0;
     left: 0;
-    height: 4vw;
+    display: block;
     width: 100%;
+    text-align: center;
+    padding: 25px;
+    height: 5vw;
+    margin-top: 25px;
     background-color: #9f9f9f;
+    font-family: 'Lucida Grande', sans-serif;
+    font-size: 1vw;
+    text-decoration: none;
+    color: white;
 }
-#footer2 {
-    position: fixed;
-    left: 10%;
-    bottom: -1vw;
-    width: 100%;
-    background-color:transparent;
-    color: #fff;
-    text-align: left;
+
+footer div {
+    display: inline-flex;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
 }
-#footer1 {
-    position:fixed;
-    right:10%;
-    bottom: -1vw;
-    width: 100%;
-    background-color: transparent;
-    color: #fff;
-    text-align: right;
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    color: green;
+}
+
+.panne-texte {
+    font-family: 'Lucida Grande', sans-serif;
+    padding-left: 60px;
+    color: #ca6b2d;
+    font-size: 20px;
 }
 
 
-#footer1 p{
-    font-size:3w;
-}
-#footer1 a {
-    text-decoration: none; color: white;
-}
-#footer1 a:hover { color :green;
-
-}
-#footer2 p{
-    font-size:1vw;
-}
-
-#footer3 {
-    position:fixed;
-    right:50%;
-    bottom: -1vw;
-    width: 100%;
-    background-color: transparent;
-    color: #fff;
-    text-align: right;
-}
-
-
-#footer3 p{
-    font-size:3w;
-}
-#footer3 a {
-    text-decoration: none; color: white;
-}
-#footer3 a:hover { 
-    color :green;
-
-}
