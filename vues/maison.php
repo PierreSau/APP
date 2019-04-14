@@ -37,9 +37,9 @@
       </table>
     </div>
     <div class="modes">
-      <div class="mode1">Absent</div>
-      <div class="mode2">Eco</div>
-      <div class="mode3">Confort</div>
+      <div class="mode1">Eco</div>
+      <div class="mode2">Jour</div>
+      <div class="mode3">Nuit</div>
     </div>
     <div class="actionneurs">
       <strong>Actionneurs</strong>
@@ -142,9 +142,9 @@
       </table>
     </div>
     <div class="modes">
-      <div class="mode1">Absent</div>
-      <div class="mode2">Eco</div>
-      <div class="mode3">Confort</div>
+      <div class="mode1">Eco</div>
+      <div class="mode2">Jour</div>
+      <div class="mode3">Nuit</div>
     </div>
     <div class="actionneurs">
       <strong>Actionneurs</strong>
@@ -246,9 +246,9 @@
       </table>
     </div>
     <div class="modes">
-      <div class="mode1">Absent</div>
-      <div class="mode2">Eco</div>
-      <div class="mode3">Confort</div>
+      <div class="mode1">Eco</div>
+      <div class="mode2">Jour</div>
+      <div class="mode3">Nuit</div>
     </div>
     <div class="actionneurs">
       <strong>Actionneurs</strong>
@@ -351,9 +351,9 @@
       </table>
     </div>
     <div class="modes">
-      <div class="mode1">Absent</div>
-      <div class="mode2">Eco</div>
-      <div class="mode3">Confort</div>
+      <div class="mode1">Eco</div>
+      <div class="mode2">Jour</div>
+      <div class="mode3">Nuit</div>
     </div>
     <div class="actionneurs">
       <strong>Actionneurs</strong>
