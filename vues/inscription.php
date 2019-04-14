@@ -8,7 +8,7 @@
 
 <p> Création d'un compte : </p>
 
-<form method="post" action="inscription.php">
+<form method="post" action="utilisateur.php">
 
     <fieldset>
     <label for= "nom"> Votre Nom : </label>
@@ -34,7 +34,7 @@
         <label for="CGU">J'accepte les conditions générale d'utilisation</label> <input type="checkbox" name="CGU" id="CGU" required/>
 
     <br />
-        <input type="submit" value="Envoyer" />
+        <input type="submit" value="S'inscrire" />
     </fieldset>
 
 

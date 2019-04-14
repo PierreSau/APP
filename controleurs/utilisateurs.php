@@ -4,7 +4,7 @@
  * Le contrôleur :
  * - définit le contenu des variables à afficher
  * - identifie et appelle la vue
- */ 
+ */
 
 /**
  * Contrôleur de l'utilisateur
@@ -21,51 +21,59 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 }
 
 switch ($function) {
-    
+
     case 'accueil':
         //affichage de l'accueil
         $vue = "accueil";
         $title = "Accueil";
         break;
-        
-        
+
+
     case 'inscription':
-    // inscription d'un nouvel utilisateur
+        // inscription d'un nouvel utilisateur
         $vue = "inscription";
         $alerte = false;
-        
-        // Cette partie du code est appelée si le formulaire a été posté
-        if (isset($_POST['username']) and isset($_POST['password'])) {
-            
-            if( !estUneChaine($_POST['username'])) {
-                $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
-                
-            } else if( !estUnMotDePasse($_POST['password'])) {
-                $alerte = "Le mot de passe n'est pas correct.";
-                
-            } else {
-                // Tout est ok, on peut inscrire le nouvel utilisateur
-                
-                // 
-                $values = [
-                    'username' => $_POST['username'],
-                    'password' => crypterMdp($_POST['password']) // on crypte le mot de passe
-                ];
 
-                // Appel à la BDD à travers une fonction du modèle.
-                $retour = ajouteUtilisateur($bdd, $values);
-                
-                if ($retour) {
-                    $alerte = "Inscription réussie";
+
+            // Cette partie du code est appelée si le formulaire a été posté
+            if (isset($_POST['nom']) and isset($_POST['prénom']) and isset($_POST['e-mail']) and isset($_POST['tel']) and isset($_POST['mdp'])) {
+
+                if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prénom'])) {
+                    $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
+
+                } else if (!estUnMotDePasse($_POST['mdp'])) {
+                    $alerte = "Le mot de passe n'est pas correct.";
+
+                } else if (!estUnEntier($_POST['tel'])) {
+                    $alerte = "Ce n'est pas un numéro de téléphone";
+
                 } else {
-                    $alerte = "L'inscription dans la BDD n'a pas fonctionné";
+                    // Tout est ok, on peut inscrire le nouvel utilisateur
+
+                    //
+                    $values = [
+                        'nom' => $_POST['nom'],
+                        'prénom' => $_POST['prénom'],
+                        'e-mail' => $_POST['e-mail'],
+                        'tel'=> $_POST['tel'],
+                        'mdp' => crypterMdp($_POST['mdp']) // on crypte le mot de passe
+                    ];
+
+                    // Appel à la BDD à travers une fonction du modèle.
+                    $retour = ajouteUtilisateur($bdd, $values);
+
+                    if ($retour) {
+                        $alerte = "Inscription réussie";
+                    } else {
+                        $alerte = "L'inscription dans la BDD n'a pas fonctionné";
+                    }
                 }
             }
-        }
-        $title = "Inscription";
-        break;
-        
-    case 'liste':
+            $title = "Inscription";
+            break;
+
+        case
+            'liste':
     // Liste des utilisateurs déjà enregistrés
         $vue = "liste";
         $title = "Liste des utilisateurs inscrits";
@@ -73,7 +81,7 @@ switch ($function) {
         
         $liste = recupereTousUtilisateurs($bdd);
         
-        if(empty($liste)) {
+        if (empty($liste)) {
             $alerte = "Aucun utilisateur inscrit pour le moment";
         }
         
@@ -86,6 +94,6 @@ switch ($function) {
         $message = "Erreur 404 : la page recherchée n'existe pas.";
 }
 
-include ('vues/header.php');
-include ('vues/' . $vue . '.php');
-include ('vues/footer.php');
+        include('vues/header.php');
+        include('vues/' . $vue . '.php');
+        include('vues/footer.php');
