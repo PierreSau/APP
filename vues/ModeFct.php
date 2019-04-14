@@ -9,57 +9,150 @@
 </head>
 
 <body>
-<h2>
-    <div class="modes">
-        <div class="mode1">Eco</div>
-        <div class="mode2">Jour</div>
-        <div class="mode3">Nuit</div>
-    </div>
-</h2>
 
-Temperature :
+<div class="modes">
+    <h2>ECO</h2>
 
-<select name="select">
-    <?php
-    for ($i=15;$i<=30;$i++)   {
-        echo '<option value="T'.$i.'">'.$i.'°C</option>';
-    }
+    <br/>
+    Temperature :
 
-    ?>
-</select><br />
+    <select name="select">
+        <?php
+        for ($i=15;$i<=30;$i++)   {
+            echo '<option value="T'.$i.'">'.$i.'°C</option>';
+        }
+
+        ?>
+    </select><br />
 
 
-Luminosité :
-<select name="select">
-    <option value="L_Fort">Fort</option>
-    <option value="L_Moyen">Moyen</option>
-    <option value="L_Faible">Faible</option>
-    <option value="L_Eteint">Eteint</option>
+    Luminosité :
+    <select name="select">
+        <option value="L_Fort">Fort</option>
+        <option value="L_Moyen">Moyen</option>
+        <option value="L_Faible">Faible</option>
+        <option value="L_Eteint">Eteint</option>
 
-</select><br />
-Ventilateur :
-<select name="select">
-    <option value="V_Désactivé">Désactivé</option>
-    <option value="V_ACtivé">Activé</option>
+    </select><br />
+    Ventilateur :
+    <select name="select">
+        <option value="V_Désactivé">Désactivé</option>
+        <option value="V_ACtivé">Activé</option>
 
-</select><br />
-Date de debut :
+    </select><br/>
+    Date de debut :
 
-<input type="date" name="début">
+    <input type="date" name="début" >
 
-<input type="time" name="début">
+    <input type="time" name="début" >
 
 
 
-<br> Date de fin :
-<input type="date" name="début">
+    <br/> Date de fin :
+    <input type="date" name="début">
 
-<input type="time" name="début">
+    <input type="time" name="début">
 
+    <br/>
+    <br/>
+    <input type="submit" value="Enregistrer" />
+</div>
 <br/>
-<br/>
-<input type="submit" value="enregistrer"/>
+<div class="modes">
+    <h2>JOUR</h2>
 
+    <br/>
+    Temperature :
+
+    <select name="select">
+        <?php
+        for ($i=15;$i<=30;$i++)   {
+            echo '<option value="T'.$i.'">'.$i.'°C</option>';
+        }
+
+        ?>
+    </select><br />
+
+
+    Luminosité :
+    <select name="select">
+        <option value="L_Fort">Fort</option>
+        <option value="L_Moyen">Moyen</option>
+        <option value="L_Faible">Faible</option>
+        <option value="L_Eteint">Eteint</option>
+
+    </select><br />
+    Ventilateur :
+    <select name="select">
+        <option value="V_Désactivé">Désactivé</option>
+        <option value="V_ACtivé">Activé</option>
+
+    </select><br/>
+    Date de debut :
+
+    <input type="date" name="début" >
+
+    <input type="time" name="début" >
+
+
+
+    <br/> Date de fin :
+    <input type="date" name="début">
+
+    <input type="time" name="début">
+
+    <br/>
+    <br/>
+    <input type="submit" value="Enregistrer" />
+</div>
+<br/>
+<div class="modes">
+    <h2>NUIT</h2>
+
+    <br/>
+    Temperature :
+
+    <select name="select">
+        <?php
+        for ($i=15;$i<=30;$i++)   {
+            echo '<option value="T'.$i.'">'.$i.'°C</option>';
+        }
+
+        ?>
+    </select><br />
+
+
+    Luminosité :
+    <select name="select">
+        <option value="L_Fort">Fort</option>
+        <option value="L_Moyen">Moyen</option>
+        <option value="L_Faible">Faible</option>
+        <option value="L_Eteint">Eteint</option>
+
+    </select><br />
+    Ventilateur :
+    <select name="select">
+        <option value="V_Désactivé">Désactivé</option>
+        <option value="V_ACtivé">Activé</option>
+
+    </select><br/>
+    Date de debut :
+
+    <input type="date" name="début" >
+
+    <input type="time" name="début" >
+
+
+
+    <br/> Date de fin :
+    <input type="date" name="début">
+
+    <input type="time" name="début">
+
+    <br/>
+    <br/>
+    <input type="submit" value="Enregistrer" />
+</div>
 <?php
 try {
 
