@@ -1,17 +1,5 @@
 <?php
-/*switch($_POST['fonction']){
-    case 'pbCapteur':
-        $choixType='un capteur';
-    break;
-    case 'pbCemac':
-        $choixType='un Cemac';
-    break;
-    case 'valAbs':
-        $choixType='des valeurs absurdes relevées';
-    break;
-    case 'autre':
-        $choixType='un problème non notifié';
-}*/
+
 $choixType = 'la panne numéro #1948'
 ?>
 

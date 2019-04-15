@@ -32,10 +32,10 @@
 
         <li><p><a href="../index.php?cible=maison">Ma Maison</a></p>
             <ul>
-                <li><a href="index.php?cible=utilisateurs&fonction=maison">Mes maisons</a></li>
+                <li><a href="index.php?cible=erreur404">Mes maisons</a></li>
                 <li><a href="index.php?cible=capteurs">capteurs</a></li>
                 <?php //<li><a href="index.php?cible=consommation">statistiques</a></li>?>
-                <li><a href="index.php?cible=panne&fonction=AccueilPanne">Historique des Pannes</a></li>
+                <li><a href="index.php?cible=utilisateurs&fonction=AccueilPanne">Historique des Pannes</a></li>
                 <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
             </ul>
         </li>

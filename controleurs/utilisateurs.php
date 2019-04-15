@@ -94,6 +94,47 @@ switch ($function) {
     case 'maison':
         $vue = "maison";
         break;
+
+    case 'AccueilPanne':
+        $vue = 'panne';
+        $title = 'Déclaration d\'une panne';
+        break;
+
+
+    case 'ValidationChoix':
+        $vue = 'panne2';
+        $title = 'Problème déclaré';
+        //ajoutePanne($bdd, $_POST['fonction']);
+        //Parametrage de l'envoi du mail de confirmation
+        $header = "MIME-Version: 1.0" . "\n";
+        $header .= 'From:"SAV EcoM"<ConcactService.EcoM@gmail.com>' . "\n";
+        $header .= "Reply-to: \"EcoM\" <ConcactService.EcoM@gmail.com>" . "\n";
+        $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
+        $header .= 'Content-Transfer-Encoding: 8bit';
+
+        $message = "";
+        $mail = recupererEmail($bdd);
+
+        $Objet = 'EcoM: Déclaration reçue';
+        // ça marche pas avec cette ligne su coup je la met en comm
+        //mail($mail, $Objet, $message, $header);
+        switch($_POST['fonction']) {
+            case 'pbCapteur':
+                $choixType = 'un capteur';
+                break;
+            case 'pbCemac':
+                $choixType = 'un Cemac';
+                break;
+            case 'valAbs':
+                $choixType = 'des valeurs absurdes relevées';
+                break;
+            case 'autre':
+                $choixType = 'un problème non notifié';
+        }
+        break;
+
+
+
         
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
