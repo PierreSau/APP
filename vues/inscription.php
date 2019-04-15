@@ -6,10 +6,8 @@
 
 <?php// echo AfficheAlerte($alerte); ?>
 
-<link rel="stylesheet" href="inscription.css"/>
-<body>
-<p> Création d'un compte : </p>
-<form method="post" action="">
+
+<form method="post" action="index.php?cible=utilisateurs&fonction=accueil">
 
     <fieldset>
         <label for= "nom"> Votre Nom : </label>

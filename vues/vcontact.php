@@ -9,10 +9,7 @@
 
 
 ?>
-<head>
-    <link type="text/css" rel="stylesheet" href="vuecontact.css" media="all">
-    <title>Contact</title>
-</head>
+
 <form action="vcontact.php" method="post" >
 
     <fieldset>

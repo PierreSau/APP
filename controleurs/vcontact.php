@@ -8,7 +8,7 @@
  */
 
 // on inclut le fichier modèle contenant les appels à la BDD
-include('../modele/requetes.contact.php');
+include('modele/requetes.contact.php');
 $vue='vcontact';
 
 // define variables and set to empty values
@@ -81,8 +81,8 @@ $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
 
 @mail($destinataire, $sujet, $contenu, $headers); // Fonction principale qui envoi l'email
 
-include ('../vues/header.php');
-include ('../vues/' . $vue . '.php');
-include ('../vues/footer.php');
+include ('vues/header.php');
+include ('vues/' . $vue . '.php');
+include ('vues/footer.php');
 
 
