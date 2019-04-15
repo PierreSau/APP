@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="vues/stylefaq.css">
     <link rel="stylesheet" href="stylefonct.css">
     <link rel="stylesheet" href="maison.css">
+    <link type="text/css" rel="stylesheet" href="vontact.css" media="all">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Ecom</title>
 </head>
