@@ -1,6 +1,5 @@
 
 
-<html>
 <!--<head>
   <link rel="stylesheet" href="maison.css">
 </head>-->
