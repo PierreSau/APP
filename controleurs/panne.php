@@ -1,7 +1,7 @@
 <?php
 
 include 'modele/panne.php';
-if(empty($_POST['choix'])){
+if(empty($_POST['choix'])){ // si le bouton valider est appuyé alors ce champs n'est plus vide donc déclenche la suite
     $function = 'AccueilPanne';
 }
 else{
@@ -39,6 +39,19 @@ switch ($function){
 
         $Objet='EcoM: Déclaration reçue';
         mail($mail,$Objet, $message, $header);
+        switch($_POST['choix']){
+            case 'pbCapteur':
+                $choixType='un capteur';
+                break;
+            case 'pbCemac':
+                $choixType='un Cemac';
+                break;
+            case 'valAbs':
+                $choixType='des valeurs absurdes relevées';
+                break;
+            case 'autre':
+                $choixType='un problème non notifié';
+        }
         break;
 
 
