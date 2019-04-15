@@ -2,21 +2,16 @@
 
 ?>
 
-<html >
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylepagepanne.css" />
+<html>
 
-    <title>Déclaration d'une panne</title>
-</head>
 <body>
-<p>
-    <h2>
-    Le problème concernant <?php echo $choixType?> a bien été signalé à un technicien le <?php echo date('d-m-Y'); ?> à <?php echo date('H:i');?>.
-    </h2>
-    <h3>
-        Vous allez recevoir un mail de confirmation puis un technicien vous contactera via la messagerie à l'adresse <?php echo recupererEmail($bdd); ?>.
-    </h3>
+<p class="panne-texte">
+
+    Le problème concernant <?php echo $choixType ?> a bien été signalé à un technicien le <?php echo date('d-m-Y'); ?>
+    à <?php echo date('H:i'); ?>.
+
+    Vous allez recevoir un mail de confirmation puis un technicien vous contactera via la messagerie à
+    l'adresse <?php echo recupererEmail($bdd); ?>.
 
 </p>
 

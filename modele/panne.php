@@ -10,7 +10,6 @@ catch(Exception $e)
 
 function ajoutePanne($bdd,$typePanne)
 {
-
     $bdd->query('INSERT INTO'.' `panne` (`idPanne`, `date`, `type`, `idCemac`) VALUES (NULL, \''.date('Y-m-d').'\', \''. $typePanne. '\', NULL);');
     $bdd->query('INSERT INTO `pannecaptact` (`idPanneCaptAct`, `idCaptAct`, `idPanne`) VALUES (NULL, \'1\', LAST_INSERT_ID());');
 }
