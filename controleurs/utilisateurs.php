@@ -4,7 +4,7 @@
  * Le contrôleur :
  * - définit le contenu des variables à afficher
  * - identifie et appelle la vue
- */ 
+ */
 
 /**
  * Contrôleur de l'utilisateur
@@ -21,7 +21,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 }
 
 switch ($function) {
-    
+
     case 'accueil':
         //affichage de l'accueil
         $vue = "accueil";
@@ -72,19 +72,19 @@ switch ($function) {
         }
         $title = "Inscription";
         break;
-        
+
     case 'liste':
     // Liste des utilisateurs déjà enregistrés
         $vue = "liste";
         $title = "Liste des utilisateurs inscrits";
         $entete = "Voici la liste :";
-        
+
         $liste = recupereTousUtilisateurs($bdd);
-        
+
         if(empty($liste)) {
             $alerte = "Aucun utilisateur inscrit pour le moment";
         }
-        
+
         break;
 
     case 'mode':
@@ -93,8 +93,11 @@ switch ($function) {
 
     case 'maison':
         $vue = "maison";
+        $maisons = recupereradresse(1);
         break;
-        
+
+
+
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
         $vue = "erreur404";
