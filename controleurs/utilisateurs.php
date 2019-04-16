@@ -131,6 +131,13 @@ switch ($function) {
             case 'autre':
                 $choixType = 'un problème non notifié';
         }
+        
+        
+     case 'faq':
+        $vue='faq';
+        include('modele/requetes.faq.php');
+        include('modele/connexion.php');
+        $faq=recupererFAQ();
         break;
 
 
