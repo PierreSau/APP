@@ -12,13 +12,13 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="vues/css.css"/>
+    <link rel="stylesheet" href="vues/style.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Ecom</title>
 </head>
 <header>
     <div  class="logo">
-        <img src="images/ecom.jpg" />
+        <img src="images/NomEcoM.jpg" />
     </div>
     <div align="right">
         <ul id="menu">
