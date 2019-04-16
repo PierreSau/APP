@@ -12,18 +12,13 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="vues/header.css"/>
-    <link rel="stylesheet" href="vues/footer.css"/>
-    <link rel="stylesheet" href="vues/stylefaq.css">
-    <link rel="stylesheet" href="stylefonct.css">
-    <link rel="stylesheet" href="maison.css">
-    <link rel="stylesheet" href="vcontact.css" >
+    <link rel="stylesheet" href="vues/css.css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Ecom</title>
 </head>
 <header>
     <div  class="logo">
-        <img src="vues/NomEcoM.png" href="index.php?cible=utilisateurs&fonction=accueil" />
+        <img src="images/ecom.jpg" />
     </div>
     <div align="right">
         <ul id="menu">
@@ -51,7 +46,7 @@
                 <li><a href="#">Deconnexion</a></li>
             </ul>
         </li>
-        <li><p><a href="index.php?cible=vcontact">Contactez Nous</a></p>
+        <li><p><a href="index.php?cible=vontact">Contactez Nous</a></p>
             <ul>
                 <li><a href="index.php?cible=erreur404">Forum</a></li>
             </ul>
