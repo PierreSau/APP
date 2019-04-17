@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="vues/header.css"/>
     <link rel="stylesheet" href="vues/footer.css"/>
     <link rel="stylesheet" href="vues/stylefaq.css">
-    <link rel="stylesheet" href="stylefonct.css">
+    <link rel="stylesheet" href="vues/stylefonct.css">
     <link rel="stylesheet" href="maison.css">
     <link type="text/css" rel="stylesheet" href="vontact.css" media="all">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
     <div align="right">
         <ul id="menu">
 
-            <li><p><a href="../index.php?cible=maison">Ma Maison</a></p>
+            <li><p><a href="index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
                 <ul>
                     <li><a href="index.php?cible=utilisateurs&fonction=maison">Mes maisons</a></li>
                     <li><a href="index.php?cible=capteurs">capteurs</a></li>

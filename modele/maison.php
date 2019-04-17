@@ -1,4 +1,6 @@
 <?php
-function recupereadresse($idPersonne){
-  return $bdd-> query('SELECT adresse FROM habitation WHERE idHabitation = (SELECT idHabitation FROM relation WHERE idPersonne = '.$idPersonne.')');
+function recupereradresse($idPersonne){
+    global $bdd;
+    return $bdd-> query('SELECT * FROM habitation WHERE idHabitation IN (SELECT idHabitation FROM relation WHERE idPersonne = '.$idPersonne.')');
 }
+?>

@@ -93,6 +93,8 @@ switch ($function) {
 
     case 'maison':
         $vue = "maison";
+        include('modele/maison.php');
+        include('modele/connexion.php');
         $maisons = recupereradresse(1);
         break;
 
