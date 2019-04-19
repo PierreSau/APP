@@ -1,13 +1,14 @@
-<html>
+<div>
+    <div class="tableau2">
 
-<body>
+
 <?php
+
 while ($donnees = $maisons->fetch())
 {
     echo'<a href="index.php?cible=utilisateurs&fonction=faq">';
 
-    echo'<div class="tableau2">
-       <div class="maison">';
+    echo '<div class="maison">';
     print($donnees['adresse']);
     echo'</div>';
     echo'</a>';
@@ -24,3 +25,4 @@ $maisons->closeCursor();
 </div>
 </a>
 </div>
+
