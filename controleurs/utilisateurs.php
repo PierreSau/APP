@@ -95,7 +95,7 @@ switch ($function) {
         $vue = "maison";
         include('modele/maison.php');
         include('modele/connexion.php');
-        $maisons = recupereradresse(1);
+        $maisons = recupereradresse($bdd,$idutilisateur);
         break;
 
 

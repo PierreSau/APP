@@ -12,11 +12,13 @@
  */
 
 // on inclut le fichier modèle contenant les appels à la BDD
-include('/Users/Pierre/PhpstormProjects/MVC/modele/requetes.pieces.php');
+include('modele/connexion.php');
+include('modele/maison.php');
+include('modele/requetes.pieces.php');
 
-// si la fonction n'est pas définie, on choisit d'afficher l'accueil
+// si la fonction n'est pas définie, on choisit d'afficher l'accueil des pieces
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
-    $function = "";
+    $function = "pieces";
 } else {
     $function = $_GET['fonction'];
 }
@@ -24,20 +26,21 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 switch ($function) {
 
     case 'pieces':
-        //liste des pièces déjà ajoutés
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
 
-        $vue = "pieces";
-        $title = "Les pièces";
-
-        $entete = "Voici la liste des pièces déjà enregistrés :";
-
-        $liste = recupereTous($bdd, $table);
-
-        if(empty($liste)) {
-            $alerte = "Aucune pièce enregistré pour le moment";
+        }else {
+            $maison = $_GET['maison'];
         }
 
-        break;
+        $idmaison=idmaison($bdd,$idutilisateur,$maison);
+        if (is_int($idmaison)) {
+            $vue = "erreur404";
+
+        } else {
+            $vue = "pieces";
+        }
+            break;
 
     case 'ajout':
         //ajouter une pièce

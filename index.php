@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$idutilisateur=1;
 /**
  * MVC :
  * - index.php : identifie le routeur à appeler en fonction de l'url

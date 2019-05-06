@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="vues/footer.css"/>
     <link rel="stylesheet" href="vues/stylefaq.css">
     <link rel="stylesheet" href="vues/stylefonct.css">
+    <link rel="stylesheet" href="vues/pieces.css">
     <link rel="stylesheet" href="maison.css">
     <link type="text/css" rel="stylesheet" href="vontact.css" media="all">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

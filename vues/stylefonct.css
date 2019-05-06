@@ -24,31 +24,3 @@ body{
 }
 
 
-.tableau2{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 10px 10px;
-}
-
-
-.maison{
-    height: 150px;
-    width: 160px;
-    justify-content: space-around;
-    text-align: justify;
-    padding: 4px 0px;
-    border: 2px solid black;
-    background: lightgreen;
-    margin: 5px;
-}
-
-.maison:hover{
-    background: green;
-}
-
-.tableau2 a{
-    text-decoration: none;
-    color: darkorange;
-}
-

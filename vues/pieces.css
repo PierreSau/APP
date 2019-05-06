@@ -94,3 +94,35 @@ td, th
     padding: 2px 0px;
     background: lightskyblue;
 }
+
+
+
+.tableau2{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 10px 10px;
+}
+
+
+.maison{
+  height: 200px;
+  width: 215px;
+  justify-content: space-around;
+  text-align: center;
+  padding: 4px 0px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: lightgreen;
+  margin: 5px;
+}
+
+.maison:hover{
+  background: green;
+}
+
+.tableau2 a{
+  text-decoration: none;
+  color: darkorange;
+  font-size: x-large;
+}

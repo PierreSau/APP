@@ -24,6 +24,8 @@ h1{
     display: none;
 }
 
+
+
 /*Hide the checkboxes */
 .faq-section input{
     position: absolute;
@@ -44,6 +46,8 @@ h1{
     font-size: 1em;
     /* restore clipping defaults */
 }
+
+
 
 /*Style the label*/
 .faq-section label{
@@ -91,4 +95,14 @@ h1{
     border-top-color: darkgreen ;
     margin-top: -3px;
     right: 10px;
+}
+
+
+.faq-section
+.piece{
+    display: none;
+}
+
+.faq-section input:checked~div{
+    display: flex;
 }

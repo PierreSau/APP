@@ -1,6 +1,9 @@
 
 <?php
 
+
+
+
 /**Fonction table piece*/
 
 // on récupère les requêtes génériques
