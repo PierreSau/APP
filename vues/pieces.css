@@ -4,7 +4,7 @@
 
 
 
-.piece{
+.piecedetail{
   display: flex;
   background: lightsteelblue;
   flex-wrap: wrap;
@@ -97,32 +97,55 @@ td, th
 
 
 
-.tableau2{
+.tableauMaison, .tableauPiece{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin: 10px 10px;
+  margin: 20px 10px;
 }
 
+.tableauMaison a{
+  text-decoration: none;
+  color: darkorange;
+  font-size: x-large;
+}
 
-.maison{
+.tableauPiece{
+  margin-bottom: 30px;
+}
+
+.maison, .piece , .ajoutepiece{
   height: 200px;
   width: 215px;
   justify-content: space-around;
-  text-align: center;
   padding: 4px 0px;
   border: 2px solid black;
   border-radius: 5px;
   background: lightgreen;
   margin: 5px;
+  padding-left: 4px;
+}
+
+.piece{
+  color:black;
+}
+.maison{
+  color: orange;
+  text-align: center;
+}
+
+.piece h1, .ajoutepiece h1{
+  text-align: center;
+  font-size: x-large;
+  color: orange;
 }
 
 .maison:hover{
   background: green;
 }
 
-.tableau2 a{
-  text-decoration: none;
-  color: darkorange;
-  font-size: x-large;
+.menu{
+  margin-top: 100px;
 }
+
+

@@ -20,7 +20,7 @@ h1{
 }
 
 /*Hide the paragraphs*/
-.faq-section p{
+.faq-section p {
     display: none;
 }
 
@@ -40,7 +40,7 @@ h1{
 
 
 /*If the checkbox is checked, show all paragraphs*/
-.faq-section input:checked~p{
+.faq-section input:checked~p , .faq-section input:checked~div{
     display: block;
     color: #444;
     font-size: 1em;
@@ -98,11 +98,11 @@ h1{
 }
 
 
-.faq-section
-.piece{
+.faq-section .piecedetail{
     display: none;
 }
 
 .faq-section input:checked~div{
     display: flex;
 }
+

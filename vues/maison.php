@@ -1,6 +1,6 @@
 
 
-<div class="tableau2">
+<div class="tableauMaison">
     <?php
 $i=0;
     while ($donnees = $maisons->fetch())
@@ -9,6 +9,7 @@ $i=0;
         echo'<a href="index.php?cible=pieces&maison='.$i.'">';
         echo '<div class="maison">';
         print($donnees['adresse']);
+        echo'<img src="images/maison.jpg">';
         echo'</div>';
         echo'</a>';
     }

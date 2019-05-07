@@ -6,7 +6,7 @@
  * Time: 11:30
  */
 
-
+$alerte=false;
 /**
  * Contrôleur de la pièce
  */
@@ -37,45 +37,66 @@ switch ($function) {
         if (is_int($idmaison)) {
             $vue = "erreur404";
 
-        } else {
+        } else {  //il n'y a pas de problème, on accède a la vue de la pièce
             $vue = "pieces";
+            $captact=[];
+            $idpiece=recupererpieces($bdd,$idmaison['idHabitation']);
+            for($i=0 ; $i<count($idpiece) ; $i++){
+                $captact[$i]=recuperercapt($bdd,$idpiece[$i]['idPiece']);
+            }
         }
             break;
 
-    case 'ajout':
-        //ajouter une pièce
+    case 'ajoutepiece':
 
-        $title = "ajouter une pièce";
-        $vue = "piece";
-        $alerte = false;
+        //même code que pour piece
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
+
+        }else {
+            $maison = $_GET['maison'];
+        }
+
+        $idmaison=idmaison($bdd,$idutilisateur,$maison);
+
+
+
+
+        // puis ajouter une pièce
 
         // Cette partie du code est appelée si le formulaire a été posté
-        if (isset($_POST['name']) and isset($_POST['type'])) {
+        if (isset($_POST['nompiece'])) {
 
-            if (!estUneChaine($_POST['name'])) {
+            if (!estUneChaine($_POST['nompiece'])) {
                 $alerte = "Le nom de la pièce doit être une chaîne de caractère.";
-
-            } else if (!estUneChaine($_POST['type'])) {
-                $alerte = "Le type du capteur doit être une chaîne de caractère.";
 
             } else {
 
-                $values = [
-                    'name' => $_POST['name'],
-                    'type' => $_POST['type']
-                ];
+                $value = $_POST['nompiece'];
 
                 // Appel à la BDD à travers une fonction du modèle.
-                $retour = insertion($bdd, $values, $table);
+                $retour = insertionpiece($bdd, $value, $idmaison['idHabitation']);
 
                 if ($retour) {
-                    $alerte = "Ajout réussie";
+                    $alerte = "Ajout réussi";
                 } else {
-                    $alerte = "L'ajout dans la BDD n'a pas fonctionné";
+                    $alerte = "L'ajout n'a pas fonctionné";
                 }
             }
         }
 
+
+        if (is_int($idmaison)) {
+            $vue = "erreur404";
+
+        } else {  //il n'y a pas de problème, on accède a la vue de la pièce
+            $vue = "pieces";
+            $captact=[];
+            $idpiece=recupererpieces($bdd,$idmaison['idHabitation']);
+            for($i=0 ; $i<count($idpiece) ; $i++){
+                $captact[$i]=recuperercapt($bdd,$idpiece[$i]['idPiece']);
+            }
+        }
 
         break;
 

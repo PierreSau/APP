@@ -6,10 +6,12 @@ function recupereradresse(PDO $bdd,$idPersonne){
 
 /* fonction qui récupère les pièces de la maison idMaison*/
 function recupererpieces(PDO $bdd, $idMaison){
-    return $bdd->query('SELECT idPiece, nom FROM piece WHERE idHabiotation='.$idMaison.' ');
+    $reponse=$bdd->query('SELECT idPiece, nom FROM piece WHERE idHabitation='.$idMaison.' ');
+    return $reponse->fetchAll();
+
 }
 
-/* fonction qui récupère l'id de la maison */
+/* fonction qui récupère l'id de la maison ;;; retourne 0 si il y a une erreur*/
 function idmaison(PDO $bdd, $idPersonne, $maison){
     $idmaison=recupereradresse($bdd,$idPersonne);
     $idmaison= $idmaison->fetchAll();

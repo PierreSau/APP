@@ -6,115 +6,99 @@
 echo($idmaison)['adresse'];
 ?>
 </h1>
+<?php print($alerte); ?>
+<div class="tableauPiece">
+<?php
+for($i=0 ; $i<count($captact) ; $i++) {
+    echo '<div class="piece">';
+    echo '<h1>';
+    print($idpiece[$i]['nom']);
+    echo' : </br></br>';
+    echo '</h1>';
+    for($j=0 ; $j<count($captact[$i]); $j++){
+        print($captact[$i][$j]['type']);
+        echo ' : </br>';
+    }
+    echo '</div>';
+}
+
+//<img src="images/plus.png" height="190" width="200">
+
+?>
+
+    <div class="piece">
+    <h1>Ajouter une pièce</h1>
+       <?php echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'&fonction=ajoutepiece">'; ?>
+        </br>
+        <p> Nom de la piece :</p>
+            <input type="text" name="nompiece" required/>
+            </br></br>
+            <input type="submit" value="Ajouter"/>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- détails -->
+
+
 <div class="menu">
 
-    <section class="faq-section">
-        <input type="checkbox"   id='1' >
-        <label for='1' >
-            piece 1
-        </label>
-  <div class="piece">
-    <div class="info"> <img src="info.png" alt="informations" title="Entrer ici les informations à afficher"> </div>
-    <div class="etat">
-      <strong>Capteurs :</strong>
-      <table class="captab">
-        <tr>
-          <th>Capteur</th>
-          <th>Valeur Actuelle</th>
-        </tr>
-        <tr>
-          <td>Nom Capteur</td>
-          <td>Valeur Capteur</td>
-        </tr>
-        <tr>
-          <td>Nom Capteur</td>
-          <td>Valeur Capteur</td>
-        </tr>
-        <tr>
-          <td>Nom Capteur</td>
-          <td>Valeur Capteur</td>
-        </tr>
-      </table>
-    </div>
-    <div class="modes">
-      <div class="mode1">Eco</div>
-      <div class="mode2">Jour</div>
-      <div class="mode3">Nuit</div>
-    </div>
-    <div class="actionneurs">
-      <strong>Actionneurs</strong>
-        <table class="actab">
-          <tr>
-            <th>Actionneur</th>
-            <th>Valeur actuelle</th>
-            <th>Valeur cible</th>
-          </tr>
-          <tr>
-            <td>Nom actionneur</td>
-            <td>Récupérer valeur</td>
-            <td>
-              <form method="post" action="traitement.php">
-                <p>
-                  <select name="valeur" id="valeur">
-                    <option value="valeur 1">Valeur 1</option>
-                    <option value="valeur 2">Valeur 2</option>
-                    <option value="valeur 3">Valeur 3</option>
-                    <option value="valeur">valeur 4</option>
-                    <option value="valeur">valeur 5</option>
-                    <option value="valeur">valeur 6</option>
-                    <option value="valeur">valeur 7</option>
-                    <option value="valeur">valeur 8</option>
-                  </select>
-                </p>
-                </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Nom actionneur</td>
-            <td>Récupérer valeur</td>
-            <td>
-              <form method="post" action="traitement.php">
-                <p>
-                  <select name="valeur" id="valeur">
-                    <option value="valeur 1">Valeur 1</option>
-                    <option value="valeur 2">Valeur 2</option>
-                    <option value="valeur 3">Valeur 3</option>
-                    <option value="valeur">valeur 4</option>
-                    <option value="valeur">valeur 5</option>
-                    <option value="valeur">valeur 6</option>
-                    <option value="valeur">valeur 7</option>
-                    <option value="valeur">valeur 8</option>
-                  </select>
-                </p>
-                </form>
-            </td>
-          </tr>
-          <tr>
-            <td>Nom actionneur</td>
-            <td>Récupérer valeur</td>
-            <td>
-              <form method="post" action="traitement.php">
-                <p>
-                  <select name="valeur" id="valeur">
-                    <option value="valeur 1">Valeur 1</option>
-                    <option value="valeur 2">Valeur 2</option>
-                    <option value="valeur 3">Valeur 3</option>
-                    <option value="valeur">valeur 4</option>
-                    <option value="valeur">valeur 5</option>
-                    <option value="valeur">valeur 6</option>
-                    <option value="valeur">valeur 7</option>
-                    <option value="valeur">valeur 8</option>
-                  </select>
-                </p>
-                </form>
-            </td>
-          </tr>
-        </table>
-    </div>
-    <div class="aide">
-      <img src="info.png" alt="aide concernant les actionneurs" title="Remplir ici le formulaire d'aide">
-    </div>
-  </body>
-    </section>
+    <?php
+    for($i=0 ; $i<count($captact) ; $i++){
+    echo '<section class="faq-section">';
+    echo" <input type=\"checkbox\"   id=\"$i\" >";
+    echo"<label for=\"$i\" > ";
+    print($idpiece[$i]['nom']);
+    ?>
+    </label>
+    <div class="piecedetail">
+        <div class="etat">
+            <strong>Capteurs :</strong>
+            <table class="captab">
+                <tr>
+                    <th>Capteur</th>
+                    <th>Valeur Actuelle</th>
+                </tr>
+                <?php
+                for($j=0 ; $j<count($captact[$i]); $j++){
+                    if($captact[$i][$j]['CaptOuAct']==1){
+                        echo '<tr> <td>';
+                        print($captact[$i][$j]['type']);
+                        echo '</td> <td>';
+                        echo'</td> </tr>';
+                    }
+}
+                ?>
 
+            </table>
+        </div>
+        <div class="etat">
+            <strong>Actionneurs :</strong>
+            <table class="captab">
+                <tr>
+                    <th>Actionneur</th>
+                    <th>Valeur cible</th>
+                </tr>
+                <?php
+                for($j=0 ; $j<count($captact[$i]); $j++){
+                    if($captact[$i][$j]['CaptOuAct']==2){
+                        echo '<tr> <td>';
+                        print($captact[$i][$j]['type']);
+                        echo '</td> <td>';
+                        echo'</td> </tr>';
+                    }
+                }
+                ?>
+            </table>
+        </div>
+        </section>
+        <?php
+        }
+        ?>
+
+
+
+</div>
 </div>
