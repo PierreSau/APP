@@ -16,13 +16,13 @@ $table = "users";
  * @return array
  */
 function rechercheParNom(PDO $bdd, string $nom): array {
-    
+
     $statement = $bdd->prepare('SELECT * FROM  users WHERE username = :username');
     $statement->bindParam(":username", $value);
     $statement->execute();
-    
+
     return $statement->fetchAll();
-    
+
 }
 
 /**
@@ -40,13 +40,22 @@ function recupereTousUtilisateurs(PDO $bdd): array {
  * @param array $utilisateur
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
-    
-    $query = ' INSERT INTO users (username, password) VALUES (:username, :password)';
-    $donnees = $bdd->prepare($query);
-    $donnees->bindParam(":username", $utilisateur['username'], PDO::PARAM_STR);
-    $donnees->bindParam(":password", $utilisateur['password']);
-    return $donnees->execute();
-    
-}
 
+    //$bdd->query(' INSERT INTO personne ( idPersonne, nom, prenom, adresseMail, numDeTelephone, motDePasse, langue, idIntervention) VALUES (NULL,' .$utilisateur['nom'].',' .$utilisateur['prenom'].',' .$utilisateur['adresseMail'].',' .$utilisateur['numDeTelephone'].',' .$utilisateur['motDePasse'] .', 1, 1);');
+    $bdd->exec('INSERT INTO `personne` (`idPersonne`, `nom`, `prenom`, `adresseMail`, `numDeTelephone`, `motDePasse`, `langue`, `IDIntervention`) VALUES (NULL, \''.$utilisateur['nom'].'\', \''.$utilisateur['prenom'].'\', \''.$utilisateur['adresseMail'].'\', \''.$utilisateur['numDeTelephone'].'\',123,1, NULL)');
+    //$donnees = $bdd->prepare($query);
+    //$donnees->bindParam(":nom", $utilisateur['nom'], PDO::PARAM_STR);
+    //$donnees->bindParam(":prenom", $utilisateur['prenom'], PDO::PARAM_STR);
+    //$donnees->bindParam(":adresseMail", $utilisateur['adresseMail']);
+    //$donnees->bindParam(":numDeTelephone", $utilisateur['numDeTelephone']);
+    //$donnees->bindParam(":motDePasse", $utilisateur['motDePasse']);
+    //return $donnees->execute();
+    return true;
+}
+function testArray(array $utilisateur){
+    echo $utilisateur['nom'];
+    echo $utilisateur['prenom'];
+    echo $utilisateur['adresseMail'];
+
+}
 ?>

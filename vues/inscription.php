@@ -2,13 +2,14 @@
 /**
  * Vue : inscrire un nouvel utilisateur
  */
+
 ?>
 
 <?php// echo AfficheAlerte($alerte); ?>
 
 <link rel="stylesheet" href="inscription.css"/>
 <body>
-<form method="post" action="index.php?cible=utilisateurs&fonction=accueil">
+<form method="post" action="index.php?cible=utilisateurs&fonction=inscription">
 
     <fieldset>
         <label for= "nom"> Votre Nom : </label>
