@@ -65,6 +65,19 @@ switch ($function) {
         $title = "Inscription";
         break;
 
+    case 'connexion' :
+        $vue = "connexion";
+
+            $data = recupereTousUtilisateurs();
+            if ($data['motDePasse'] == md5($_POST['motDePasse'])) // Acces OK !
+            {
+                $_SESSION['adresseMail'] = $data['adresseMail'];
+                $message = '<p>Bienvenue '.$data['prenom'].', 
+			vous êtes maintenant connecté!</p>
+			<p>Cliquez <a href="./index.php">ici</a> 
+			pour revenir à la page d accueil</p>';
+            }
+            break;
 
         case
             'liste':
