@@ -18,7 +18,7 @@
 </head>
 <header>
     <div  class="logo">
-        <img src="images/NomEcoM.jpg" />
+        <img src="vues/NomEcoM.png" />
     </div>
     <div align="right">
         <ul id="menu">

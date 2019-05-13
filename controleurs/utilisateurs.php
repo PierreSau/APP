@@ -67,7 +67,7 @@ switch ($function) {
         $vue = "connexion";
 
         connexionUtilisateur($bdd);
-
+        if (isset($_POST['adresseMail']) and isset($_POST['motDePasse'])) {
         $isPasswordCorrect = password_verify($_POST['motDePasse'], $resultat['motDePasse']);
 
         if (!$resultat)
@@ -84,7 +84,7 @@ switch ($function) {
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
             }
-        }
+        }}
         break;
         
     case 'liste':
