@@ -1,10 +1,4 @@
 
-/**
-* Created by PhpStorm.
-* User: leopo
-* Date: 13/05/2019
-* Time: 09:56
-*/
 
 <form method="post" action="index.php?cible=utilisateurs&fonction=connexion">
 

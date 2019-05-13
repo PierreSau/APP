@@ -51,4 +51,10 @@ function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
     return true;
 }
 
+function connexionUtilisateur(PDO $bdd)
+{
+    $req = $bdd->prepare('SELECT adresseMail, motDePasse FROM personne');
+    return $resultat = $req->fetch();
+}
+
 ?>

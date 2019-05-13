@@ -65,14 +65,25 @@ switch ($function) {
 
     case 'connexion' :
         $vue = "connexion";
-        $data = recupereTousUtilisateurs();
-        if ($data['motDePasse'] == md5($_POST['motDePasse'])) // Acces OK !
+
+        connexionUtilisateur($bdd);
+
+        $isPasswordCorrect = password_verify($_POST['motDePasse'], $resultat['motDePasse']);
+
+        if (!$resultat)
         {
-            $_SESSION['adresseMail'] = $data['adresseMail'];
-            $message = '<p>Bienvenue '.$data['prenom'].', 
-			vous êtes maintenant connecté!</p>
-			<p>Cliquez <a href="./index.php">ici</a> 
-			pour revenir à la page d accueil</p>';
+            echo 'Mauvais identifiant ou mot de passe !';
+        }
+        else
+        {
+            if ($isPasswordCorrect) {
+                session_start();
+                $_SESSION['adresseMail'] = $resultat['adresseMail'];
+                echo 'Vous êtes connecté !';
+            }
+            else {
+                echo 'Mauvais identifiant ou mot de passe !';
+            }
         }
         break;
         
