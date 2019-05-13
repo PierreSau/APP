@@ -41,7 +41,7 @@ function recupereTousUtilisateurs(PDO $bdd): array {
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
 
-    $query = ' INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse) VALUES (:nom, :prenom, :adresseMail, :numDeTelephone, :motDePasse)';
+    $query = ' INSERT INTO personne ('nom', 'prenom', 'adresseMail', 'numDeTelephone', 'motDePasse') VALUES (:nom, :prenom, :adresseMail, :numDeTelephone, :motDePasse)';
     $donnees = $bdd->prepare($query);
     $donnees->bindParam(":nom", $utilisateur['nom'], PDO::PARAM_STR);
     $donnees->bindParam(":prenom", $utilisateur['prenom'], PDO::PARAM_STR);

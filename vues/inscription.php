@@ -7,7 +7,7 @@
 <?php// echo AfficheAlerte($alerte); ?>
 
 
-<form method="post" action="index.php?cible=utilisateurs&fonction=accueil">
+<form method="post" action="index.php?cible=utilisateurs&fonction=inscription">
 
     <fieldset>
         <label for= "nom"> Votre Nom : </label>
@@ -40,4 +40,3 @@
 </form>
 
 <p><a href="index.php">Retour</a></p>
-</body>

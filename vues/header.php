@@ -46,7 +46,7 @@
                 <li><a href="#">Deconnexion</a></li>
             </ul>
         </li>
-        <li><p><a href="index.php?cible=vontact">Contactez Nous</a></p>
+        <li><p><a href="index.php?cible=vcontact">Contactez Nous</a></p>
             <ul>
                 <li><a href="index.php?cible=erreur404">Forum</a></li>
             </ul>
