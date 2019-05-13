@@ -40,7 +40,7 @@
         </li>
         <li><p><a href="index.php?cible=utlisateur">Mon Compte</a></p>
             <ul>
-                <li><a href="index.php?cible=erreur404">profil</a></li>
+                <li><a href="index.php?cible=utlisateur&fonction=connexion">Se connecter</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion capteurs</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion utilisateurs</a></li>
                 <li><a href="#">Deconnexion</a></li>
