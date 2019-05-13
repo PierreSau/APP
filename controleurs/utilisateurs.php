@@ -30,26 +30,19 @@ switch ($function) {
 
 
     case 'inscription':
-        // inscription d'un nouvel utilisateur
         $vue = "inscription";
         $alerte = false;
-
-
         // Cette partie du code est appelée si le formulaire a été posté
+        $alerte='test';
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
-
             if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
-
-            } else if (!estUnMotDePasse($_POST['motDePasse'])) {
-                $alerte = "Le mot de passe n'est pas correct.";
-
+                // } else if (!estUnMotDePasse($_POST['motDePasse'])) {  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //     $alerte = "Le mot de passe n'est pas correct.";
             } else if (!estUnEntier($_POST['numDeTelephone'])) {
                 $alerte = "Ce n'est pas un numéro de téléphone";
-
             } else {
                 // Tout est ok, on peut inscrire le nouvel utilisateur
-
                 //
                 $values = [
                     'nom' => $_POST['nom'],
@@ -58,19 +51,29 @@ switch ($function) {
                     'numDeTelephone'=> $_POST['numDeTelephone'],
                     'motDePasse' => crypterMdp($_POST['motDePasse']) // on crypte le mot de passe
                 ];
-
                 // Appel à la BDD à travers une fonction du modèle.
                 $retour = ajouteUtilisateur($bdd, $values);
-
                 if ($retour) {
                     $alerte = "Inscription réussie";
-
                 } else {
                     $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                 }
             }
         }
         $title = "Inscription";
+        break;
+
+    case 'connexion' :
+        $vue = "connexion";
+        $data = recupereTousUtilisateurs();
+        if ($data['motDePasse'] == md5($_POST['motDePasse'])) // Acces OK !
+        {
+            $_SESSION['adresseMail'] = $data['adresseMail'];
+            $message = '<p>Bienvenue '.$data['prenom'].', 
+			vous êtes maintenant connecté!</p>
+			<p>Cliquez <a href="./index.php">ici</a> 
+			pour revenir à la page d accueil</p>';
+        }
         break;
         
     case 'liste':

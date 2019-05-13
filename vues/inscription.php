@@ -1,12 +1,3 @@
-<?php
-/**
- * Vue : inscrire un nouvel utilisateur
- */
-?>
-
-<?php// echo AfficheAlerte($alerte); ?>
-
-
 <form method="post" action="index.php?cible=utilisateurs&fonction=inscription">
 
     <fieldset>
