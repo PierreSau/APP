@@ -37,8 +37,8 @@ switch ($function) {
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
             if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
-                // } else if (!estUnMotDePasse($_POST['motDePasse'])) {  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //     $alerte = "Le mot de passe n'est pas correct.";
+                 } else if (!estUnMotDePasse($_POST['motDePasse'])) {
+                    $alerte = "Le mot de passe n'est pas correct.";
             } else if (!estUnEntier($_POST['numDeTelephone'])) {
                 $alerte = "Ce n'est pas un numéro de téléphone";
             } else {
