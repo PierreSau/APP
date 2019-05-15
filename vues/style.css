@@ -362,3 +362,12 @@ input[type=submit], input[type=reset] {
     box-shadow:1px 1px 1px #58B000  ;
     cursor:pointer;
 }
+
+/* Pour accueil */
+
+.gauche {
+    float:left;
+}
+.droite {
+    float:right;
+}
