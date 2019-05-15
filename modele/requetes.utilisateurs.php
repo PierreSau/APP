@@ -31,25 +31,27 @@ function rechercheParNom(PDO $bdd, string $nom): array {
  * @return array
  */
 function recupereTousUtilisateurs(PDO $bdd): array {
-    $query = 'SELECT * FROM users';
+    $query = 'SELECT * FROM personne';
     return $bdd->query($query)->fetchAll();
 }
-
 /**
  * Ajoute un nouvel utilisateur dans la base de données
  * @param array $utilisateur
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
-    
-    $query = ' INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse) VALUES (:nom, :prenom, :adresseMail, :numDeTelephone, :motDePasse)';
-    $donnees = $bdd->prepare($query);
-    $donnees->bindParam(":nom", $utilisateur['nom'], PDO::PARAM_STR);
-    $donnees->bindParam(":prenom", $utilisateur['prenom'], PDO::PARAM_STR);
-    $donnees->bindParam(":adresseMail", $utilisateur['adresseMail']);
-    $donnees->bindParam(":numDeTelephone", $utilisateur['numDeTelephone']);
-    $donnees->bindParam(":motDePasse", $utilisateur['motDePasse']);
-    return $donnees->execute();
-    
+
+
+    $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, langue) VALUES ( \''.$utilisateur['nom'].'\', \''.$utilisateur['prenom'].'\', \''.$utilisateur['adresseMail'].'\', \''.$utilisateur['numDeTelephone'].'\',\''.$utilisateur['motDePasse'].'\',1)');
+    return true;
+}
+
+function connexionUtilisateur(PDO $bdd, $mail)
+{
+    $req = $bdd->prepare('SELECT adresseMail, motDePasse FROM personne WHERE adresseMail = \'' .$mail . '\'');
+    $req->execute(array(
+        'pseudo' => $mail));
+    return $resultat = $req->fetch();
+
 }
 
 ?>

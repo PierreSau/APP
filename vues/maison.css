@@ -1,0 +1,96 @@
+*{
+  box-sizing: border-box;
+}
+
+
+
+.piece{
+  display: flex;
+  background: lightsteelblue;
+  flex-wrap: wrap;
+  margin : 5% 8%;
+  padding : 8px 0px;
+  padding-left: 8px;
+  border: solid black 3px;
+  justify-content: flex-start;
+}
+
+.nomPiece, .etat, .modes, .actionneurs{
+  background: lightsteelblue;
+  margin : 2vw 1%;
+  text-align: center;
+}
+
+.nomPiece, .etat, .modes, .actionneurs /* Pour ajuster la largeur de tous les éléments de la boite pièce*/{
+  width: 93%;
+}
+
+.mode1, .mode2, .mode3{
+  width:25%;
+  text-align: center;
+  padding: 4px 0px;
+  border: 2px solid black;
+}
+.mode1{
+  background: lightgray;
+}
+.mode2{
+  background: lightgreen;
+}
+.mode3{
+  background: lightcoral;
+}
+
+.nomPiece{
+  text-align: center;
+  font-size: 130%;
+  text-decoration: underline;
+}
+
+.info, .aide{
+  width: 3vw;
+  height: 3vw;
+  background: lightsteelblue;
+  margin-top: 1vw;
+}
+.aide{
+  margin-top: 5%;
+}
+
+.info img, .aide img{
+  width: 100%;
+  height: auto;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.modes{
+  display:flex;
+  justify-content: space-around;
+}
+
+
+strong{
+  text-decoration: underline;
+}
+
+.captit{
+  text-align: center;
+  font-size: 110%;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+
+td, th
+{
+    border: 1px solid black;
+    text-align: center;
+    padding: 2px 0px;
+    background: lightskyblue;
+}
