@@ -25,6 +25,7 @@
 if (isset($_SESSION['adresseMail']))
 {
     echo 'Bonjour ' . $_SESSION['adresseMail'];
+
 }?>
         <ul id="menu">
 
@@ -48,7 +49,7 @@ if (isset($_SESSION['adresseMail']))
                 <li><a href="index.php?cible=utilisateurs&fonction=connexion">Se connecter</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion capteurs</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion utilisateurs</a></li>
-                <li><a href="#">Deconnexion</a></li>
+                <li><a href="index.php?cible=utilisateurs&fonction=deconnexion">Deconnexion</a></li>
             </ul>
         </li>
         <li><p><a href="index.php?cible=vcontact">Contactez Nous</a></p>

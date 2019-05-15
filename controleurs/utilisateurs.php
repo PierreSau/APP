@@ -80,7 +80,6 @@ switch ($function) {
         else
         {
             if ($isPasswordCorrect) {
-                session_start();
                 $_SESSION['adresseMail'] = $resultat['adresseMail'];
                 echo 'Vous êtes connecté !';
             }
@@ -88,6 +87,12 @@ switch ($function) {
                 echo 'Mauvais mot de passe !';
             }
         }}
+        break;
+
+    case 'deconnexion':
+        $vue='deconnexion';
+        session_destroy();
+        header('Location: index.php');
         break;
         
     case 'liste':
@@ -156,6 +161,8 @@ switch ($function) {
         include('modele/connexion.php');
         $faq=recupererFAQ();
         break;
+
+
 
 
 
