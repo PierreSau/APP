@@ -66,8 +66,11 @@ switch ($function) {
     case 'connexion' :
         $vue = "connexion";
 
-        connexionUtilisateur($bdd);
+
         if (isset($_POST['adresseMail']) and isset($_POST['motDePasse'])) {
+
+        $values = $_POST['adresseMail'];
+        $resultat = connexionUtilisateur($bdd,$values);
         $isPasswordCorrect = password_verify($_POST['motDePasse'], $resultat['motDePasse']);
 
         if (!$resultat)
@@ -82,7 +85,7 @@ switch ($function) {
                 echo 'Vous êtes connecté !';
             }
             else {
-                echo 'Mauvais identifiant ou mot de passe !';
+                echo 'Mauvais mot de passe !';
             }
         }}
         break;
@@ -145,7 +148,7 @@ switch ($function) {
             case 'autre':
                 $choixType = 'un problème non notifié';
         }
-        
+        break;
         
      case 'faq':
         $vue='faq';

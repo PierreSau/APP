@@ -32,7 +32,7 @@ function estUneChaine($chaine): bool
 
 function estUnMotDePasse($chaine): bool
 {
-    if (empty($chaine) || strlen($chaine) < 8) {
+    if (empty($chaine) || strlen($chaine) < 4) {
         return false;
     } else {
         return is_string($chaine);

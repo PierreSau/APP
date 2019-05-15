@@ -21,6 +21,11 @@
         <img src="vues/NomEcoM.png" />
     </div>
     <div align="right">
+        <?php
+if (isset($_SESSION['adresseMail']))
+{
+    echo 'Bonjour ' . $_SESSION['adresseMail'];
+}?>
         <ul id="menu">
 
         <li><p><a href="../index.php?cible=maison">Ma Maison</a></p>

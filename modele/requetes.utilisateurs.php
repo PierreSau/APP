@@ -40,13 +40,15 @@ function recupereTousUtilisateurs(PDO $bdd): array {
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur) {
 
-    $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, langue) VALUES ( \''.$utilisateur['nom'].'\', \''.$utilisateur['prenom'].'\', \''.$utilisateur['adresseMail'].'\', \''.$utilisateur['numDeTelephone'].'\',123,1)');
+    $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, langue) VALUES ( \''.$utilisateur['nom'].'\', \''.$utilisateur['prenom'].'\', \''.$utilisateur['adresseMail'].'\', \''.$utilisateur['numDeTelephone'].'\',\''.$utilisateur['motDePasse'].'\',1)');
     return true;
 }
 
-function connexionUtilisateur(PDO $bdd)
+function connexionUtilisateur(PDO $bdd, $mail)
 {
-    $req = $bdd->prepare('SELECT adresseMail, motDePasse FROM personne');
+    $req = $bdd->prepare('SELECT adresseMail, motDePasse FROM personne WHERE adresseMail = \'' .$mail . '\'');
+    $req->execute(array(
+        'pseudo' => $mail));
     return $resultat = $req->fetch();
 }
 
