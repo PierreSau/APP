@@ -18,7 +18,7 @@
 </head>
 <header>
     <div  class="logo">
-        <img src="vues/NomEcoM.png" />
+        <a href="index.php"><img src="vues/NomEcoM.png" /></a>
     </div>
     <div align="right">
         <?php
