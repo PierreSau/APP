@@ -44,7 +44,7 @@ if (isset($_SESSION['adresseMail']))
                 <li><a href="#">Actionneurs</a></li>
             </ul>
         </li>
-        <li><p><a href="index.php?cible=utlisateur">Mon Compte</a></p>
+        <li><p><a href="index.php?cible=utilisateurs&fonction=editionProfil">Mon Compte</a></p>
             <ul>
                 <li><a href="index.php?cible=erreur404">Gestion capteurs</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion utilisateurs</a></li>

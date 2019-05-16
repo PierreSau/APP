@@ -69,7 +69,11 @@ switch ($function) {
             else
             {
                 if ($isPasswordCorrect) {
+                    $_SESSION['nom'] = $resultat['nom'];
+                    $_SESSION['prenom'] = $resultat['prenom'];
                     $_SESSION['adresseMail'] = $resultat['adresseMail'];
+                    $_SESSION['numDeTelephone'] = $resultat['numDeTelephone'];
+
                     echo 'Vous êtes connecté !';
                 }
                 else {
@@ -85,7 +89,11 @@ switch ($function) {
         session_destroy();
         header('Location: index.php');
         break;
-        
+
+    case 'editionProfil':
+        $vue='editionProfil';
+        break;
+
     case 'liste':
     // Liste des utilisateurs déjà enregistrés
         $vue = "liste";
