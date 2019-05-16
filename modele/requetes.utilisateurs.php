@@ -52,4 +52,16 @@ function connexionUtilisateur(PDO $bdd, $mail)
     return $resultat = $req->fetch();
 }
 
+function editionProfil(PDO $bdd, array $edition)
+{
+    $bdd->exec('UPDATE personne SET nom = \''.$edition['nom'].'\', prenom = \''.$edition['prenom'].'\',adresseMail = \''.$edition['adresseMail'].'\', numDeTelephone = \''.$edition['numDeTelephone'].'\' WHERE adresseMail = \'' .$_SESSION['adresseMail'] . '\'');
+    return true;
+}
+
+function editionSession(PDO $bdd,$mail){
+    $req = $bdd->prepare('SELECT nom, prenom,adresseMail, numDeTelephone, motDePasse FROM personne WHERE adresseMail = \'' .$mail . '\'');
+    $req->execute(array(
+        'mail' => $mail));
+    return $resultat = $req->fetch();
+}
 ?>

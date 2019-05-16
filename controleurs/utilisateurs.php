@@ -4,7 +4,7 @@
  * Le contrôleur :
  * - définit le contenu des variables à afficher
  * - identifie et appelle la vue
- */ 
+ */
 
 /**
  * Contrôleur de l'utilisateur
@@ -21,14 +21,14 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 }
 
 switch ($function) {
-    
+
     case 'accueil':
         //affichage de l'accueil
         $vue = "accueil";
         $title = "Accueil";
         $alerte = false;
         // Cette partie du code est appelée si le formulaire a été posté
-        $alerte='test';
+        $alerte = 'test';
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
             if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
@@ -43,7 +43,7 @@ switch ($function) {
                     'nom' => $_POST['nom'],
                     'prenom' => $_POST['prenom'],
                     'adresseMail' => $_POST['adresseMail'],
-                    'numDeTelephone'=> $_POST['numDeTelephone'],
+                    'numDeTelephone' => $_POST['numDeTelephone'],
                     'motDePasse' => crypterMdp($_POST['motDePasse']) // on crypte le mot de passe
                 ];
                 // Appel à la BDD à travers une fonction du modèle.
@@ -59,15 +59,12 @@ switch ($function) {
         if (isset($_POST['adresseMail2']) and isset($_POST['motDePasse2'])) {
 
             $values = $_POST['adresseMail2'];
-            $resultat = connexionUtilisateur($bdd,$values);
+            $resultat = connexionUtilisateur($bdd, $values);
             $isPasswordCorrect = password_verify($_POST['motDePasse2'], $resultat['motDePasse']);
 
-            if (!$resultat)
-            {
+            if (!$resultat) {
                 echo 'Mauvais identifiant ou mot de passe !';
-            }
-            else
-            {
+            } else {
                 if ($isPasswordCorrect) {
                     $_SESSION['nom'] = $resultat['nom'];
                     $_SESSION['prenom'] = $resultat['prenom'];
@@ -75,41 +72,68 @@ switch ($function) {
                     $_SESSION['numDeTelephone'] = $resultat['numDeTelephone'];
 
                     echo 'Vous êtes connecté !';
-                }
-                else {
+                } else {
                     echo 'Mauvais mot de passe !';
                 }
-            }}
+            }
+        }
         break;
 
 
-
     case 'deconnexion':
-        $vue='deconnexion';
+        $vue = 'deconnexion';
         session_destroy();
         header('Location: index.php');
         break;
 
     case 'editionProfil':
-        if (isset($_SESSION['adresseMail'])){
-        $vue='editionProfil';
+        if (isset($_SESSION['adresseMail'])) {
+            $vue = 'editionProfil';
+            if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone'])) {
+                if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
+                    $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
+                } else if (!estUnEntier($_POST['numDeTelephone'])) {
+                    $alerte = "Ce n'est pas un numéro de téléphone";
+                } else {
+                    // Tout est ok, on peut inscrire le nouvel utilisateur
+                    //
+                    $values = [
+                        'nom' => $_POST['nom'],
+                        'prenom' => $_POST['prenom'],
+                        'adresseMail' => $_POST['adresseMail'],
+                        'numDeTelephone' => $_POST['numDeTelephone']];
+                    $retour = editionProfil($bdd, $values);
+                    if ($retour) {
+                        $alerte = "Inscription réussie";
+                        $resultat = editionSession($bdd, $_POST['adresseMail']);
+                        $_SESSION['nom'] = $resultat['nom'];
+                        $_SESSION['prenom'] = $resultat['prenom'];
+                        $_SESSION['adresseMail'] = $resultat['adresseMail'];
+                        $_SESSION['numDeTelephone'] = $resultat['numDeTelephone'];
+                    } else {
+                        $alerte = "L'inscription dans la BDD n'a pas fonctionné";
+                    }
+                }
+            } else {
+                echo 'Un champ est vide';
+            }
         } else {
             $vue = 'erreur404';
         }
         break;
 
     case 'liste':
-    // Liste des utilisateurs déjà enregistrés
+        // Liste des utilisateurs déjà enregistrés
         $vue = "liste";
         $title = "Liste des utilisateurs inscrits";
         $entete = "Voici la liste :";
-        
+
         $liste = recupereTousUtilisateurs($bdd);
-        
-        if(empty($liste)) {
+
+        if (empty($liste)) {
             $alerte = "Aucun utilisateur inscrit pour le moment";
         }
-        
+
         break;
 
     case 'mode':
@@ -143,7 +167,7 @@ switch ($function) {
         $Objet = 'EcoM: Déclaration reçue';
         // ça marche pas avec cette ligne su coup je la met en comm
         //mail($mail, $Objet, $message, $header);
-        switch($_POST['fonction']) {
+        switch ($_POST['fonction']) {
             case 'pbCapteur':
                 $choixType = 'un capteur';
                 break;
@@ -157,19 +181,15 @@ switch ($function) {
                 $choixType = 'un problème non notifié';
         }
         break;
-        
-     case 'faq':
-        $vue='faq';
+
+    case 'faq':
+        $vue = 'faq';
         include('modele/requetes.faq.php');
         include('modele/connexion.php');
-        $faq=recupererFAQ();
+        $faq = recupererFAQ();
         break;
 
 
-
-
-
-        
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
         $vue = "erreur404";
@@ -177,6 +197,6 @@ switch ($function) {
         $message = "Erreur 404 : la page recherchée n'existe pas.";
 }
 
-include ('vues/header.php');
-include ('vues/' . $vue . '.php');
-include ('vues/footer.php');
+include('vues/header.php');
+include('vues/' . $vue . '.php');
+include('vues/footer.php');
