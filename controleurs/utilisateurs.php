@@ -91,7 +91,11 @@ switch ($function) {
         break;
 
     case 'editionProfil':
+        if (isset($_SESSION['adresseMail'])){
         $vue='editionProfil';
+        } else {
+            $vue = 'erreur404';
+        }
         break;
 
     case 'liste':
