@@ -46,7 +46,6 @@ if (isset($_SESSION['adresseMail']))
         </li>
         <li><p><a href="index.php?cible=utlisateur">Mon Compte</a></p>
             <ul>
-                <li><a href="index.php?cible=utilisateurs&fonction=connexion">Se connecter</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion capteurs</a></li>
                 <li><a href="index.php?cible=erreur404">Gestion utilisateurs</a></li>
                 <li><a href="index.php?cible=utilisateurs&fonction=deconnexion">Deconnexion</a></li>

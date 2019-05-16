@@ -79,65 +79,6 @@ switch ($function) {
         break;
 
 
-    case 'inscription':
-        $vue = "inscription";
-        $alerte = false;
-        // Cette partie du code est appelée si le formulaire a été posté
-        $alerte='test';
-        if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
-            if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
-                $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
-                 } else if (!estUnMotDePasse($_POST['motDePasse'])) {
-                    $alerte = "Le mot de passe n'est pas correct.";
-            } else if (!estUnEntier($_POST['numDeTelephone'])) {
-                $alerte = "Ce n'est pas un numéro de téléphone";
-            } else {
-                // Tout est ok, on peut inscrire le nouvel utilisateur
-                //
-                $values = [
-                    'nom' => $_POST['nom'],
-                    'prenom' => $_POST['prenom'],
-                    'adresseMail' => $_POST['adresseMail'],
-                    'numDeTelephone'=> $_POST['numDeTelephone'],
-                    'motDePasse' => crypterMdp($_POST['motDePasse']) // on crypte le mot de passe
-                ];
-                // Appel à la BDD à travers une fonction du modèle.
-                $retour = ajouteUtilisateur($bdd, $values);
-                if ($retour) {
-                    $alerte = "Inscription réussie";
-                } else {
-                    $alerte = "L'inscription dans la BDD n'a pas fonctionné";
-                }
-            }
-        }
-        $title = "Inscription";
-        break;
-
-    case 'connexion' :
-        $vue = "connexion";
-
-
-        if (isset($_POST['adresseMail']) and isset($_POST['motDePasse'])) {
-
-        $values = $_POST['adresseMail'];
-        $resultat = connexionUtilisateur($bdd,$values);
-        $isPasswordCorrect = password_verify($_POST['motDePasse'], $resultat['motDePasse']);
-
-        if (!$resultat)
-        {
-            echo 'Mauvais identifiant ou mot de passe !';
-        }
-        else
-        {
-            if ($isPasswordCorrect) {
-                $_SESSION['adresseMail'] = $resultat['adresseMail'];
-                echo 'Vous êtes connecté !';
-            }
-            else {
-                echo 'Mauvais mot de passe !';
-            }
-        }}
-        break;
 
     case 'deconnexion':
         $vue='deconnexion';
