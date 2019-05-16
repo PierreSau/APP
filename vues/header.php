@@ -24,7 +24,7 @@
         <?php
 if (isset($_SESSION['adresseMail']))
 {
-    echo 'Bonjour ' . $_SESSION['adresseMail'];
+    echo 'Bonjour ' . $_SESSION['prenom'];
 
 }?>
         <ul id="menu">
