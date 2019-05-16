@@ -365,9 +365,19 @@ input[type=submit], input[type=reset] {
 
 /* Pour accueil */
 
-.gauche {
-    float:left;
+
+.accueil {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5vw;
+    padding:10px;
 }
-.droite {
-    float:right;
+.accueilFond {
+    background-color:#FAFAFA;
+    width:auto;
+    margin-top: 0px;
+}
+.connexion {
+    padding-bottom: 16.3vw;
 }

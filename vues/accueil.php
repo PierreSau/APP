@@ -1,7 +1,7 @@
+<div class = accueil>
+<form method="post" action="" class="accueilFond">
 
-<form method="post" action="">
-
-    <fieldset class = gauche>
+    <fieldset>
         <label for= "nom"> Votre Nom : </label>
         <input type="text" name="nom" id="nom" placeholder="Entrez votre nom ici" maxlength="30" required/> </p>
 
@@ -32,9 +32,9 @@
 </form>
 
 
-<form method="post" action="">
+<form method="post" action="" class="accueilFond">
 
-    <fieldset class = droite>
+    <fieldset class="connexion">
 
         <br/>
         <label for= "adresseMail2"> Votre e-mail : </label>
@@ -52,4 +52,4 @@
 
 
 </form>
-
+</div>
