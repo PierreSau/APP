@@ -8,6 +8,10 @@ $i=0;
         $i+=1;
         echo'<a href="index.php?cible=pieces&maison='.$i.'">';
         echo '<div class="maison">';
+        echo '<form method="post" action="index.php?cible=utilisateurs&fonction=maison">';
+        echo'<input type="hidden" name="maisonsuppr" value='.$i.'>';
+        echo'<button class="croix"></button>';
+        echo '</form>';
         print($donnees['adresse']);
         echo'<img src="images/maison.jpg">';
         echo'</div>';
@@ -15,11 +19,14 @@ $i=0;
     }
     $maisons->closeCursor();
     ?>
-    <a href="index.php?cible=pieces&fonction=ajout">
-        <div class="maison" >
-            ajouter une maison
-            <br/>
-            +
-        </div>
-    </a>
+    <div class="piece">
+        <h1>Ajouter une maison</h1>
+        <form method="post" action="index.php?cible=utilisateurs&fonction=maison">
+        </br>
+        <p> Adresse de la maison :</p>
+        <input type="text" name="nommaison" required/>
+        </br></br>
+        <input type="submit" value="Ajouter"/>
+        </form>
+    </div>
 </div>

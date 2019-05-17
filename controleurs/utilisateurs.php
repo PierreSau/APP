@@ -95,7 +95,27 @@ switch ($function) {
         $vue = "maison";
         include('modele/maison.php');
         include('modele/connexion.php');
-        $maisons = recupereradresse($bdd,$idutilisateur);
+        if (isset($_POST['nommaison'])){
+            if (!estUneChaine($_POST['nommaison'])) {
+                $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
+            } else {
+                $value=$_POST['nommaison'];
+                ajoutermaison($bdd,$idutilisateur,$value,1);
+                $alerte='ajout réussi';
+            }
+
+        }
+        if (isset($_POST['maisonsuppr'])){
+            if (!estUnEntier($_POST['maisonsuppr'])) {
+                $alerte = "Le numéro de la maison doit être un entier";
+            } else {
+                $value=$_POST['maisonsuppr'];
+                $alerte=supprimermaison($bdd,$value,$idutilisateur);
+            }
+        }
+
+
+            $maisons = recupereradresse($bdd,$idutilisateur);
         break;
 
 
