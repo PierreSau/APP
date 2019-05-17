@@ -12,7 +12,9 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
+
     <link rel="stylesheet" href="vues/style.css"/>
+    <link type="text/css" rel="stylesheet" href="vontact.css" media="all">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Ecom</title>
 </head>
@@ -29,9 +31,8 @@ if (isset($_SESSION['adresseMail']))
 }?>
         <ul id="menu">
 
-        <li><p><a href="../index.php?cible=maison">Ma Maison</a></p>
+        <li><p><a href="../index.php?cibleutilisateurs&fonction=maison">Ma Maison</a></p>
             <ul>
-                <li><a href="index.php?cible=erreur404">Mes maisons</a></li>
                 <li><a href="index.php?cible=capteurs">capteurs</a></li>
                 <?php //<li><a href="index.php?cible=consommation">statistiques</a></li>?>
                 <li><a href="index.php?cible=utilisateurs&fonction=AccueilPanne">Historique des Pannes</a></li>
@@ -57,7 +58,7 @@ if (isset($_SESSION['adresseMail']))
             </ul>
         </li>
     </ul>
-
+        
     </div>
 </header>
 

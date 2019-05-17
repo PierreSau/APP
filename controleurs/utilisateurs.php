@@ -79,7 +79,6 @@ switch ($function) {
         }
         break;
 
-
     case 'deconnexion':
         $vue = 'deconnexion';
         session_destroy();
@@ -130,7 +129,9 @@ switch ($function) {
 
         $liste = recupereTousUtilisateurs($bdd);
 
-        if (empty($liste)) {
+
+        if(empty($liste)) {
+
             $alerte = "Aucun utilisateur inscrit pour le moment";
         }
 
@@ -142,6 +143,29 @@ switch ($function) {
 
     case 'maison':
         $vue = "maison";
+        include('modele/maison.php');
+        include('modele/connexion.php');
+        if (isset($_POST['nommaison'])){
+            if (!estUneChaine($_POST['nommaison'])) {
+                $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
+            } else {
+                $value=$_POST['nommaison'];
+                ajoutermaison($bdd,$idutilisateur,$value,1);
+                $alerte='ajout réussi';
+            }
+
+        }
+        if (isset($_POST['maisonsuppr'])){
+            if (!estUnEntier($_POST['maisonsuppr'])) {
+                $alerte = "Le numéro de la maison doit être un entier";
+            } else {
+                $value=$_POST['maisonsuppr'];
+                $alerte=supprimermaison($bdd,$value,$idutilisateur);
+            }
+        }
+
+
+            $maisons = recupereradresse($bdd,$idutilisateur);
         break;
 
     case 'AccueilPanne':
@@ -188,7 +212,6 @@ switch ($function) {
         include('modele/connexion.php');
         $faq = recupererFAQ();
         break;
-
 
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
