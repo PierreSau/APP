@@ -1,11 +1,4 @@
-<?php
 
-$choixType = 'la panne numéro #1948'
-?>
-
-<html>
-
-<body>
 <p class="panne-texte">
 
     Le problème concernant <?php echo $choixType ?> a bien été signalé à un technicien le <?php echo date('d-m-Y'); ?>
@@ -16,5 +9,4 @@ $choixType = 'la panne numéro #1948'
 
 </p>
 
-</body>
-</html>
+

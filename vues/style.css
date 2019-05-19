@@ -190,8 +190,8 @@ footer {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 25px;
-    height: 3vw;
+    padding: 3vw 25px 25px;
+    height: auto;
     margin-top: 25px;
     background-color: #9f9f9f;
     font-family: 'Lucida Grande', sans-serif;

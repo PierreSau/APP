@@ -1,5 +1,4 @@
 <?php
-session_start();
 $idutilisateur=1;
 /**
  * MVC :

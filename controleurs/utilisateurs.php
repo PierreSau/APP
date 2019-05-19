@@ -13,6 +13,8 @@
 // on inclut le fichier modèle contenant les appels à la BDD
 include('modele/requetes.utilisateurs.php');
 
+
+
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $function = "accueil";
@@ -26,6 +28,7 @@ switch ($function) {
         //affichage de l'accueil
         $vue = "accueil";
         $title = "Accueil";
+
         $alerte = false;
         // Cette partie du code est appelée si le formulaire a été posté
         $alerte = 'test';
@@ -50,6 +53,7 @@ switch ($function) {
                 $retour = ajouteUtilisateur($bdd, $values);
                 if ($retour) {
                     $alerte = "Inscription réussie";
+
                 } else {
                     $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                 }
@@ -166,44 +170,6 @@ switch ($function) {
 
 
             $maisons = recupereradresse($bdd,$idutilisateur);
-        break;
-
-    case 'AccueilPanne':
-        $vue = 'panne';
-        $title = 'Déclaration d\'une panne';
-        break;
-
-
-    case 'ValidationChoix':
-        $vue = 'panne2';
-        $title = 'Problème déclaré';
-        //ajoutePanne($bdd, $_POST['fonction']);
-        //Parametrage de l'envoi du mail de confirmation
-        $header = "MIME-Version: 1.0" . "\n";
-        $header .= 'From:"SAV EcoM"<ConcactService.EcoM@gmail.com>' . "\n";
-        $header .= "Reply-to: \"EcoM\" <ConcactService.EcoM@gmail.com>" . "\n";
-        $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
-        $header .= 'Content-Transfer-Encoding: 8bit';
-
-        $message = "";
-        $mail = recupererEmail($bdd);
-
-        $Objet = 'EcoM: Déclaration reçue';
-        // ça marche pas avec cette ligne su coup je la met en comm
-        //mail($mail, $Objet, $message, $header);
-        switch ($_POST['fonction']) {
-            case 'pbCapteur':
-                $choixType = 'un capteur';
-                break;
-            case 'pbCemac':
-                $choixType = 'un Cemac';
-                break;
-            case 'valAbs':
-                $choixType = 'des valeurs absurdes relevées';
-                break;
-            case 'autre':
-                $choixType = 'un problème non notifié';
-        }
         break;
 
     case 'faq':
