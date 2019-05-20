@@ -43,10 +43,7 @@ function recupereTousUtilisateurs(PDO $bdd): array
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur)
 {
-
-
     $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, langue) VALUES ( \'' . $utilisateur['nom'] . '\', \'' . $utilisateur['prenom'] . '\', \'' . $utilisateur['adresseMail'] . '\', \'' . $utilisateur['numDeTelephone'] . '\',\'' . $utilisateur['motDePasse'] . '\',1)');
-
     return true;
 }
 

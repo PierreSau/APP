@@ -110,7 +110,6 @@ switch ($function) {
                     if ($retour) {
                         $alerte = "Inscription réussie";
                         $resultat = editionSession($bdd, $_POST['adresseMail']);
-                        $_SESSION['idPersonne'] = $resultat['idPersonne'];
                         $_SESSION['nom'] = $resultat['nom'];
                         $_SESSION['prenom'] = $resultat['prenom'];
                         $_SESSION['adresseMail'] = $resultat['adresseMail'];
@@ -182,8 +181,18 @@ switch ($function) {
     case 'faq':
         $vue = 'faq';
         include('modele/requetes.faq.php');
-        include('modele/connexion.php');
         $faq = recupererFAQ();
+        break;
+
+    case 'stat':
+        $vue = 'stat';
+        include('modele/requetes.stat.php');
+        $ArrayPiece = recupPiece($bdd);
+        $ArrayConso = array();
+
+        foreach ($ArrayPiece as $piece ){
+            $ArrayConso[]=calculConsoPiece($bdd, $piece[0]);
+        }
         break;
 
     default:
