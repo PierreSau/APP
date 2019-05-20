@@ -41,11 +41,7 @@
                                     print_r($ArrayConso[$x-1][0][0]);?></a></li>
                             <li><a >Stat 2</a></li>
                             <li><a >Stat 3</a></li>
-                            <li><a >Stat 4</a></li>
-                            <li><a >Stat 1</a></li>
-                            <li><a >Stat 2</a></li>
-                            <li><a >Stat 3</a></li>
-                            <li><a >Stat 4</a></li>
+
                         </ul>
                     </div>
 
