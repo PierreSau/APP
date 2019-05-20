@@ -6,8 +6,6 @@
  * Time: 10:05
  */
 
-include('requetes.generiques.php');
-
 function recupCapteur(PDO $bdd): array
 {
     $query = "SELECT * FROM `captact`";;

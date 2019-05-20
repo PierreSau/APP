@@ -99,7 +99,7 @@
        </script>
 
 
-    <?php echo $ArrayCat ?>
+    <?php // echo $ArrayCat ?>
 
 
 

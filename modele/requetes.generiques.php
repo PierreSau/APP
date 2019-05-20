@@ -1,4 +1,4 @@
-<?php/*
+<?php
 
 // requêtes génériques pour récupérer les données de la BDD
 
@@ -24,7 +24,7 @@ function recupereTous(PDO $bdd, string $table): array
  * @param array $attributs
  * @return array
  */
-/*
+
 function recherche(PDO $bdd, string $table, array $attributs): array
 {
 
@@ -53,7 +53,7 @@ function recherche(PDO $bdd, string $table, array $attributs): array
  * @param string $table
  * @return boolean
  */
-/*
+
 function insertion(PDO $bdd, array $values, string $table): bool
 {
 

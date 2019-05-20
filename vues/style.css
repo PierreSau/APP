@@ -629,14 +629,10 @@ td, th
 
 
 
-body{
-    font-family: Arial;
-}
-
 
 .container {
-    padding: 0;
-    margin: 0;
+    padding: auto;
+    margin: auto;
     list-style: none;
     position: relative;
     display: -webkit-box;
