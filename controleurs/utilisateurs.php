@@ -70,6 +70,7 @@ switch ($function) {
                 echo 'Mauvais identifiant ou mot de passe !';
             } else {
                 if ($isPasswordCorrect) {
+                    $_SESSION['idPersonne'] = $resultat['idPersonne'];
                     $_SESSION['nom'] = $resultat['nom'];
                     $_SESSION['prenom'] = $resultat['prenom'];
                     $_SESSION['adresseMail'] = $resultat['adresseMail'];
@@ -109,6 +110,7 @@ switch ($function) {
                     if ($retour) {
                         $alerte = "Inscription réussie";
                         $resultat = editionSession($bdd, $_POST['adresseMail']);
+                        $_SESSION['idPersonne'] = $resultat['idPersonne'];
                         $_SESSION['nom'] = $resultat['nom'];
                         $_SESSION['prenom'] = $resultat['prenom'];
                         $_SESSION['adresseMail'] = $resultat['adresseMail'];
@@ -146,6 +148,7 @@ switch ($function) {
         break;
 
     case 'maison':
+        if (isset($_SESSION['adresseMail'])) {
         $vue = "maison";
         include('modele/maison.php');
         include('modele/connexion.php');
@@ -154,7 +157,7 @@ switch ($function) {
                 $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
             } else {
                 $value=$_POST['nommaison'];
-                ajoutermaison($bdd,$idutilisateur,$value,1);
+                ajoutermaison($bdd,$_SESSION['idPersonne'],$value,1);
                 $alerte='ajout réussi';
             }
 
@@ -164,12 +167,16 @@ switch ($function) {
                 $alerte = "Le numéro de la maison doit être un entier";
             } else {
                 $value=$_POST['maisonsuppr'];
-                $alerte=supprimermaison($bdd,$value,$idutilisateur);
+                $alerte=supprimermaison($bdd,$value,$_SESSION['idPersonne']);
             }
         }
 
 
-            $maisons = recupereradresse($bdd,$idutilisateur);
+            $maisons = recupereradresse($bdd,$_SESSION['idPersonne']);
+
+        } else {
+            $vue = 'erreur404';
+        }
         break;
 
     case 'faq':

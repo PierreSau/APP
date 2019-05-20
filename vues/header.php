@@ -33,7 +33,7 @@ if (isset($_SESSION['adresseMail']))
 
         <li><p><a href="../index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
             <ul>
-                <li><a href="index.php?cible=capteurs">capteurs</a></li>
+                <li><a href="index.php?cible=capteurs">Capteurs</a></li>
                 <?php //<li><a href="index.php?cible=consommation">statistiques</a></li>?>
                 <li><a href="index.php?cible=panne&choix=AccueilPanne">Historique des Pannes</a></li>
                 <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>

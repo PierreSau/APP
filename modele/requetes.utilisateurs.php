@@ -59,7 +59,7 @@ function testArray(array $utilisateur)
 
 function connexionUtilisateur(PDO $bdd, $mail)
 {
-    $req = $bdd->prepare('SELECT nom, prenom,adresseMail, numDeTelephone, motDePasse FROM personne WHERE adresseMail = \'' . $mail . '\'');
+    $req = $bdd->prepare('SELECT idPersonne, nom, prenom,adresseMail, numDeTelephone, motDePasse FROM personne WHERE adresseMail = \'' . $mail . '\'');
     $req->execute(array(
         'mail' => $mail));
     return $resultat = $req->fetch();
