@@ -75,6 +75,7 @@ switch ($function) {
                     $_SESSION['prenom'] = $resultat['prenom'];
                     $_SESSION['adresseMail'] = $resultat['adresseMail'];
                     $_SESSION['numDeTelephone'] = $resultat['numDeTelephone'];
+                    $_SESSION['niveau'] = $resultat['niveau'];
 
                     echo 'Vous êtes connecté !';
                 } else {
@@ -134,6 +135,20 @@ switch ($function) {
 
         $liste = recupereTousUtilisateurs($bdd);
 
+        switch ($_POST['choix']) {
+            case '1':
+                $choixType = 1;
+                editionNiveau($bdd,$choixType);
+                break;
+            case '2':
+                $choixType = 2;
+                editionNiveau($bdd,$choixType);
+                break;
+            case '3':
+                $choixType = 3;
+                editionNiveau($bdd,$choixType);
+                break;
+        }
 
         if(empty($liste)) {
 

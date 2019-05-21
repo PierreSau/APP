@@ -43,7 +43,7 @@ function recupereTousUtilisateurs(PDO $bdd): array
  */
 function ajouteUtilisateur(PDO $bdd, array $utilisateur)
 {
-    $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, langue) VALUES ( \'' . $utilisateur['nom'] . '\', \'' . $utilisateur['prenom'] . '\', \'' . $utilisateur['adresseMail'] . '\', \'' . $utilisateur['numDeTelephone'] . '\',\'' . $utilisateur['motDePasse'] . '\',1)');
+    $bdd->exec('INSERT INTO personne (nom, prenom, adresseMail, numDeTelephone, motDePasse, niveau, langue) VALUES ( \'' . $utilisateur['nom'] . '\', \'' . $utilisateur['prenom'] . '\', \'' . $utilisateur['adresseMail'] . '\', \'' . $utilisateur['numDeTelephone'] . '\',\'' . $utilisateur['motDePasse'] . '\',1,1)');
     return true;
 }
 
@@ -56,7 +56,7 @@ function testArray(array $utilisateur)
 
 function connexionUtilisateur(PDO $bdd, $mail)
 {
-    $req = $bdd->prepare('SELECT idPersonne, nom, prenom,adresseMail, numDeTelephone, motDePasse FROM personne WHERE adresseMail = \'' . $mail . '\'');
+    $req = $bdd->prepare('SELECT idPersonne, nom, prenom,adresseMail, numDeTelephone, motDePasse, niveau FROM personne WHERE adresseMail = \'' . $mail . '\'');
     $req->execute(array(
         'mail' => $mail));
     return $resultat = $req->fetch();
@@ -75,6 +75,12 @@ function editionSession(PDO $bdd, $mail)
         'mail' => $mail));
     return $resultat = $req->fetch();
 }
+function editionNiveau(PDO $bdd, $type)
+{
+        $bdd->exec('UPDATE personne SET niveau = \'' . $type. '\'');
+        return true;
+    }
+
 
 
 

@@ -1,40 +1,80 @@
-<?php 
+<?php
 /**
-* Vue : liste des utilisateurs inscrits
-*/
+ * Vue : liste des utilisateurs inscrits
+ */
 ?>
 
 <p><?php echo $entete; ?></p>
 
 <table>
-	<thead>
-		<tr>
+    <thead>
+    <tr>
 
-			<th>Nom</th>
-			<th>Mot de passe crypté</th>
-		</tr>
-	</thead>
-	<tbody>	
-	
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>E-mail</th>
+        <th>Téléphone</th>
+        <th>Identité</th>
+        <th>Mot de passe crypté</th>
+        <th>Modifier Identité</th>
+    </tr>
+    </thead>
+    <tbody>
+
     <?php foreach ($liste as $element) { ?>
-    
+
         <tr>
-        		<td>
-				<?php echo $element['username']; ?>
-            	</td>
-        		<td>
-        			<?php echo $element['password']; ?>
-        		</td>
-        	</tr>
-    
+            <td>
+                <?php echo $element['nom']; ?>
+            </td>
+            <td>
+                <?php echo $element['prenom']; ?>
+            </td>
+            <td>
+                <?php echo $element['adresseMail']; ?>
+            </td>
+            <td>
+                <?php echo $element['numDeTelephone']; ?>
+            </td>
+            <td>
+                <?php switch ($element['niveau']){
+                    case 1 :
+                        echo 'Utilisateur';
+                        break;
+                    case 2 :
+                        echo 'Gestionnaire';
+                        break;
+                    case 3 :
+                        echo 'Administrateur';
+                        break;
+                    default:
+                        echo 'Cet utilisateurs ne possède pas de rang';
+                } ; ?>
+            </td>
+            <td>
+                <?php echo $element['motDePasse']; ?>
+            </td>
+            <td>
+                <form method="POST" action="">
+                    <select name="choix">
+                        <option value="1">Utilisateur</option>
+                        <option value="2">Gestionnaire</option>
+                        <option value="3">Administrateur</option>
+                    </select>
+                    <input type="submit" value="Modifier" />
+
+                </form>
+            </td>
+        </tr>
+
     <?php } ?>
 
-	</tbody>
+    </tbody>
 </table>
 
 
 <?php if(isset($alerte)) { echo AfficheAlerte($alerte);} ?>
 
 <p>
-	<a href="index.php">Retour</a>
+    <a href="index.php">Retour</a>
 </p>
