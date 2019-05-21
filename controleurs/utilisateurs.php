@@ -194,6 +194,63 @@ switch ($function) {
             $ArrayConso[]=calculConsoPiece($bdd, $piece[0]);
         }
         break;
+    case 'mode':
+        $vue = "Modefct";
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+
+        break;
+
+    case 'modeeco':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $eco =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+
+            modifieEco($bdd,$eco);
+            // Faire une fonction qui retourne un tableau avec toutes les valeurs des capteurs/actionneurs pour les afficher dans la vue
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+        break;
+
+    case 'modejour':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $jour =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+            modifieJour($bdd,$jour);
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+        break;
+
+    case 'modenuit':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $nuit =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+            modifieNuit($bdd,$nuit);
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+        break;
 
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET

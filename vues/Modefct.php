@@ -1,65 +1,63 @@
 
 
 <body>
-<div class="tableau">
-    <div class="modes">
-        <h2>ECO</h2>
+<form method="post" action="index.php?cible=utilisateurs&fonction=modeeco">
+    <div class="tableau">
+        <div class="modes">
 
-        <br/>
-        Temperature :
+            <h2>ECO</h2>
 
-        <select name="select">
-            <?php
-            for ($i=15;$i<=30;$i++)   {
-                echo '<option value="T'.$i.'">'.$i.'°C</option>';
-            }
+            <br/>
+            Temperature :
 
-            ?>
-        </select><br />
+            <select name="selecttemp">
+                <?php
+                for ($i=15;$i<=30;$i++)   {
+                    echo '<option value='.$i.'>'.$i.'°C</option>';
+                }
 
-
-        Luminosité :
-        <select name="select">
-            <option value="L_Fort">Fort</option>
-            <option value="L_Moyen">Moyen</option>
-            <option value="L_Faible">Faible</option>
-            <option value="L_Eteint">Eteint</option>
-
-        </select><br />
-        Ventilateur :
-        <select name="select">
-            <option value="V_Désactivé">Désactivé</option>
-            <option value="V_ACtivé">Activé</option>
-
-        </select><br/>
-        Date de debut :
-
-        <input type="date" name="début" >
-
-        <input type="time" name="début" >
+                ?>
+            </select><br />
 
 
+            Luminosité :
+            <select name="selectlum">
+                <option value="3">Fort</option>
+                <option value="2">Moyen</option>
+                <option value="1">Faible</option>
+                <option value="0">Eteint</option>
 
-        <br/> Date de fin :
-        <input type="date" name="début">
+            </select><br />
+            Ventilateur :
+            <select name="selectvent">
+                <option value="0">Désactivé</option>
+                <option value="1">Activé</option>
 
-        <input type="time" name="début">
+            </select><br/>
+            <input type="submit" value="Enregistrer" />
+            <h4>
+                Valeurs actuelles:
+                <?php
+                echo 'Temperature =' .$valeursEco["temp"] ."</br>";
+                echo 'Niveau de luminosité ='.$valeursEco["lum"]."</br>";
+                echo 'Niveau de ventilation =' .$valeursEco["vent"]."</br>";
+                ?>
+            </h4>
+        </div>
+</form>
+</br>
+<form method="post" action="index.php?cible=utilisateurs&fonction=modejour">
 
-        <br/>
-        <br/>
-        <input type="submit" value="Enregistrer" />
-    </div>
-    <br/>
     <div class="modes">
         <h2>JOUR</h2>
 
         <br/>
         Temperature :
 
-        <select name="select">
+        <select name="selecttemp">
             <?php
             for ($i=15;$i<=30;$i++)   {
-                echo '<option value="T'.$i.'">'.$i.'°C</option>';
+                echo '<option value='.$i.'>'.$i.'°C</option>';
             }
 
             ?>
@@ -67,47 +65,44 @@
 
 
         Luminosité :
-        <select name="select">
-            <option value="L_Fort">Fort</option>
-            <option value="L_Moyen">Moyen</option>
-            <option value="L_Faible">Faible</option>
-            <option value="L_Eteint">Eteint</option>
+        <select name="selectlum">
+            <option value="3">Fort</option>
+            <option value="2">Moyen</option>
+            <option value="1">Faible</option>
+            <option value="0">Eteint</option>
 
         </select><br />
         Ventilateur :
-        <select name="select">
-            <option value="V_Désactivé">Désactivé</option>
-            <option value="V_ACtivé">Activé</option>
+        <select name="selectvent">
+            <option value="0">Désactivé</option>
+            <option value="1">Activé</option>
 
         </select><br/>
-        Date de debut :
-
-        <input type="date" name="début" >
-
-        <input type="time" name="début" >
-
-
-
-        <br/> Date de fin :
-        <input type="date" name="début">
-
-        <input type="time" name="début">
-
-        <br/>
-        <br/>
         <input type="submit" value="Enregistrer" />
+        <h4>
+            Valeurs actuelles:
+            <?php
+            echo 'Temperature =' .$valeursJour["temp"] ."</br>";
+            echo 'Niveau de luminosité ='.$valeursJour["lum"]."</br>";
+            echo 'Niveau de ventilation =' .$valeursJour["vent"]."</br>";
+            ?>
+        </h4>
     </div>
-    <br/>
+
+</form>
+<br/>
+<form method="post" action="index.php?cible=utilisateurs&fonction=modenuit">
+
     <div class="modes">
         <h2>NUIT</h2>
 
         <br/>
         Temperature :
 
-        <select name="select">
+        <select name="selecttemp">
             <?php
             for ($i=15;$i<=30;$i++)   {
-                echo '<option value="T'.$i.'">'.$i.'°C</option>';
+                echo '<option value='.$i.'>'.$i.'°C</option>';
             }
 
             ?>
@@ -115,36 +110,31 @@
 
 
         Luminosité :
-        <select name="select">
-            <option value="L_Fort">Fort</option>
-            <option value="L_Moyen">Moyen</option>
-            <option value="L_Faible">Faible</option>
-            <option value="L_Eteint">Eteint</option>
+        <select name="selectlum">
+            <option value="3">Fort</option>
+            <option value="2">Moyen</option>
+            <option value="1">Faible</option>
+            <option value="0">Eteint</option>
 
         </select><br />
         Ventilateur :
-        <select name="select">
-            <option value="V_Désactivé">Désactivé</option>
-            <option value="V_ACtivé">Activé</option>
+        <select name="selectvent">
+            <option value="0">Désactivé</option>
+            <option value="1">Activé</option>
 
         </select><br/>
-        Date de debut :
-
-        <input type="date" name="début" >
-
-        <input type="time" name="début" >
-
-
-
-        <br/> Date de fin :
-        <input type="date" name="début">
-
-        <input type="time" name="début">
-
-        <br/>
-        <br/>
         <input type="submit" value="Enregistrer" />
-    </div></div>
+        <h4>
+            Valeurs actuelles:
+            <?php
+            echo 'Temperature =' .$valeursNuit["temp"] ."</br>";
+            echo 'Niveau de luminosité ='.$valeursNuit["lum"]."</br>";
+            echo 'Niveau de ventilation =' .$valeursNuit["vent"]."</br>";
+            ?>
+        </h4>
+    </div>
+</form>
+</body>
 
 
 
