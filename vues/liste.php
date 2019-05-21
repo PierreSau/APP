@@ -55,7 +55,7 @@
                 <?php echo $element['motDePasse']; ?>
             </td>
             <td>
-                <form method="POST" action="">
+                <form method="POST" action="index.php?cible=utilisateurs&fonction=modifListe&idPersonne=<?= $element['idPersonne'] ?>">
                     <select name="choix">
                         <option value="1">Utilisateur</option>
                         <option value="2">Gestionnaire</option>
@@ -75,6 +75,3 @@
 
 <?php if(isset($alerte)) { echo AfficheAlerte($alerte);} ?>
 
-<p>
-    <a href="index.php">Retour</a>
-</p>

@@ -34,7 +34,8 @@ function rechercheParNom(PDO $bdd, string $nom): array
 function recupereTousUtilisateurs(PDO $bdd): array
 {
     $query = 'SELECT * FROM personne';
-    return $bdd->query($query)->fetchAll();
+    $test = $bdd->query($query)->fetchAll();
+    return $test;
 }
 
 /**
@@ -75,11 +76,11 @@ function editionSession(PDO $bdd, $mail)
         'mail' => $mail));
     return $resultat = $req->fetch();
 }
-function editionNiveau(PDO $bdd, $type)
+function editionNiveau(PDO $bdd, $type, $id)
 {
-        $bdd->exec('UPDATE personne SET niveau = \'' . $type. '\'');
-        return true;
-    }
+    $bdd->exec('UPDATE personne SET niveau = \'' . $type. '\' WHERE idPersonne = \'' . $id . '\'');
+    return true;
+}
 
 
 
