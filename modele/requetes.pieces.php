@@ -47,7 +47,7 @@ include('requetes.generiques.php');
 //PAS ENCORE FONCTIONNEL!!!!!!!!!
 
 function recuperervalcaptact(PDO $bdd, $NUM,$TYP, $captouact, $idcemac){
-
+try{
     if ($captouact==1){
         $reponse=$bdd->query('SELECT VAL, TIM FROM tramerecep WHERE ( NUM='.$NUM.' AND idCemac='.$idcemac.' AND TYP='.$TYP.' ) ORDER BY TIM DESC');
         if ($reponse=$reponse->fetch()){
@@ -64,27 +64,47 @@ function recuperervalcaptact(PDO $bdd, $NUM,$TYP, $captouact, $idcemac){
             return false;
         }
     }
+}
+catch (Exception $e){
+    return'Il y a eu un problème sur la réccupération des données';
+}
 
 }
 
 //recuperer capteurs et actionneurs du catalogue
 function recuperercapteurs(PDO $bdd){
+    try{
     $reponse=$bdd->query('SELECT * FROM catalogue WHERE CaptOuAct=1');
     return $reponse->fetchAll();
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème sur la réccupération de données';
+    }
 }
 
 function recupereractionneurs(PDO $bdd){
+    try{
     $reponse=$bdd->query('SELECT * FROM catalogue WHERE CaptOuAct=2');
     return $reponse->fetchAll();
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème sur la réccupération de données';
+    }
 }
 
 function recuperernumcemac(PDO $bdd,$idcemac){
+    try{
     return ($bdd->query('SELECT numSerie FROM cemac WHERE idCemac='.$idcemac.' '))->fetchAll();
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème sur la réccupération de données';
+    }
 }
 
 // Permet d'ajouter un capteur/actionneur sans avoir deux fois le même champ num
 
 function ajoutercaptact(PDO $bdd,$idpiece,$idcatalogue,$idcemac,$idmaison){
+    try{
     $result= $bdd->query('SELECT `champNum` FROM captact JOIN piece ON captact.idPiece=piece.idPiece WHERE ( idHabitation='.$idmaison.' AND idCatalogue='.$idcatalogue.' )');
     if($result){
         $result=$result->fetchAll();
@@ -112,23 +132,37 @@ function ajoutercaptact(PDO $bdd,$idpiece,$idcatalogue,$idcemac,$idmaison){
     } else{
         return'Il y a trop de capteurs de même type dans la maison';
     }
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème dans l\'ajout du capteur';
+    }
 
 }
 
 
 //Permet de savoir si des capteurs sont déjà présents dans la maison. si ce 'est pas le cas, le cemac n'est toujours pas informé!
 function nbcaptact(PDO $bdd, $idmaison){
+    try{
     $result= $bdd->query('SELECT COUNT(`idCaptAct`) FROM captact JOIN piece ON captact.idPiece=piece.idPiece WHERE idHabitation='.$idmaison.' ');
     $result=$result->fetch();
     return($result[0]);
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème dans la réccupération des données';
+    }
 }
 
 
 //permet d'ajouter le cemac et on récupère l'id!
 function ajoutercemac(PDO $bdd, $numcemac,$idpiece,$idcatalogue){
+    try{
     $bdd -> exec('INSERT INTO `cemac`(`idCemac`, `numSerie`) VALUES (NULL,\''.$numcemac.'\')');
     $bdd->exec('INSERT INTO `captact` (`idCaptAct`, `etat`, `champNum`, `idPiece`, `idCemac`, `idCatalogue`,`consommation`) VALUES (NULL,1,1, \'' . $idpiece . '\',LAST_INSERT_ID(),\'' . $idcatalogue . '\',0)');
     return 'Ajout du composant réussi';
+    }
+    catch (Exception $e){
+        return'Il y a eu un problème dans l\'ajout du capteur';
+    }
 }
 
 function supprimerpiece(PDO $bdd,$idpiece){
@@ -143,6 +177,10 @@ function supprimercaptact(PDO $bdd,$type,$num,$idmaison){
     return 'composant supprimé';
 }
 
+function recuperermode(PDO $bdd,$idpiece){
+    $result=$bdd->query('SELECT dateDebut , dateFin FROM modification WHERE idPiece='.$idpiece.' ORDER BY dateDeModification DESC');
+    
+}
 
 
 

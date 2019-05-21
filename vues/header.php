@@ -31,7 +31,7 @@ if (isset($_SESSION['adresseMail']))
 }?>
         <ul id="menu">
 
-        <li><p><a href="../index.php?cibleutilisateurs&fonction=maison">Ma Maison</a></p>
+        <li><p><a href="index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
             <ul>
                 <li><a href="index.php?cible=capteurs">capteurs</a></li>
                 <?php //<li><a href="index.php?cible=consommation">statistiques</a></li>?>

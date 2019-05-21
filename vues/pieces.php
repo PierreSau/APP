@@ -28,7 +28,13 @@ for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la
         echo ' </br> ';
 
     }
-    ?>
+    echo 'Mode : eco ';
+
+    echo'<a href="index.php?cible=pieces&maison='.$maison.'&piece='.$i.'">';
+    echo'<img src="images/parametres.png" width=15px height=15px class="mode">';
+    echo '</a>';
+
+?>
 
 </div>
 
