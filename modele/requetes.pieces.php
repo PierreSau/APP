@@ -178,9 +178,29 @@ function supprimercaptact(PDO $bdd,$type,$num,$idmaison){
 }
 
 function recuperermode(PDO $bdd,$idpiece){
-    $result=$bdd->query('SELECT dateDebut , dateFin FROM modification WHERE idPiece='.$idpiece.' ORDER BY dateDeModification DESC');
-    
+    $result=$bdd->query('SELECT idFonctionnement, dateDebut, DATE_FORMAT(dateDebut, "%H:%i:%s") AS heureDebut, dateFin , DATE_FORMAT(dateFin, "%H:%i:%s") AS heureFin FROM modification WHERE idPiece='.$idpiece.' ORDER BY dateDeModification DESC');
+    $result=$result->fetchAll();
+    $date=date("Y-m-d H:i:s");
+    $heure=date("H:i:s");
+    for ($i=0;$i<count($result);$i++){
+        if ($date>=$result[$i]['dateDebut'] and $date<=$result[$i]['dateFin'] and $heure>=$result[$i]['heureDebut'] and $heure<=$result[$i]['heureFin']){
+                return $result[$i]['idFonctionnement'];
+        }
+    }
 }
 
+
+function ajoutermodif(PDO $bdd,$piece,$idmaison,$debut,$fin,$mode){
+    $date=date("Y-m-d H:i:s");
+    $result=$bdd->query('SELECT idFonctionnement FROM fonctionnement WHERE (nom='.$mode.' AND idHabitation='.$idmaison.')');
+    if($result){
+    $result=$result->fetchAll();
+    for($i=0;$i<count($result);$i++) {
+        $idfonctionnement=$result[$i]['idFonctionnement'];
+        $bdd->exec('INSERT INTO `modification`(`idModification`, `dateDeModification`, `dateDebut`, `dateFin`, `idPiece`, `idFonctionnement`) VALUES (NULL,\'' . $date . '\',\'' . $debut . '\',\'' . $fin . '\',\'' . $piece . '\',\'' . $idfonctionnement . '\') ');
+    }
+    }
+    return;
+}
 
 

@@ -151,7 +151,19 @@ switch ($function) {
             $piece=$_GET['piece'];
             $idpiece = recupererpieces($bdd, $idmaison['idHabitation']);
 
-            print ($piece);
+            if (isset($_POST['datedebut']) and isset($_POST['datefin']) and isset($_POST['mode']) and isset($_POST['heuredebut']) and isset($_POST['heurefin'])) {
+                $values = [
+                    'dateDebut' => $_POST['datedebut'],
+                    'dateFin' => $_POST['datefin'],
+                    'heureDebut' => $_POST['heuredebut'],
+                    'heureFin' => $_POST['heurefin'],
+                    'mode' => $_POST['mode']];
+                print_r($values);
+                $datedebut= $values['dateDebut'].' '.$values['heureDebut'].':00';
+                $datefin= $values['dateFin'].' '.$values['heureFin'].':00';
+                print ($datedebut);
+                ajoutermodif($bdd,$idpiece[$piece]['idPiece'],$idmaison['idHabitation'],$datedebut,$datefin,$values['mode']);
+            }
             $vue='heurefonct';
         }
 
