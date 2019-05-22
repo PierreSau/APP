@@ -1,7 +1,5 @@
 <?php
-session_start();
-$idutilisateur=1;
-/**
+session_start();/**
  * MVC :
  * - index.php : identifie le routeur à appeler en fonction de l'url
  * - Contrôleur : Crée les variables, élabore leurs contenus, identifie la vue et lui envoie les variables

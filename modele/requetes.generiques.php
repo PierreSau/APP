@@ -3,7 +3,7 @@
 // requêtes génériques pour récupérer les données de la BDD
 
 // Appel du fichier déclarant PDO
-include("modele/connexion.php"); 
+include("modele/connexion.php");
 
 /**
  * Récupère tous les éléments d'une table
@@ -11,8 +11,9 @@ include("modele/connexion.php");
  * @param string $table
  * @return array
  */
-function recupereTous(PDO $bdd, string $table): array {
-    $query = 'SELECT * FROM ' . $table;
+function recupereTous(PDO $bdd, string $table): array
+{
+    $query = ('SELECT * FROM ' . $table);
     return $bdd->query($query)->fetchAll();
 }
 
@@ -23,24 +24,26 @@ function recupereTous(PDO $bdd, string $table): array {
  * @param array $attributs
  * @return array
  */
-function recherche(PDO $bdd, string $table, array $attributs): array {
-    
+
+function recherche(PDO $bdd, string $table, array $attributs): array
+{
+
     $where = "";
-    foreach($attributs as $key => $value) {
+    foreach ($attributs as $key => $value) {
         $where .= "$key = :$key" . ", ";
     }
     $where = substr_replace($where, '', -2, 2);
-    
+
     $statement = $bdd->prepare('SELECT * FROM ' . $table . ' WHERE ' . $where);
-    
-    
-    foreach($attributs as $key => $value) {
+
+
+    foreach ($attributs as $key => $value) {
         $statement->bindParam(":$key", $value);
     }
     $statement->execute();
-    
+
     return $statement->fetchAll();
-    
+
 }
 
 /**
@@ -50,7 +53,9 @@ function recherche(PDO $bdd, string $table, array $attributs): array {
  * @param string $table
  * @return boolean
  */
-function insertion(PDO $bdd, array $values, string $table): bool {
+
+function insertion(PDO $bdd, array $values, string $table): bool
+{
 
     $attributs = '';
     $valeurs = '';
@@ -64,7 +69,7 @@ function insertion(PDO $bdd, array $values, string $table): bool {
     $valeurs = substr_replace($valeurs, '', -2, 2);
 
     $query = ' INSERT INTO ' . $table . ' (' . $attributs . ') VALUES (' . $valeurs . ')';
-    
+
     $donnees = $bdd->prepare($query);
     $requete = "";
     foreach ($values as $key => $value) {

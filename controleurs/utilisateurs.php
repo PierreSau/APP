@@ -12,6 +12,8 @@
 
 // on inclut le fichier modèle contenant les appels à la BDD
 include('modele/requetes.utilisateurs.php');
+include('modele/fonctionnement.php');
+
 
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
@@ -26,6 +28,7 @@ switch ($function) {
         //affichage de l'accueil
         $vue = "accueil";
         $title = "Accueil";
+
         $alerte = false;
         // Cette partie du code est appelée si le formulaire a été posté
         $alerte = 'test';
@@ -50,6 +53,7 @@ switch ($function) {
                 $retour = ajouteUtilisateur($bdd, $values);
                 if ($retour) {
                     $alerte = "Inscription réussie";
+
                 } else {
                     $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                 }
@@ -66,6 +70,7 @@ switch ($function) {
                 echo 'Mauvais identifiant ou mot de passe !';
             } else {
                 if ($isPasswordCorrect) {
+                    $_SESSION['idPersonne'] = $resultat['idPersonne'];
                     $_SESSION['nom'] = $resultat['nom'];
                     $_SESSION['prenom'] = $resultat['prenom'];
                     $_SESSION['adresseMail'] = $resultat['adresseMail'];
@@ -137,11 +142,9 @@ switch ($function) {
 
         break;
 
-    case 'mode':
-        $vue = "Modefct";
-        break;
 
     case 'maison':
+        if (isset($_SESSION['adresseMail'])) {
         $vue = "maison";
         include('modele/maison.php');
         include('modele/connexion.php');
@@ -150,7 +153,7 @@ switch ($function) {
                 $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
             } else {
                 $value=$_POST['nommaison'];
-                ajoutermaison($bdd,$idutilisateur,$value,1);
+                ajoutermaison($bdd,$_SESSION['idPersonne'],$value,1);
                 $alerte='ajout réussi';
             }
 
@@ -160,57 +163,90 @@ switch ($function) {
                 $alerte = "Le numéro de la maison doit être un entier";
             } else {
                 $value=$_POST['maisonsuppr'];
-                $alerte=supprimermaison($bdd,$value,$idutilisateur);
+                $alerte=supprimermaison($bdd,$value,$_SESSION['idPersonne']);
             }
         }
 
 
-            $maisons = recupereradresse($bdd,$idutilisateur);
-        break;
+            $maisons = recupereradresse($bdd,$_SESSION['idPersonne']);
 
-    case 'AccueilPanne':
-        $vue = 'panne';
-        $title = 'Déclaration d\'une panne';
-        break;
-
-
-    case 'ValidationChoix':
-        $vue = 'panne2';
-        $title = 'Problème déclaré';
-        //ajoutePanne($bdd, $_POST['fonction']);
-        //Parametrage de l'envoi du mail de confirmation
-        $header = "MIME-Version: 1.0" . "\n";
-        $header .= 'From:"SAV EcoM"<ConcactService.EcoM@gmail.com>' . "\n";
-        $header .= "Reply-to: \"EcoM\" <ConcactService.EcoM@gmail.com>" . "\n";
-        $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
-        $header .= 'Content-Transfer-Encoding: 8bit';
-
-        $message = "";
-        $mail = recupererEmail($bdd);
-
-        $Objet = 'EcoM: Déclaration reçue';
-        // ça marche pas avec cette ligne su coup je la met en comm
-        //mail($mail, $Objet, $message, $header);
-        switch ($_POST['fonction']) {
-            case 'pbCapteur':
-                $choixType = 'un capteur';
-                break;
-            case 'pbCemac':
-                $choixType = 'un Cemac';
-                break;
-            case 'valAbs':
-                $choixType = 'des valeurs absurdes relevées';
-                break;
-            case 'autre':
-                $choixType = 'un problème non notifié';
+        } else {
+            $vue = 'erreur404';
         }
         break;
 
     case 'faq':
         $vue = 'faq';
         include('modele/requetes.faq.php');
-        include('modele/connexion.php');
         $faq = recupererFAQ();
+        break;
+
+    case 'stat':
+        $vue = 'stat';
+        include('modele/requetes.stat.php');
+        $ArrayPiece = recupPiece($bdd);
+        $ArrayConso = array();
+
+        foreach ($ArrayPiece as $piece ){
+            $ArrayConso[]=calculConsoPiece($bdd, $piece[0]);
+        }
+        break;
+    case 'mode':
+        $vue = "Modefct";
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+
+        break;
+
+    case 'modeeco':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $eco =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+
+            modifieEco($bdd,$eco);
+            // Faire une fonction qui retourne un tableau avec toutes les valeurs des capteurs/actionneurs pour les afficher dans la vue
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+        break;
+
+    case 'modejour':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $jour =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+            modifieJour($bdd,$jour);
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
+        break;
+
+    case 'modenuit':
+        $vue = "Modefct";
+
+        if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])){
+            $nuit =[
+                "temp" => $_POST['selecttemp'],
+                "lum" => $_POST['selectlum'],
+                "vent" => $_POST['selectvent']
+            ];
+            modifieNuit($bdd,$nuit);
+        }
+        $valeursEco= valeurMode($bdd,'eco');
+        $valeursJour= valeurMode($bdd,'jour');
+        $valeursNuit= valeurMode($bdd,'nuit');
         break;
 
     default:

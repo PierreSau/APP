@@ -39,7 +39,7 @@ switch ($function) {
             $maison = $_GET['maison'];
         }
 
-        $idmaison=idmaison($bdd,$idutilisateur,$maison);
+        $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
 
 
         if (!isset($_GET['piece'])) {
