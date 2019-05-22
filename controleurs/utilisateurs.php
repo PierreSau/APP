@@ -142,9 +142,6 @@ switch ($function) {
 
         break;
 
-    case 'mode':
-        $vue = "Modefct";
-        break;
 
     case 'maison':
         if (isset($_SESSION['adresseMail'])) {

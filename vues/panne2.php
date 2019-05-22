@@ -5,7 +5,7 @@
     à <?php echo date('H:i'); ?>.
 
     Vous allez recevoir un mail de confirmation puis un technicien vous contactera via la messagerie à
-    l'adresse <?php echo 'exemple@adresse.com'; //recupererEmail($bdd); ?>.
+    l'adresse <?php echo recupererEmail($bdd); ?>.
 
 </p>
 
