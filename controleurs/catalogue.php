@@ -25,7 +25,7 @@ switch ($function) {
             // Appel à la BDD à travers une fonction du modèle.
             $retour = ajouteCatalogue($bdd, $values);
         }
-        var_dump($values);
+
         //header('Location: index.php?cible=catalogue&choix=catalogue');
         break;
 
