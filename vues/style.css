@@ -382,11 +382,6 @@ body {
 }
 form {
 
-    background-color:#FAFAFA;
-    margin-top: 10vw;
-    padding:10px;
-    width:auto;
-    position: center;
 }
 fieldset {
     padding:0 20px 20px 20px;
@@ -629,6 +624,25 @@ td, th
     margin-right: 10px;
 }
 
+.modeg{
+
+    height: 15px;
+    width: 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.modeg:hover{
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition-duration: 100ms;
+}
+
+.vide{
+    background: none;
+    border: none;
+
+}
 .mode:hover{
     height: 20px;
     width: 20px;

@@ -92,7 +92,10 @@ print($numcemac[0]['numSerie']);
                 for($j=0 ; $j<count($captact[$i]); $j++){
                     if($captact[$i][$j]['CaptOuAct']==1){
                         echo '<tr> <td>';
+
+
                         //formulaire pour supprimer un capteur (le même pour actionneur)
+
                         echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
                         print($captact[$i][$j]['type']);        //+on affiche le capteur
                         echo' ';
@@ -100,6 +103,13 @@ print($numcemac[0]['numSerie']);
                         echo'<input type="hidden" name="typecaptactsuppr" value='.$captact[$i][$j]['type'].'>';
                         echo'<input type="hidden" name="Numcaptactsuppr" value='.$captact[$i][$j]['champNum'].'>';
                         echo'<button class="croix"></button>';
+                        echo '</form>';
+
+                        echo'<form method="post" action="index.php?cible=panne">';
+                        echo'<input type="hidden" name="idcapt" value='.$captact[$i][$j]['idCaptAct'].'>';
+                        echo '<button class="vide">';
+                        echo'<img src="images/reparation.png" width=15px height=15px class="modeg">';
+                        echo'</button>';
                         echo '</form>';
 
                         echo '</td> <td>';
@@ -159,6 +169,15 @@ print($numcemac[0]['numSerie']);
                         echo'<input type="hidden" name="Numcaptactsuppr" value='.$captact[$i][$j]['champNum'].'>';
                         echo'<button class="croix"></button>';
                         echo '</form>';
+
+                        echo'<form method="post" action="index.php?cible=panne">';
+                        echo'<input type="hidden" name="idcapt" value='.$captact[$i][$j]['idCaptAct'].'>';
+                        echo '<button class="vide">';
+                        echo'<img src="images/reparation.png" width=15px height=15px class="modeg">';
+                        echo'</button>';
+                        echo '</form>';
+
+
                         echo '</td> <td>';
                         echo'</td> </tr>';
                     }

@@ -1,6 +1,5 @@
 
 
-<body>
     <div class="tableauPiece">
         <form method="post" action="index.php?cible=utilisateurs&fonction=modeeco">
         <div class="piece">
@@ -135,7 +134,7 @@
     </div>
 </form>
 
-</body>
+</div>
 
 
 
