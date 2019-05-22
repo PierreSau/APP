@@ -51,19 +51,13 @@
                     <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
                 </ul>
             </li>
-            <li><p><a href="index.php?cible=erreur404">Magasin</a></p>
-                <ul>
-                    <li><a href="index.php?cible=erreur404">Capteurs</a></li>
-                    <li><a href="#">Actionneurs</a></li>
-                </ul>
-            </li>
 
             <li><p><a href="index.php?cible=utilisateurs&fonction=editionProfil">Mon Compte</a></p>
                 <ul>
                     <?php
                     if ($_SESSION['niveau'] == 3) {
                         ?>
-                        <li><a href="index.php?cible=erreur404">Gestion capteurs</a></li>
+                        <li><a href="index.php?cible=catalogue&choix=catalogue">Gestion capteurs</a></li>
                         <li><a href="index.php?cible=utilisateurs&fonction=liste">Gestion utilisateurs</a></li>
                         <?php
                     }
