@@ -6,6 +6,7 @@
 
         <th>Capteur</th>
         <th>Unité</th>
+        <th>Trame</th>
 
     </tr>
     </thead>
@@ -20,14 +21,19 @@
             <td>
                 <?php echo $element['unite']; ?>
             </td>
+            <td>
+                <?php echo $element['champTYP']; ?>
+            </td>
         </tr>
 
     <?php } ?>
     <tr>
-        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogue">
-            <td><input type="text" name="typeCapteur" placeholder="Entrez le type de capteur" maxlength="30" required/>
+        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogueCapteur">
+            <td><input type="text" name="type" placeholder="Entrez le type de capteur" maxlength="30" required/>
             </td>
-            <td><input type="text" name="unitéCapteur" placeholder="Entrez l'unité du capteur" maxlength="30" required/>
+            <td><input type="text" name="unite" placeholder="Entrez l'unité du capteur" maxlength="30" required/>
+            </td>
+            <td><input type="text" name="champTYP" placeholder="Entrez la trame du capteur" maxlength="30" required/>
             </td>
             <td><input type="submit" value="Ajouter"/></td>
         </form>
@@ -42,6 +48,7 @@
 
         <th>Actionneur</th>
         <th>Unité</th>
+        <th>Trame</th>
 
     </tr>
     </thead>
@@ -56,14 +63,19 @@
             <td>
                 <?php echo $element['unite']; ?>
             </td>
+            <td>
+                <?php echo $element['champTYP']; ?>
+            </td>
         </tr>
 
     <?php } ?>
     <tr>
-        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogue">
-            <td><input type="text" name="typeActionneur" placeholder="Entrez le type de Actionneur" maxlength="30" required/>
+        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogueActionneur">
+            <td><input type="text" name="type" placeholder="Entrez le type de Actionneur" maxlength="30" required/>
             </td>
-            <td><input type="text" name="unitéCapteur" placeholder="Entrez l'unité de l'actionneur" maxlength="30" required/>
+            <td><input type="text" name="unite" placeholder="Entrez l'unité de l'actionneur" maxlength="30" required/>
+            </td>
+            <td><input type="text" name="champTYP" placeholder="Entrez la trame de l'actionneur" maxlength="30" required/>
             </td>
             <td><input type="submit" value="Ajouter"/></td>
         </form>
