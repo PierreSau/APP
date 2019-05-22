@@ -1,8 +1,8 @@
 
 <body>
-    <h2>
+<h2>
     Pour déclarer votre problème, veuillez sélectionner la caractérique principale de ce problème parmi les solutions proposées ci dessous :
-    </h2>
+</h2>
 
 <form method="POST" action="index.php?cible=panne&choix=ValidationChoix">
     <select name="choix" value="choix">
@@ -11,6 +11,10 @@
         <option value="valAbs">Valeurs absurdes</option>
         <option value="autre">Autre</option>
     </select>
+    <?php
+    print($_POST["idcapt"]);
+    echo'<input type="hidden" name="idcapt" value='.$_POST["idcapt"].'>';
+    ?>
     <input type="submit" value="Valider" />
 
 </form>

@@ -1,19 +1,12 @@
 <?php
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=bddapp;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+include ('modele/requetes.generiques.php');
 
-function ajoutePanne($bdd,$typePanne)
+function ajoutePanne($bdd,$typePanne,$idcapt)
 {
 
     $bdd->query('INSERT INTO'.' `panne` (`idPanne`, `date`, `type`, `idCemac`) VALUES (NULL, \''.date('Y-m-d H:i:s').'\', \''. $typePanne. '\', NULL);');
     //gérer le cas où la première requete ne foncitonne pas
-    $bdd->query('INSERT INTO `pannecaptact` (`idPanneCaptAct`, `idCaptAct`, `idPanne`) VALUES (NULL, \'1\', LAST_INSERT_ID());');
+    $bdd->query('INSERT INTO `pannecaptact` (`idPanneCaptAct`, `idCaptAct`, `idPanne`) VALUES (NULL, \''.$idcapt.'\', LAST_INSERT_ID());');
 
 
 }
