@@ -150,6 +150,7 @@ switch ($function) {
         break;
 
     case 'maison':
+        $alerte=false;
         if (isset($_SESSION['adresseMail'])) {
             $vue = "maison";
             include('modele/maison.php');
