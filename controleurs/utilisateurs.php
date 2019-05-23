@@ -12,6 +12,7 @@
 
 // on inclut le fichier modèle contenant les appels à la BDD
 include('modele/requetes.utilisateurs.php');
+include('modele/requetes.catalogue.php');
 
 
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
@@ -195,6 +196,41 @@ switch ($function) {
         foreach ($ArrayPiece as $piece) {
             $ArrayConso[] = calculConsoPiece($bdd, $piece[0]);
         }
+        break;
+
+    case 'catalogue':
+        $vue = 'catalogue';
+        $catalogueCapteur = recupereTousCapteur($bdd);
+        $catalogueActionneur = recupereTousActionneur($bdd);
+        break;
+
+    case 'modifCatalogueCapteurs':
+        if (isset($_POST['type']) and isset($_POST['unite']) and isset($_POST['champTYP']) ) {
+            $values = [
+                'type' => $_POST['type'],
+                'unite' => $_POST['unite'],
+                'champTYP' => $_POST['champTYP'],
+                'CaptOuAct' => 1
+            ];
+            // Appel à la BDD à travers une fonction du modèle.
+            $retour = ajouteCatalogue($bdd, $values);
+        }
+
+        header('Location: index.php?cible=utilisateurs&fonction=catalogue');
+        break;
+
+    case 'modifCatalogueActionneur':
+        if (isset($_POST['type']) and isset($_POST['unite']) and isset($_POST['champTYP']) ) {
+            $values = [
+                'type' => $_POST['type'],
+                'unite' => $_POST['unite'],
+                'champTYP' => $_POST['champTYP'],
+                'CaptOuAct' => 2
+            ];
+            // Appel à la BDD à travers une fonction du modèle.
+            $retour = ajouteCatalogue($bdd, $values);
+        }
+        header('Location: index.php?cible=utilisateurs&fonction=catalogue');
         break;
 
     default:

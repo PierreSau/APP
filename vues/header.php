@@ -56,7 +56,7 @@
                     if (isset($_SESSION['adresseMail'])) {
                         if ($_SESSION['niveau'] == 3) {
                             ?>
-                            <li><a href="index.php?cible=catalogue&choix=catalogue">Gestion capteurs</a></li>
+                            <li><a href="index.php?cible=utilisateurs&fonction=catalogue">Gestion capteurs</a></li>
                             <li><a href="index.php?cible=utilisateurs&fonction=liste">Gestion utilisateurs</a></li>
                             <?php
                         }

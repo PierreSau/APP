@@ -1,5 +1,5 @@
 <?php
-include('requetes.generiques.php');
+
 $table = "users";
 function recupereTousCapteur(PDO $bdd): array
 {
@@ -15,6 +15,6 @@ function recupereTousActionneur(PDO $bdd): array
 
 function ajouteCatalogue(PDO $bdd, array $catalogue)
 {
-    $bdd->exec('INSERT INTO catalogue ( `type`, unite, champTYP,CaptOuAct) VALUES ( \'' . $catalogue['type'] . '\', \'' . $catalogue['unite'] . '\', \'' . $catalogue['champTYP'] . '\', \'' . $catalogue['CaptOuAct'] . '\'');
+    $bdd->exec('INSERT INTO catalogue ( `type`, unite, champTYP,CaptOuAct) VALUES ( \'' . $catalogue['type'] . '\', \'' . $catalogue['unite'] . '\', \'' . $catalogue['champTYP'] . '\', \'' . $catalogue['CaptOuAct'] . '\')');
     return true;
 }
