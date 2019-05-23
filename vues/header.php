@@ -44,7 +44,6 @@
             } ?>
             <li><p><a href="../index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
                 <ul>
-                    <li><a href="index.php?cible=capteurs">Capteurs</a></li>
                     <li><a href="index.php?cible=utilisateurs&fonction=stat">Statistiques</a></li>
                     <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
                 </ul>
@@ -69,7 +68,7 @@
 
             <li><p><a href="index.php?cible=vcontact">Contactez Nous</a></p>
                 <ul>
-                    <li><a href="index.php?cible=erreur404">Forum</a></li>
+                    <li><a href="index.php?cible=utilisateurs&fonction=faq">FAQ</a></li>
                 </ul>
             </li>
         </ul>

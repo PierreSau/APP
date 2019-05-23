@@ -15,7 +15,6 @@
         <th>E-mail</th>
         <th>Téléphone</th>
         <th>Identité</th>
-        <th>Mot de passe crypté</th>
         <th>Modifier Identité</th>
     </tr>
     </thead>
@@ -50,9 +49,6 @@
                     default:
                         echo 'Cet utilisateurs ne possède pas de rang';
                 } ; ?>
-            </td>
-            <td>
-                <?php echo $element['motDePasse']; ?>
             </td>
             <td>
                 <form method="POST" action="index.php?cible=utilisateurs&fonction=modifListe&idPersonne=<?= $element['idPersonne'] ?>">
