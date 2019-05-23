@@ -21,6 +21,10 @@
         <label for="motDePasse"> Votre mot de passe : </label>
         <input type="password" name="motDePasse" id="motDePasse" placeholder="Entrez votre mot de passe ici" size="26" maxlength="30" required/>
 
+        <br />
+        <label for="motDePasseVerif"> Vérification du  mot de passe : </label>
+        <input type="password" name="motDePasseVerif" id="motDePasseVerif" placeholder="Entrez de nouveau votre mot de passe" size="26" maxlength="30" required/>
+
         <br/>
         <label for="CGU">J'accepte les conditions générale d'utilisation</label> <input type="checkbox" name="CGU" id="CGU" required/>
 

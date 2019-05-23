@@ -31,13 +31,15 @@ switch ($function) {
         $alerte = false;
         // Cette partie du code est appelée si le formulaire a été posté
         $alerte = 'test';
-        if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])) {
+        if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])and isset ($_POST['motDePasseVerif'])) {
             if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
             } else if (!estUnMotDePasse($_POST['motDePasse'])) {
                 $alerte = "Le mot de passe n'est pas correct.";
             } else if (!estUnEntier($_POST['numDeTelephone'])) {
                 $alerte = "Ce n'est pas un numéro de téléphone";
+            } else if ($_POST['motDePasse'] != $_POST['motDePasseVerif']) {
+                $alerte = "Le deuxième mot de passe n'est pas correct.";
             } else {
                 // Tout est ok, on peut inscrire le nouvel utilisateur
                 //
