@@ -28,7 +28,7 @@
 
     <?php } ?>
     <tr>
-        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogueCapteur">
+        <form method="post" action="index.php?cible=utilisateurs&fonction=modifCatalogueCapteurs">
             <td><input type="text" name="type" placeholder="Entrez le type de capteur" maxlength="30" required/>
             </td>
             <td><input type="text" name="unite" placeholder="Entrez l'unité du capteur" maxlength="30" required/>
@@ -70,7 +70,7 @@
 
     <?php } ?>
     <tr>
-        <form method="post" action="index.php?cible=catalogue&choix=modifCatalogueActionneur">
+        <form method="post" action="index.php?cible=utilisateurs&fonction=modifCatalogueActionneur">
             <td><input type="text" name="type" placeholder="Entrez le type de Actionneur" maxlength="30" required/>
             </td>
             <td><input type="text" name="unite" placeholder="Entrez l'unité de l'actionneur" maxlength="30" required/>
