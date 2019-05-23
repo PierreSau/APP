@@ -14,7 +14,7 @@ echo($idmaison)['adresse'];
 for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la maison
     echo '<div class="piece">';
     echo '<h1>';
-    echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+    echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'" onClick="javascript:return confirm(\'Voulez vous vraiment supprimer cette pièce?\')">';
     echo'<input type="hidden" name="numpiecesuppr" value='.$i.'>';
     echo'<button class="croix"></button>';
     echo '</form>';
@@ -98,7 +98,7 @@ print($numcemac[0]['numSerie']);
 
                         //formulaire pour supprimer un capteur (le même pour actionneur)
 
-                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'"onClick="javascript:return confirm(\'Voulez vous vraiment supprimer ce capteur?\')">';
                         print($captact[$i][$j]['type']);        //+on affiche le capteur
                         echo' ';
                         print($captact[$i][$j]['champNum']);
@@ -163,7 +163,7 @@ print($numcemac[0]['numSerie']);
                     if($captact[$i][$j]['CaptOuAct']==2){
                         echo '<tr> <td>';
                         //formulaire pour supprimer un actionneur (le même pour un capteur)
-                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'" onClick="javascript:return confirm(\'Voulez vous vraiment supprimer cet actionneur?\')">';
                         print($captact[$i][$j]['type']);   //+on affiche l'actionneur
                         echo ' ';
                         print($captact[$i][$j]['champNum']);

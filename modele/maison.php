@@ -1,7 +1,7 @@
 <?php
 /* fonction qui récupère les maisons de idPersonne*/
 function recupereradresse(PDO $bdd,$idPersonne){
-    return $bdd-> query('SELECT idHabitation,adresse FROM habitation WHERE idHabitation IN (SELECT idHabitation FROM relation WHERE idPersonne = '.$idPersonne.')');
+    return $bdd-> query('SELECT habitation.idHabitation,adresse, typeUtilisateur FROM habitation INNER JOIN relation ON habitation.idHabitation=relation.idHabitation WHERE relation.idPersonne =\''.$idPersonne.'\' ');
 }
 
 /* fonction qui récupère les pièces de la maison idMaison*/
