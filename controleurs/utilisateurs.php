@@ -13,6 +13,8 @@
 // on inclut le fichier modèle contenant les appels à la BDD
 include('modele/requetes.utilisateurs.php');
 include('modele/requetes.catalogue.php');
+include('modele/fonctionnement.php');
+include('modele/maison.php');
 
 
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
@@ -140,30 +142,26 @@ switch ($function) {
 
         break;
 
+
     case 'modifListe':
         editionNiveau($bdd, $_POST['choix'], $_GET['idPersonne']);
         header('Location: index.php?cible=utilisateurs&fonction=liste');
         break;
 
-    case 'mode':
-        $vue = "Modefct";
-        break;
 
     case 'maison':
         $alerte=false;
         if (isset($_SESSION['adresseMail'])) {
-            $vue = "maison";
-            include('modele/maison.php');
-            include('modele/connexion.php');
-            if (isset($_POST['nommaison'])) {
-                if (!estUneChaine($_POST['nommaison'])) {
-                    $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
-                } else {
-                    $value = $_POST['nommaison'];
-                    ajoutermaison($bdd, $_SESSION['idPersonne'], $value, 1);
-                    $alerte = 'ajout réussi';
-                }
 
+        $vue = "maison";
+        if (isset($_POST['nommaison'])){
+            if (!estUneChaine($_POST['nommaison'])) {
+                $alerte = "L'adresse de la maison doit être une chaîne de caractère.";
+            } else {
+                $value=$_POST['nommaison'];
+                ajoutermaison($bdd,$_SESSION['idPersonne'],$value,1);
+                $alerte='ajout réussi';
+            }
             }
             if (isset($_POST['maisonsuppr'])) {
                 if (!estUnEntier($_POST['maisonsuppr'])) {
@@ -232,6 +230,118 @@ switch ($function) {
             $retour = ajouteCatalogue($bdd, $values);
         }
         header('Location: index.php?cible=utilisateurs&fonction=catalogue');
+        break;
+
+    case 'mode':
+
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
+
+        }else {
+            $maison = $_GET['maison'];
+        }
+
+        $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
+        if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
+            $vue = "erreur404";
+
+        } else {
+
+            $vue = "Modefct";
+            $valeursEco = valeurMode($bdd, 'eco',$idmaison['idHabitation']);
+            $valeursJour = valeurMode($bdd, 'jour',$idmaison['idHabitation']);
+            $valeursNuit = valeurMode($bdd, 'nuit',$idmaison['idHabitation']);
+        }
+
+        break;
+
+    case 'modeeco':
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
+
+        }else {
+            $maison = $_GET['maison'];
+        }
+
+        $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
+        if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
+            $vue = "erreur404";
+
+        } else {
+            $vue = "Modefct";
+
+            if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])) {
+                $eco = [
+                    "temp" => $_POST['selecttemp'],
+                    "lum" => $_POST['selectlum'],
+                    "vent" => $_POST['selectvent']
+                ];
+
+                modifieEco($bdd, $eco, $idmaison['idHabitation']);
+                // Faire une fonction qui retourne un tableau avec toutes les valeurs des capteurs/actionneurs pour les afficher dans la vue
+            }
+            $valeursEco = valeurMode($bdd, 'eco',$idmaison['idHabitation']);
+            $valeursJour = valeurMode($bdd, 'jour',$idmaison['idHabitation']);
+            $valeursNuit = valeurMode($bdd, 'nuit',$idmaison['idHabitation']);
+        }
+        break;
+
+    case 'modejour':
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
+
+        }else {
+            $maison = $_GET['maison'];
+        }
+
+        $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
+        if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
+            $vue = "erreur404";
+
+        } else {
+            $vue = "Modefct";
+
+            if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])) {
+                $jour = [
+                    "temp" => $_POST['selecttemp'],
+                    "lum" => $_POST['selectlum'],
+                    "vent" => $_POST['selectvent']
+                ];
+                modifieJour($bdd, $jour, $idmaison['idHabitation']);
+            }
+            $valeursEco = valeurMode($bdd, 'eco',$idmaison['idHabitation']);
+            $valeursJour = valeurMode($bdd, 'jour',$idmaison['idHabitation']);
+            $valeursNuit = valeurMode($bdd, 'nuit',$idmaison['idHabitation']);
+        }
+        break;
+
+    case 'modenuit':
+        if (!isset($_GET['maison']) || empty($_GET['maison'])) {
+            $maison = 0;
+
+        }else {
+            $maison = $_GET['maison'];
+        }
+
+        $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
+        if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
+            $vue = "erreur404";
+
+        } else {
+            $vue = "Modefct";
+
+            if (isset($_POST['selecttemp']) and isset($_POST['selectlum']) and isset($_POST['selectvent'])) {
+                $nuit = [
+                    "temp" => $_POST['selecttemp'],
+                    "lum" => $_POST['selectlum'],
+                    "vent" => $_POST['selectvent']
+                ];
+                modifieNuit($bdd, $nuit, $idmaison['idHabitation']);
+            }
+            $valeursEco = valeurMode($bdd, 'eco',$idmaison['idHabitation']);
+            $valeursJour = valeurMode($bdd, 'jour',$idmaison['idHabitation']);
+            $valeursNuit = valeurMode($bdd, 'nuit',$idmaison['idHabitation']);
+        }
         break;
 
     default:

@@ -9,14 +9,20 @@ $i=0;
         $i+=1;
         echo'<a href="index.php?cible=pieces&maison='.$i.'">';
         echo '<div class="maison">';
-        echo '<form method="post" action="index.php?cible=utilisateurs&fonction=maison">';
+        echo '<form method="post" action="index.php?cible=utilisateurs&fonction=maison" onClick="javascript:return confirm(\'Voulez vous vraiment supprimer cette maison?\')">';
         echo'<input type="hidden" name="maisonsuppr" value='.$i.'>';
         echo'<button class="croix"></button>';
         echo '</form>';
         print($donnees['adresse']);
         echo'<img src="images/maison.jpg">';
-        echo'</div>';
         echo'</a>';
+
+        echo'<a href="index.php?cible=utilisateurs&fonction=mode&maison='.$i.'">';
+        echo'<button class="gerermode">Gérer les modes</button>';
+        echo'</a>';
+
+        echo'</div>';
+
     }
     $maisons->closeCursor();
     ?>

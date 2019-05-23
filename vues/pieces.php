@@ -6,13 +6,15 @@
 echo($idmaison)['adresse'];
 ?>
 </h1>
-<?php print($alerte); ?>
+<?php print($alerte);
+?>
+
 <div class="tableauPiece">
 <?php
 for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la maison
     echo '<div class="piece">';
     echo '<h1>';
-    echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+    echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'" onClick="javascript:return confirm(\'Voulez vous vraiment supprimer cette pièce?\')">';
     echo'<input type="hidden" name="numpiecesuppr" value='.$i.'>';
     echo'<button class="croix"></button>';
     echo '</form>';
@@ -28,7 +30,13 @@ for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la
         echo ' </br> ';
 
     }
-    ?>
+    echo 'Mode : '.$idpiece[$i]['mode'].' ';
+
+    echo'<a href="index.php?cible=pieces&maison='.$maison.'&piece='.$i.'">';
+    echo'<img src="images/parametres.png" width=15px height=15px class="mode">';
+    echo '</a>';
+
+?>
 
 </div>
 
@@ -86,14 +94,24 @@ print($numcemac[0]['numSerie']);
                 for($j=0 ; $j<count($captact[$i]); $j++){
                     if($captact[$i][$j]['CaptOuAct']==1){
                         echo '<tr> <td>';
+
+
                         //formulaire pour supprimer un capteur (le même pour actionneur)
-                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+
+                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'"onClick="javascript:return confirm(\'Voulez vous vraiment supprimer ce capteur?\')">';
                         print($captact[$i][$j]['type']);        //+on affiche le capteur
                         echo' ';
                         print($captact[$i][$j]['champNum']);
                         echo'<input type="hidden" name="typecaptactsuppr" value='.$captact[$i][$j]['type'].'>';
                         echo'<input type="hidden" name="Numcaptactsuppr" value='.$captact[$i][$j]['champNum'].'>';
                         echo'<button class="croix"></button>';
+                        echo '</form>';
+
+                        echo'<form method="post" action="index.php?cible=panne">';
+                        echo'<input type="hidden" name="idcapt" value='.$captact[$i][$j]['idCaptAct'].'>';
+                        echo '<button class="vide">';
+                        echo'<img src="images/reparation.png" width=15px height=15px class="modeg">';
+                        echo'</button>';
                         echo '</form>';
 
                         echo '</td> <td>';
@@ -145,7 +163,7 @@ print($numcemac[0]['numSerie']);
                     if($captact[$i][$j]['CaptOuAct']==2){
                         echo '<tr> <td>';
                         //formulaire pour supprimer un actionneur (le même pour un capteur)
-                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
+                        echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'" onClick="javascript:return confirm(\'Voulez vous vraiment supprimer cet actionneur?\')">';
                         print($captact[$i][$j]['type']);   //+on affiche l'actionneur
                         echo ' ';
                         print($captact[$i][$j]['champNum']);
@@ -153,7 +171,19 @@ print($numcemac[0]['numSerie']);
                         echo'<input type="hidden" name="Numcaptactsuppr" value='.$captact[$i][$j]['champNum'].'>';
                         echo'<button class="croix"></button>';
                         echo '</form>';
+
+                        echo'<form method="post" action="index.php?cible=panne">';
+                        echo'<input type="hidden" name="idcapt" value='.$captact[$i][$j]['idCaptAct'].'>';
+                        echo '<button class="vide">';
+                        echo'<img src="images/reparation.png" width=15px height=15px class="modeg">';
+                        echo'</button>';
+                        echo '</form>';
+
+
                         echo '</td> <td>';
+                        print($captact[$i][$j]['valeur']);
+                        echo' ';
+                        print($captact[$i][$j]['unite']);
                         echo'</td> </tr>';
                     }
                 }
@@ -162,7 +192,7 @@ print($numcemac[0]['numSerie']);
                     <?php
                     echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
                     echo'<td><select name="idcaptact">';
-                    for($k=0 ; $k<count($capteurs) ; $k++){
+                    for($k=0 ; $k<count($actionneurs) ; $k++){
                         echo'<option value='.$actionneurs[$k]["idCatalogue"].'> '.$actionneurs[$k]["type"].'</option>';
                     }
                     echo'</select>';

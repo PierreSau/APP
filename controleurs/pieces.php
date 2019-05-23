@@ -42,114 +42,132 @@ switch ($function) {
         $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
 
 
-
-        // puis ajouter une pièce
-
-        // Cette partie du code est appelée si le formulaire AJOUTER UNE PIECE
-        if (isset($_POST['nompiece'])) {
-
-            if (!estUneChaine($_POST['nompiece'])) {
-                $alerte = "Le nom de la pièce doit être une chaîne de caractère.";
-
-            } else {
-
-                $value = $_POST['nompiece'];
-
-                // Appel à la BDD à travers une fonction du modèle.
-                $retour = insertionpiece($bdd, $value, $idmaison['idHabitation']);
-
-                if ($retour) {
-                    $alerte = "L'ajout de la pièce a réussi";
-                } else {
-                    $alerte = "L'ajout de la piece n'a pas fonctionné";
-                }
-            }
-        }
+        if (!isset($_GET['piece'])) {
 
 
+            // puis ajouter une pièce
 
+            // Cette partie du code est appelée si le formulaire AJOUTER UNE PIECE
+            if (isset($_POST['nompiece'])) {
 
-
-
-        if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
-            $vue = "erreur404";
-
-        } else {  //il n'y a pas de problème, on accède a la vue de la pièce
-            $nombrecaptact=nbcaptact($bdd,$idmaison['idHabitation']);
-            $vue = "pieces";
-            $captact=[];
-            $idpiece=recupererpieces($bdd,$idmaison['idHabitation']);
-
-
-            // Cette partie du code est appelée si le formulaire SUPPRIMER UNE PIECE est rempli
-            if (isset($_POST['numpiecesuppr'])) {
-
-                if (!estUnEntier($_POST['numpiecesuppr'])) {
-                    $alerte = "Le nom de la pièce doit être un entier.";
+                if (!estUneChaine($_POST['nompiece'])) {
+                    $alerte = "Le nom de la pièce doit être une chaîne de caractère.";
 
                 } else {
 
-                    $value = $_POST['numpiecesuppr'];
+                    $value = $_POST['nompiece'];
 
                     // Appel à la BDD à travers une fonction du modèle.
-                    $alerte = supprimerpiece($bdd, $idpiece[$value]['idPiece']);
-                    $idpiece=recupererpieces($bdd,$idmaison['idHabitation']);
-                    $nombrecaptact=nbcaptact($bdd,$idmaison['idHabitation']);
+                    $retour = insertionpiece($bdd, $value, $idmaison['idHabitation']);
 
-                }
-            }
-
-
-            //si on a ajouté un capteur ou un actionneur
-            if (isset($_POST['idcaptact']) and isset($_POST['numpiece'])){
-                //   if (!is_int($_POST['idcaptact']) || !estUneChaine($_POST['numpiece'])) {
-                //     $alerte = "l'id du capteur doit être une chaîne de caractère.";
-                //} else {}
-                $values = [
-                    'idcaptact' => $_POST['idcaptact'],
-                    'numpiece' => $_POST['numpiece']];
-                $values['idpiece']=$idpiece[$values['numpiece']]['idPiece'];  //on récupère l'idpiece
-                if (isset($_POST['numcemac']) and $nombrecaptact==0 ){   //cas ou numcemac est renseigné. le nombre
-                    if (!estUneChaine($_POST['numcemac'])){              //de captact doit etre aussi nul et on ajoute le cemac dans la maison
-                        $alerte="le numéro du cemac doit être une chaîne de caractères" ;
+                    if ($retour) {
+                        $alerte = "L'ajout de la pièce a réussi";
                     } else {
-                        $numcemac=$_POST['numcemac'];
-                        $alerte=ajoutercemac($bdd,$numcemac,$values['idpiece'],$values['idcaptact']);
-                        $nombrecaptact=nbcaptact($bdd,$idmaison['idHabitation']);
+                        $alerte = "L'ajout de la piece n'a pas fonctionné";
                     }
-                } elseif ($nombrecaptact=!0){   //cas ou il y a déjà des capteurs -> on connait le n°cemac
-                    for($i=0 ; $i<count($idpiece) ; $i++){      //on récupère les captact pour avoir l'idCemac
-                        $captact[$i]=recuperercapt($bdd,$idpiece[$i]['idPiece']);
-                    }
-                    $idcemac=$captact[0][0]['idCemac'];    //idcemac nécessaire a l'ajout d'un captact
-                    $alerte=ajoutercaptact($bdd,$values['idpiece'],$values['idcaptact'],$idcemac,$idmaison['idHabitation']);
-
-                } else {
-                    $alerte="impossible de l'ajouter";
-                }
-
-            }
-
-            //Si on veut supprimer un capteur ou un actionneur
-            if (isset($_POST['typecaptactsuppr']) and isset($_POST['Numcaptactsuppr'])){
-                if (!estUneChaine($_POST['typecaptactsuppr']) || !estUneChaine($_POST['Numcaptactsuppr'])) {
-                    $alerte='le type ou le numéro du composant doivent être des chaînes de cractères';
-                } else{
-                    $alerte=supprimercaptact($bdd,$_POST['typecaptactsuppr'],$_POST['Numcaptactsuppr'],$idmaison['idHabitation']);
                 }
             }
 
 
+            if (is_int($idmaison)) { //si $idmaison est un entier, cela signifie qu'il y a eu un problème dans les données dans l'url
+                $vue = "erreur404";
+
+            } else {  //il n'y a pas de problème, on accède a la vue de la pièce
+                $nombrecaptact = nbcaptact($bdd, $idmaison['idHabitation']);
+                $vue = "pieces";
+                $captact = [];
+                $idpiece = recupererpieces($bdd, $idmaison['idHabitation']);
 
 
-                for($i=0 ; $i<count($idpiece) ; $i++){              //on récupère les infos des captact
-                $captact[$i]=recuperercapt($bdd,$idpiece[$i]['idPiece']);
+                // Cette partie du code est appelée si le formulaire SUPPRIMER UNE PIECE est rempli
+                if (isset($_POST['numpiecesuppr'])) {
+
+                    if (!estUnEntier($_POST['numpiecesuppr'])) {
+                        $alerte = "Le nom de la pièce doit être un entier.";
+
+                    } else {
+
+                        $value = $_POST['numpiecesuppr'];
+
+                        // Appel à la BDD à travers une fonction du modèle.
+                        $alerte = supprimerpiece($bdd, $idpiece[$value]['idPiece']);
+                        $idpiece = recupererpieces($bdd, $idmaison['idHabitation']);
+                        $nombrecaptact = nbcaptact($bdd, $idmaison['idHabitation']);
+
+                    }
+                }
+
+
+                //si on a ajouté un capteur ou un actionneur
+                if (isset($_POST['idcaptact']) and isset($_POST['numpiece'])) {
+                    //   if (!is_int($_POST['idcaptact']) || !estUneChaine($_POST['numpiece'])) {
+                    //     $alerte = "l'id du capteur doit être une chaîne de caractère.";
+                    //} else {}
+                    $values = [
+                        'idcaptact' => $_POST['idcaptact'],
+                        'numpiece' => $_POST['numpiece']];
+                    $values['idpiece'] = $idpiece[$values['numpiece']]['idPiece'];  //on récupère l'idpiece
+                    if (isset($_POST['numcemac']) and $nombrecaptact == 0) {   //cas ou numcemac est renseigné. le nombre
+                        if (!estUneChaine($_POST['numcemac'])) {              //de captact doit etre aussi nul et on ajoute le cemac dans la maison
+                            $alerte = "le numéro du cemac doit être une chaîne de caractères";
+                        } else {
+                            $numcemac = $_POST['numcemac'];
+                            $alerte = ajoutercemac($bdd, $numcemac, $values['idpiece'], $values['idcaptact']);
+                            $nombrecaptact = nbcaptact($bdd, $idmaison['idHabitation']);
+                        }
+                    } elseif ($nombrecaptact = !0) {   //cas ou il y a déjà des capteurs -> on connait le n°cemac
+                        for ($i = 0; $i < count($idpiece); $i++) {      //on récupère les captact pour avoir l'idCemac
+                            $idpiece[$i]['mode']=recuperermode($bdd,$idpiece[$i]['idPiece']);
+                            $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece'],$idpiece[$i]['mode']);
+                        }
+                        $idcemac = $captact[0][0]['idCemac'];    //idcemac nécessaire a l'ajout d'un captact
+                        $alerte = ajoutercaptact($bdd, $values['idpiece'], $values['idcaptact'], $idcemac, $idmaison['idHabitation']);
+
+                    } else {
+                        $alerte = "impossible de l'ajouter";
+                    }
+
+                }
+
+                //Si on veut supprimer un capteur ou un actionneur
+                if (isset($_POST['typecaptactsuppr']) and isset($_POST['Numcaptactsuppr'])) {
+                    if (!estUneChaine($_POST['typecaptactsuppr']) || !estUneChaine($_POST['Numcaptactsuppr'])) {
+                        $alerte = 'le type ou le numéro du composant doivent être des chaînes de cractères';
+                    } else {
+                        $alerte = supprimercaptact($bdd, $_POST['typecaptactsuppr'], $_POST['Numcaptactsuppr'], $idmaison['idHabitation']);
+                    }
+                }
+
+
+                for ($i = 0; $i < count($idpiece); $i++) {              //on récupère les infos des captact et des modes des pieces
+                    $idpiece[$i]['mode']=recuperermode($bdd,$idpiece[$i]['idPiece']);
+                    $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece'],$idpiece[$i]['mode']);
+                }
+                $nombrecaptact = nbcaptact($bdd, $idmaison['idHabitation']);
+                if ($nombrecaptact > 0) {
+                    $numcemac = recuperernumcemac($bdd, $captact[0][0]['idCemac']);
+                }
             }
-            $nombrecaptact=nbcaptact($bdd,$idmaison['idHabitation']);
-            if($nombrecaptact>0){
-                $numcemac=recuperernumcemac($bdd,$captact[0][0]['idCemac']);
+
+        } else {   //on passe à la vue pour modifier les modes de fonctionnements
+            $piece=$_GET['piece'];
+            $idpiece = recupererpieces($bdd, $idmaison['idHabitation']);
+
+            if (isset($_POST['datedebut']) and isset($_POST['datefin']) and isset($_POST['mode']) and isset($_POST['heuredebut']) and isset($_POST['heurefin'])) {
+                $values = [
+                    'dateDebut' => $_POST['datedebut'],
+                    'dateFin' => $_POST['datefin'],
+                    'heureDebut' => $_POST['heuredebut'],
+                    'heureFin' => $_POST['heurefin'],
+                    'mode' => $_POST['mode']];
+                $datedebut= $values['dateDebut'].' '.$values['heureDebut'].':00';
+                $datefin= $values['dateFin'].' '.$values['heureFin'].':00';
+                $alerte=ajoutermodif($bdd,$idpiece[$piece]['idPiece'],$idmaison['idHabitation'],$datedebut,$datefin,$values['mode']);
             }
+            $vue='heurefonct';
         }
+
+
 
         break;
 

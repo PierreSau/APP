@@ -1,18 +1,14 @@
 <?php
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=app;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
+include ('modele/requetes.generiques.php');
 
-function ajoutePanne($bdd,$typePanne)
+function ajoutePanne($bdd,$typePanne,$idcapt)
 {
 
-    $bdd->query('INSERT INTO'.' `panne` (`idPanne`, `date`, `type`, `idCemac`) VALUES (NULL, \''.date('Y-m-d').'\', \''. $typePanne. '\', NULL);');
-    $bdd->query('INSERT INTO `pannecaptact` (`idPanneCaptAct`, `idCaptAct`, `idPanne`) VALUES (NULL, \'1\', LAST_INSERT_ID());');
+    $bdd->query('INSERT INTO'.' `panne` (`idPanne`, `date`, `type`, `idCemac`) VALUES (NULL, \''.date('Y-m-d H:i:s').'\', \''. $typePanne. '\', NULL);');
+    //gérer le cas où la première requete ne foncitonne pas
+    $bdd->query('INSERT INTO `pannecaptact` (`idPanneCaptAct`, `idCaptAct`, `idPanne`) VALUES (NULL, \''.$idcapt.'\', LAST_INSERT_ID());');
+
+
 }
 
 function recupererEmail($bdd)
@@ -23,7 +19,8 @@ function recupererEmail($bdd)
 
 
     $requete2= $bdd->query('SELECT adresseMail FROM personne
-INNER JOIN habitation ON habitation.idUtilisateur=personne.idPersonne
+INNER JOIN relation ON relation.idPersonne = personne.idPersonne
+INNER JOIN habitation ON habitation.idHabitation=relation.idHabitation
 INNER JOIN piece ON piece.idHabitation=habitation.idHabitation
 INNER JOIN captact ON captact.idPiece=piece.idPiece
 INNER JOIN pannecaptact ON pannecaptact.idCaptAct=captact.idCaptAct

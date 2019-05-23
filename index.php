@@ -1,4 +1,6 @@
 <?php
+session_start();
+date_default_timezone_set('Europe/Paris');
 
 /**
  * MVC :
@@ -25,6 +27,5 @@ if(isset($_GET['cible']) && !empty($_GET['cible'])) {
     // Si aucun contrôleur défini en GET, on bascule sur utilisateurs
     $url = 'utilisateurs';
 }
-session_start();
 // On appelle le contrôleur
 include'./controleurs/' . $url . '.php';

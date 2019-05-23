@@ -1,7 +1,7 @@
 <?php
 /* fonction qui récupère les maisons de idPersonne*/
 function recupereradresse(PDO $bdd,$idPersonne){
-    return $bdd-> query('SELECT idHabitation,adresse FROM habitation WHERE idHabitation IN (SELECT idHabitation FROM relation WHERE idPersonne = '.$idPersonne.')');
+    return $bdd-> query('SELECT habitation.idHabitation,adresse, typeUtilisateur FROM habitation INNER JOIN relation ON habitation.idHabitation=relation.idHabitation WHERE relation.idPersonne =\''.$idPersonne.'\' ');
 }
 
 /* fonction qui récupère les pièces de la maison idMaison*/
@@ -24,8 +24,26 @@ function idmaison(PDO $bdd, $idPersonne, $maison){
 }
 
 function ajoutermaison(PDO $bdd, $idPersonne,$adresse,$relation){
+
     $bdd->exec('INSERT INTO `habitation` (`idHabitation`, `adresse`) VALUES (NULL,\'' . $adresse . '\')');
-    $bdd->exec('INSERT INTO `relation`(`idRelation`, `typeUtilisateur`, `idHabitation`, `idPersonne`) VALUES (NULL,\'' . $relation . '\',LAST_INSERT_ID(),\'' . $idPersonne . '\')');
+    $id=$bdd->query('SELECT LAST_INSERT_ID()');
+    $id=$id->fetchall();
+    $id=$id[0][0];
+    print($id);
+    $bdd->exec('INSERT INTO `relation`(`idRelation`, `typeUtilisateur`, `idHabitation`, `idPersonne`) VALUES (NULL,\'' . $relation . '\',\'' . $id . '\',\'' . $idPersonne . '\')');
+
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"eco","17",\'' . $id . '\',"1")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"eco","3",\'' . $id . '\',"2")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"eco","0",\'' . $id . '\',"3")');
+
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"jour","20",\'' . $id . '\',"1")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"jour","0",\'' . $id . '\',"2")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"jour","0",\'' . $id . '\',"3")');
+
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"nuit","15",\'' . $id . '\',"1")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"nuit","0",\'' . $id . '\',"2")');
+    $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"nuit","0",\'' . $id . '\',"3")');
+
     return;
 }
 
