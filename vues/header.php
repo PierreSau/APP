@@ -23,25 +23,25 @@
         <a href="index.php"><img src="vues/NomEcoM.png"/></a>
     </div>
     <div align="right">
-        <?php
-        if (isset($_SESSION['adresseMail'])) {
-            echo 'Bonjour ' . $_SESSION['prenom'];
-            switch ($_SESSION['niveau']) {
-                case 1 :
-                    echo ' Vous êtes Utilisateur';
-                    break;
-                case 2 :
-                    echo ' Vous êtes Gestionnaire';
-                    break;
-                case 3 :
-                    echo ' Vous êtes Administrateur';
-                    break;
-                default:
-                    echo 'Cet utilisateurs ne possède pas de rang';
-            };
-        } ?>
-        <ul id="menu">
 
+        <ul id="menu">
+            <?php
+            if (isset($_SESSION['adresseMail'])) {
+                echo 'Bonjour ' . $_SESSION['prenom'];
+                switch ($_SESSION['niveau']) {
+                    case 1 :
+                        echo ' Vous êtes Utilisateur';
+                        break;
+                    case 2 :
+                        echo ' Vous êtes Gestionnaire';
+                        break;
+                    case 3 :
+                        echo ' Vous êtes Administrateur';
+                        break;
+                    default:
+                        echo 'Cet utilisateurs ne possède pas de rang';
+                };
+            } ?>
             <li><p><a href="../index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
                 <ul>
                     <li><a href="index.php?cible=capteurs">Capteurs</a></li>
