@@ -26,21 +26,20 @@
         <?php
         if (isset($_SESSION['adresseMail'])) {
             echo 'Bonjour ' . $_SESSION['prenom'];
-
-        }
-        switch ($_SESSION['niveau']) {
-            case 1 :
-                echo 'Utilisateur';
-                break;
-            case 2 :
-                echo 'Gestionnaire';
-                break;
-            case 3 :
-                echo 'Administrateur';
-                break;
-            default:
-                echo 'Cet utilisateurs ne possède pas de rang';
-        }; ?>
+            switch ($_SESSION['niveau']) {
+                case 1 :
+                    echo ' Vous êtes Utilisateur';
+                    break;
+                case 2 :
+                    echo ' Vous êtes Gestionnaire';
+                    break;
+                case 3 :
+                    echo ' Vous êtes Administrateur';
+                    break;
+                default:
+                    echo 'Cet utilisateurs ne possède pas de rang';
+            };
+        } ?>
         <ul id="menu">
 
             <li><p><a href="../index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
@@ -55,11 +54,13 @@
             <li><p><a href="index.php?cible=utilisateurs&fonction=editionProfil">Mon Compte</a></p>
                 <ul>
                     <?php
-                    if ($_SESSION['niveau'] == 3) {
-                        ?>
-                        <li><a href="index.php?cible=catalogue&choix=catalogue">Gestion capteurs</a></li>
-                        <li><a href="index.php?cible=utilisateurs&fonction=liste">Gestion utilisateurs</a></li>
-                        <?php
+                    if (isset($_SESSION['mail'])) {
+                        if ($_SESSION['niveau'] == 3) {
+                            ?>
+                            <li><a href="index.php?cible=catalogue&choix=catalogue">Gestion capteurs</a></li>
+                            <li><a href="index.php?cible=utilisateurs&fonction=liste">Gestion utilisateurs</a></li>
+                            <?php
+                        }
                     }
                     ?>
 

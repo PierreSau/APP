@@ -168,7 +168,7 @@ h2{
 }
 
 body{
-    background: linear-gradient(to right, rgba(29,179,67,0.4), rgba(29,179,67,0.1));
+    background-image:url(/images/residence-2219972_1920.jpg);
 }
 
 
@@ -231,10 +231,6 @@ Pour la faq
 
 
 
-body{
-    background: linear-gradient(to right, rgba(29,179,67,0.4), rgba(29,179,67,0.1));
-    height: auto;
-}
 
 h1{
     text-align: center;
