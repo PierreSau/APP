@@ -1,4 +1,5 @@
 
+<?php echo AfficheAlerte($alerte); ?>
 
 <div class="tableauMaison">
     <?php

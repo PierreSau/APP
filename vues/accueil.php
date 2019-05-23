@@ -1,3 +1,5 @@
+<?php echo AfficheAlerte($alerte); ?>
+
 <div class = accueil>
 <form method="post" action="" class="accueilFond">
 

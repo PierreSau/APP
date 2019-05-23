@@ -29,8 +29,6 @@ switch ($function) {
         $title = "Accueil";
 
         $alerte = false;
-        // Cette partie du code est appelée si le formulaire a été posté
-        $alerte = 'test';
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresseMail']) and isset($_POST['numDeTelephone']) and isset($_POST['motDePasse'])and isset ($_POST['motDePasseVerif'])) {
             if (!estUneChaine($_POST['nom']) || !estUneChaine($_POST['prenom'])) {
                 $alerte = "Le nom d'utilisateur doit être une chaîne de caractère.";
@@ -78,9 +76,9 @@ switch ($function) {
                     $_SESSION['numDeTelephone'] = $resultat['numDeTelephone'];
                     $_SESSION['niveau'] = $resultat['niveau'];
 
-                    echo 'Vous êtes connecté !';
+                    $alerte = 'Vous êtes connecté !';
                 } else {
-                    echo 'Mauvais mot de passe !';
+                    $alerte = 'Mauvais mot de passe !';
                 }
             }
         }
@@ -120,8 +118,6 @@ switch ($function) {
                         $alerte = "L'inscription dans la BDD n'a pas fonctionné";
                     }
                 }
-            } else {
-                echo 'Un champ est vide';
             }
         } else {
             $vue = 'erreur404';

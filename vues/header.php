@@ -46,7 +46,6 @@
                 <ul>
                     <li><a href="index.php?cible=capteurs">Capteurs</a></li>
                     <li><a href="index.php?cible=utilisateurs&fonction=stat">Statistiques</a></li>
-                    <li><a href="index.php?cible=panne&choix=AccueilPanne">Historique des Pannes</a></li>
                     <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
                 </ul>
             </li>

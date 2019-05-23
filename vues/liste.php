@@ -3,7 +3,7 @@
  * Vue : liste des utilisateurs inscrits
  */
 ?>
-
+<?php echo AfficheAlerte($alerte); ?>
 <p><?php echo $entete; ?></p>
 
 <table>
