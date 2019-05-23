@@ -132,6 +132,7 @@ switch ($function) {
         $vue = "liste";
         $title = "Liste des utilisateurs inscrits";
         $entete = "Voici la liste :";
+        $alerte=false;
 
         $liste = recupereTousUtilisateurs($bdd);
 
