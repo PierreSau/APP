@@ -638,6 +638,24 @@ td, th
     transition-duration: 100ms;
 }
 
+
+.gerermode {
+    width:120px;
+    margin-left:5px;
+    box-shadow:2px 2px 2px #ed942a;
+    cursor:pointer;
+    background-color: #ffbb5d;
+    padding:3px;
+    border:1px solid #C5E7A3  ;
+    border-radius:5px;
+}
+
+.gerermode:hover{
+    width: 150px;
+    height: 30px;
+    transition-duration: 100ms;
+}
+
 .vide{
     background: none;
     border: none;

@@ -14,11 +14,11 @@ function AfficheAlerte(?string $alerte) {
         return "<p><strong><i> Alerte : {$alerte}</i></strong></p>";
     }
 }
-function valeurMode($bdd,$mode){
+function valeurMode($bdd,$mode,$idmaison){
     $valeurs=[
-        "temp" => recupereValeur($bdd,$mode,1),
-        "lum" => recupereValeur($bdd,$mode,2),
-        "vent" => recupereValeur($bdd,$mode,3),
+        "temp" => recupereValeur($bdd,$mode,1,$idmaison),
+        "lum" => recupereValeur($bdd,$mode,2,$idmaison),
+        "vent" => recupereValeur($bdd,$mode,3,$idmaison),
 
 
     ];

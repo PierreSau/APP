@@ -1,7 +1,7 @@
 
 
     <div class="tableauPiece">
-        <form method="post" action="index.php?cible=utilisateurs&fonction=modeeco">
+        <?php echo'<form method="post" action="index.php?cible=utilisateurs&fonction=modeeco&maison='.$maison.'">'; ?>
         <div class="piece">
 
             <h2>ECO</h2>
@@ -45,7 +45,7 @@
         </div>
 </form>
 </br>
-<form method="post" action="index.php?cible=utilisateurs&fonction=modejour">
+<?php echo'<form method="post" action="index.php?cible=utilisateurs&fonction=modejour&maison='.$maison.'">';?>
 
     <div class="piece">
         <h2>JOUR</h2>
@@ -90,7 +90,7 @@
 
 </form>
 <br/>
-<form method="post" action="index.php?cible=utilisateurs&fonction=modenuit">
+        <?php echo'<form method="post" action="index.php?cible=utilisateurs&fonction=modenuit&maison='.$maison.'">';?>
 
     <div class="piece">
         <h2>NUIT</h2>

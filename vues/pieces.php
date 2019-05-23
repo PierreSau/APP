@@ -6,7 +6,9 @@
 echo($idmaison)['adresse'];
 ?>
 </h1>
-<?php print($alerte); ?>
+<?php print($alerte);
+?>
+
 <div class="tableauPiece">
 <?php
 for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la maison
@@ -28,7 +30,7 @@ for($i=0 ; $i<count($captact) ; $i++) {   //on parcours toutes les pièces de la
         echo ' </br> ';
 
     }
-    echo 'Mode : eco ';
+    echo 'Mode : '.$idpiece[$i]['mode'].' ';
 
     echo'<a href="index.php?cible=pieces&maison='.$maison.'&piece='.$i.'">';
     echo'<img src="images/parametres.png" width=15px height=15px class="mode">';
@@ -179,6 +181,9 @@ print($numcemac[0]['numSerie']);
 
 
                         echo '</td> <td>';
+                        print($captact[$i][$j]['valeur']);
+                        echo' ';
+                        print($captact[$i][$j]['unite']);
                         echo'</td> </tr>';
                     }
                 }
@@ -187,7 +192,7 @@ print($numcemac[0]['numSerie']);
                     <?php
                     echo'<form method="post" action="index.php?cible=pieces&maison='.$maison.'">';
                     echo'<td><select name="idcaptact">';
-                    for($k=0 ; $k<count($capteurs) ; $k++){
+                    for($k=0 ; $k<count($actionneurs) ; $k++){
                         echo'<option value='.$actionneurs[$k]["idCatalogue"].'> '.$actionneurs[$k]["type"].'</option>';
                     }
                     echo'</select>';

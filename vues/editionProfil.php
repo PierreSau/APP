@@ -1,5 +1,5 @@
 
-<form method="post" action="">
+<form method="post" class="accueilFond" action="">
 
     <fieldset>
         <label for= "nom"> Votre Nom : </label>

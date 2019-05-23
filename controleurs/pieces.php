@@ -117,7 +117,8 @@ switch ($function) {
                         }
                     } elseif ($nombrecaptact = !0) {   //cas ou il y a déjà des capteurs -> on connait le n°cemac
                         for ($i = 0; $i < count($idpiece); $i++) {      //on récupère les captact pour avoir l'idCemac
-                            $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece']);
+                            $idpiece[$i]['mode']=recuperermode($bdd,$idpiece[$i]['idPiece']);
+                            $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece'],$idpiece[$i]['mode']);
                         }
                         $idcemac = $captact[0][0]['idCemac'];    //idcemac nécessaire a l'ajout d'un captact
                         $alerte = ajoutercaptact($bdd, $values['idpiece'], $values['idcaptact'], $idcemac, $idmaison['idHabitation']);
@@ -138,8 +139,9 @@ switch ($function) {
                 }
 
 
-                for ($i = 0; $i < count($idpiece); $i++) {              //on récupère les infos des captact
-                    $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece']);
+                for ($i = 0; $i < count($idpiece); $i++) {              //on récupère les infos des captact et des modes des pieces
+                    $idpiece[$i]['mode']=recuperermode($bdd,$idpiece[$i]['idPiece']);
+                    $captact[$i] = recuperercapt($bdd, $idpiece[$i]['idPiece'],$idpiece[$i]['mode']);
                 }
                 $nombrecaptact = nbcaptact($bdd, $idmaison['idHabitation']);
                 if ($nombrecaptact > 0) {
@@ -158,11 +160,9 @@ switch ($function) {
                     'heureDebut' => $_POST['heuredebut'],
                     'heureFin' => $_POST['heurefin'],
                     'mode' => $_POST['mode']];
-                print_r($values);
                 $datedebut= $values['dateDebut'].' '.$values['heureDebut'].':00';
                 $datefin= $values['dateFin'].' '.$values['heureFin'].':00';
-                print ($datedebut);
-                ajoutermodif($bdd,$idpiece[$piece]['idPiece'],$idmaison['idHabitation'],$datedebut,$datefin,$values['mode']);
+                $alerte=ajoutermodif($bdd,$idpiece[$piece]['idPiece'],$idmaison['idHabitation'],$datedebut,$datefin,$values['mode']);
             }
             $vue='heurefonct';
         }

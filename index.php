@@ -1,5 +1,8 @@
 <?php
-session_start();/**
+session_start();
+date_default_timezone_set('Europe/Paris');
+
+/**
  * MVC :
  * - index.php : identifie le routeur à appeler en fonction de l'url
  * - Contrôleur : Crée les variables, élabore leurs contenus, identifie la vue et lui envoie les variables

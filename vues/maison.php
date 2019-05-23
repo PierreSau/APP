@@ -12,8 +12,14 @@ $i=0;
         echo '</form>';
         print($donnees['adresse']);
         echo'<img src="images/maison.jpg">';
-        echo'</div>';
         echo'</a>';
+
+        echo'<a href="index.php?cible=utilisateurs&fonction=mode&maison='.$i.'">';
+        echo'<button class="gerermode">Gérer les modes</button>';
+        echo'</a>';
+
+        echo'</div>';
+
     }
     $maisons->closeCursor();
     ?>
