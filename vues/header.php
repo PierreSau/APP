@@ -54,7 +54,7 @@
             <li><p><a href="index.php?cible=utilisateurs&fonction=editionProfil">Mon Compte</a></p>
                 <ul>
                     <?php
-                    if (isset($_SESSION['mail'])) {
+                    if (isset($_SESSION['adresseMail'])) {
                         if ($_SESSION['niveau'] == 3) {
                             ?>
                             <li><a href="index.php?cible=catalogue&choix=catalogue">Gestion capteurs</a></li>
