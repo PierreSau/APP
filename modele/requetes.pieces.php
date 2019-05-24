@@ -17,11 +17,41 @@ function recuperercapt(PDO $bdd, $idPiece,$mode){
             $captact[$i]['valeur'] = $val['VAL'];
             $captact[$i]['time'] = $val['TIM'];
         } else {
-            $captact[$i]['valeur'] = $val['Valeur'];
+
+            $captact[$i]['valeur'] = valeuractionneur($val['Valeur'],$captact[$i]['idCatalogue']);
             $captact[$i]['time'] =' ';
         }
     }
     return $captact;
+}
+
+//fonction qui donne une valeur lisible à l'utilisateur pour les actionneurs
+function valeuractionneur($val,$catalogue){
+    if ($catalogue==1){
+        return $val;  //température c'est OK!
+    } elseif ($catalogue==2){  //luminosité
+        switch ($val) {
+            case '0':
+                return 'éteinte';
+            case '1':
+                return 'faible luminosité';
+            case '2':
+                return 'moyenne luminosité';
+            case '3':
+                return 'allumée';
+        }
+
+    }elseif ($catalogue==3){  //ventilateur
+        switch ($val){
+            case '0':
+                return "éteint";
+            case '1':
+                return "allumé";
+        }
+
+    } else {
+        return $val;
+    }
 }
 
 

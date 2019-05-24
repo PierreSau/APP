@@ -58,9 +58,9 @@
                     $valeurEcoVent="éteint";
                     break;
                 case '1':
-                    $valeurEcoVent="allumée";
+                    $valeurEcoVent="allumé";
             }
-            echo 'Niveau de ventilation = ' .$valeurEcoVent."</br>";
+            echo 'Ventilateur = ' .$valeurEcoVent."</br>";
             ?>
         </h4>
     </div>
@@ -123,9 +123,9 @@
                     $valeurJourVent="éteint";
                     break;
                 case '1':
-                    $valeurJourVent="allumée";
+                    $valeurJourVent="allumé";
             }
-            echo 'Niveau de ventilation = ' .$valeurJourVent."</br>";
+            echo 'Ventilateur = ' .$valeurJourVent."</br>";
             ?>
         </h4>
     </div>
@@ -189,9 +189,9 @@
                     $valeurNuitVent="éteint";
                     break;
                 case '1':
-                    $valeurNuitVent="allumée";
+                    $valeurNuitVent="allumé";
             }
-            echo 'Niveau de ventilation = ' .$valeurNuitVent."</br>";
+            echo 'Ventilateur = ' .$valeurNuitVent."</br>";
             ?>
         </h4>
     </div>

@@ -29,7 +29,6 @@ function ajoutermaison(PDO $bdd, $idPersonne,$adresse,$relation){
     $id=$bdd->query('SELECT LAST_INSERT_ID()');
     $id=$id->fetchall();
     $id=$id[0][0];
-    print($id);
     $bdd->exec('INSERT INTO `relation`(`idRelation`, `typeUtilisateur`, `idHabitation`, `idPersonne`) VALUES (NULL,\'' . $relation . '\',\'' . $id . '\',\'' . $idPersonne . '\')');
 
     $bdd->exec('INSERT INTO `fonctionnement`(`idFonctionnement`, `nom`, `Valeur`, `idHabitation`, `idCatalogue`) VALUES (NULL,"eco","17",\'' . $id . '\',"1")');

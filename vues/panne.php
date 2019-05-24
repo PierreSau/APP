@@ -1,7 +1,6 @@
-
-<body>
+<br>
 <h2>
-    Pour déclarer votre problème, veuillez sélectionner la caractérique principale de ce problème parmi les solutions proposées ci dessous :
+    Pour déclarer votre problème, veuillez sélectionner la caractéristique principale de ce problème parmi les solutions proposées ci dessous :
 </h2>
 
 <form method="POST" action="index.php?cible=panne&choix=ValidationChoix">
@@ -12,7 +11,6 @@
         <option value="autre">Autre</option>
     </select>
     <?php
-    print($_POST["idcapt"]);
     echo'<input type="hidden" name="idcapt" value='.$_POST["idcapt"].'>';
     ?>
     <input type="submit" value="Valider" />
