@@ -42,7 +42,7 @@
                         echo 'Cet utilisateurs ne possède pas de rang';
                 };
             } ?>
-            <li><p><a href="../index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
+            <li><p><a href="index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
                 <ul>
                     <li><a href="index.php?cible=utilisateurs&fonction=stat">Statistiques</a></li>
                     <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
@@ -76,4 +76,5 @@
 
     </div>
 </header>
+<body>
 

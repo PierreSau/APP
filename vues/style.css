@@ -187,9 +187,10 @@ h2 {
 }
 
 body {
-    background-image: url(/images/residence-2219972_1920.jpg);
+    background-image: url(../images/light.jpg);
     font-family: "Lucida Grande", sans-serif;
     font-size: 90%;
+    margin-bottom: 150px;
 }
 
 
@@ -214,6 +215,7 @@ footer {
     font-size: 1vw;
     text-decoration: none;
     color: white;
+    position: fixed;
 }
 
 footer div {
