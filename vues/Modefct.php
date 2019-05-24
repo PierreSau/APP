@@ -52,7 +52,7 @@
                     $valeurEcoLum = 'fort';
                     break;
             }
-            echo 'Niveau de luminosité ='.$valeurEcoLum."</br>";
+            echo 'Niveau de luminosité = '.$valeurEcoLum."</br>";
             switch ($valeursEco["vent"]){
                 case '0':
                     $valeurEcoVent="éteint";
@@ -60,7 +60,7 @@
                 case '1':
                     $valeurEcoVent="allumée";
             }
-            echo 'Niveau de ventilation =' .$valeurEcoVent."</br>";
+            echo 'Niveau de ventilation = ' .$valeurEcoVent."</br>";
             ?>
         </h4>
     </div>
@@ -117,7 +117,7 @@
                     $valeurJourLum = 'fort';
                     break;
             }
-            echo 'Niveau de luminosité ='.$valeurJourLum."</br>";
+            echo 'Niveau de luminosité = '.$valeurJourLum."</br>";
             switch ($valeursJour["vent"]){
                 case '0':
                     $valeurJourVent="éteint";
@@ -125,7 +125,7 @@
                 case '1':
                     $valeurJourVent="allumée";
             }
-            echo 'Niveau de ventilation =' .$valeurJourVent."</br>";
+            echo 'Niveau de ventilation = ' .$valeurJourVent."</br>";
             ?>
         </h4>
     </div>
@@ -183,7 +183,7 @@
                     $valeurNuitLum = 'fort';
                     break;
             }
-            echo 'Niveau de luminosité ='.$valeurNuitLum."</br>";
+            echo 'Niveau de luminosité = '.$valeurNuitLum."</br>";
             switch ($valeursNuit["vent"]){
                 case '0':
                     $valeurNuitVent="éteint";
@@ -191,7 +191,7 @@
                 case '1':
                     $valeurNuitVent="allumée";
             }
-            echo 'Niveau de ventilation =' .$valeurNuitVent."</br>";
+            echo 'Niveau de ventilation = ' .$valeurNuitVent."</br>";
             ?>
         </h4>
     </div>
