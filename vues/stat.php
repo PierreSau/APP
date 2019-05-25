@@ -23,11 +23,16 @@
         <ul class="container">
             <?php
 
+            $Arraycons = array();
 
-            for ($x = 1; $x<=sizeof($captact); $x++){
+            for ($x = 0; $x<=sizeof($captact); $x++){
                 for ($y = 0; $y <= sizeof($captact[$x]);$y++)
+                    foreach($captact[$x-1][$y]['consommation'] as $value){
+                        array_push($Arraycons,$value);
+                    }
+
             ?>
-            <li class="item" id="myBtn<?php echo $x?>"><a> Pièce<?php echo $x?> </a>
+            <li class="item" id="myBtn<?php echo $x ?>"><a> <?php echo $captact[$x]['nom']?> </a>
             </li>
                 <!-- Trigger/Open The Modal -->
 
@@ -39,7 +44,7 @@
                         <span class="close"></span>
                         <ul class="sous-menu">
                             <li><a ><?php //print_r($ArrayConso[$x-1]);
-                                    print_r($ArrayConso[$x-1][0]);?></a></li>
+                                    print_r($Arraycons[$x]);?></a></li>
                             <li><a >Stat 2</a></li>
                             <li><a >Stat 3</a></li>
 
