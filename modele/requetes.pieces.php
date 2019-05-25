@@ -220,8 +220,8 @@ function recuperermode(PDO $bdd,$idpiece){
     $date=date("Y-m-d H:i:s");
     $heure=date("H:i:s");
     for ($i=0;$i<count($result);$i++){
-        if ($date>=$result[$i]['dateDebut'] and $date<=$result[$i]['dateFin'] and $heure>=$result[$i]['heureDebut'] and $heure<=$result[$i]['heureFin']){
-                return $result[$i]['nom'];
+        if ($date>=$result[$i]['dateDebut'] and $date<=$result[$i]['dateFin'] and ($result[$i]['heureDebut']<$result[$i]['heureFin'] and $heure>=$result[$i]['heureDebut'] and $heure<=$result[$i]['heureFin'] or $result[$i]['heureDebut']>$result[$i]['heureFin'] and ( $heure<=$result[$i]['heureDebut'] or $heure>=$result[$i]['heureFin'] ))){
+        return $result[$i]['nom'];
         }
     }
     return 'eco';
