@@ -18,9 +18,9 @@ function recupCapteur(PDO $bdd): array
 }
 
 
-function recupPiece(PDO $bdd): array
+function recupPiece(PDO $bdd, $idUtilisateur): array
 {
-    $query = "SELECT * FROM `piece`";;
+    $query = "SELECT * FROM `piece` Where ";;
     //$sth->prepare("SELECT $ FROM table WHERE id = :idUtilisateur")
     $sth = $bdd->prepare($query);
     //$sth->bindValue(":idUtilisateur", $variablePHP)

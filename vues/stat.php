@@ -23,8 +23,9 @@
         <ul class="container">
             <?php
 
-            $tab = [1,2,3];
-            for ($x = 1; $x<=sizeof($ArrayPiece); $x++){
+
+            for ($x = 1; $x<=sizeof($captact); $x++){
+                for ($y = 0; $y <= sizeof($captact[$x]);$y++)
             ?>
             <li class="item" id="myBtn<?php echo $x?>"><a> Pièce<?php echo $x?> </a>
             </li>
@@ -38,7 +39,7 @@
                         <span class="close"></span>
                         <ul class="sous-menu">
                             <li><a ><?php //print_r($ArrayConso[$x-1]);
-                                    print_r($ArrayConso[$x-1][0][0]);?></a></li>
+                                    print_r($ArrayConso[$x-1][0]);?></a></li>
                             <li><a >Stat 2</a></li>
                             <li><a >Stat 3</a></li>
 
