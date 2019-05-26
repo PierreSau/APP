@@ -13,7 +13,6 @@
 <form action="vcontact.php" method="post" >
 
     <fieldset>
-        <legend>  </legend>
         <p>Etes vous le proprietaire ? </p>
         <input type="radio" name="prop" value="oui" id="oui"
                checked="checked" />

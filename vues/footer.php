@@ -17,6 +17,9 @@
         <div id="footer1">
             <p><a href="index.php?cible=vcontact">Contact</a></p>
         </div>
+        <div id="footer3">
+            <p><a href="index.php?cible=utilisateurs&fonction=mentionLegale">Mentions Légale</a></p>
+        </div>
 
 </footer>
 </body>
