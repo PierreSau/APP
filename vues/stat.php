@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Pierre
- * Date: 2019-05-20
- * Time: 10:08
- */
-?>
 <html>
 <head>
     <h1>
@@ -19,93 +11,74 @@
 <body>
 
 
-    <div>
-        <ul class="container">
-            <?php
-
-            $Arraycons = array();
-
-            for ($x = 0; $x<=sizeof($captact); $x++){
-                for ($y = 0; $y <= sizeof($captact[$x]);$y++)
-                    foreach($captact[$x-1][$y]['consommation'] as $value){
-                        array_push($Arraycons,$value);
-                    }
-
+<div>
+    <ul class="container">
+        <?php
+        $tab = [1,2,3];
+        for ($x = 1; $x<=sizeof($ArrayPiece); $x++){
             ?>
-            <li class="item" id="myBtn<?php echo $x ?>"><a> <?php echo $captact[$x]['nom']?> </a>
+            <li class="item" id="myBtn<?php echo $x?>"><a> Pièce<?php echo $x?> </a>
             </li>
-                <!-- Trigger/Open The Modal -->
+            <!-- Trigger/Open The Modal -->
 
-                <!-- The Modal -->
-                <div id="myModal<?php echo $x?>" class="modal">
+            <!-- The Modal -->
+            <div id="myModal<?php echo $x?>" class="modal">
 
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close"></span>
-                        <ul class="sous-menu">
-                            <li><a ><?php //print_r($ArrayConso[$x-1]);
-                                    print_r($Arraycons[$x]);?></a></li>
-                            <li><a >Stat 2</a></li>
-                            <li><a >Stat 3</a></li>
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close"></span>
+                    <ul class="sous-menu">
+                        <li><a ><?php //print_r($ArrayConso[$x-1]);
+                                print_r($ArrayConso[$x-1][0][0]);?></a></li>
+                        <li><a >Stat 2</a></li>
+                        <li><a >Stat 3</a></li>
 
-                        </ul>
-                    </div>
-
+                    </ul>
                 </div>
-                <script>
 
-
-                    // Get the modal
-                    var modal = document.getElementById('myModal<?php echo $x?>');
-
-                    // Get the button that opens the modal
-                    var btn = document.getElementById("myBtn<?php echo $x?>");
-
-                    // Get the <span> element that closes the modal
-                    var span = document.getElementsByClassName("close")[0];
-
-                    // When the user clicks on the button, open the modal
-                    btn.onclick = function() {
-                        modal.style.display = "block";
-                    }
-
-                    // When the user clicks on <span> (x), close the modal
-                    span.onclick = function() {
+            </div>
+            <script>
+                // Get the modal
+                var modal = document.getElementById('myModal<?php echo $x?>');
+                // Get the button that opens the modal
+                var btn = document.getElementById("myBtn<?php echo $x?>");
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+                // When the user clicks on the button, open the modal
+                btn.onclick = function() {
+                    modal.style.display = "block";
+                }
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
                         modal.style.display = "none";
                     }
+                }
+            </script>
 
-                    // When the user clicks anywhere outside of the modal, close it
-                    window.onclick = function(event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                        }
-                    }
-                </script>
+            <?php
+        }
+        ?>
 
-                <?php
-            }
-
-            ?>
-
-        </ul>
-    </div>
-    <div id="myDiv"></div>
-       <script>
-           myDiv=document.getElementById('myDiv')
-           trace =
-               {
-                   x: ['Salon','SdB','Cuisine'],
-                   y: [23,45,38],
-                   type: 'bar'
-               };
-           data =[trace];
-
-           Plotly.newPlot(myDiv, data);
-
-       </script>
-
-
-    <?php // echo $ArrayCat ?>
+    </ul>
+</div>
+<div id="myDiv"></div>
+<script>
+    myDiv=document.getElementById('myDiv')
+    trace =
+        {
+            x: ['Salon','SdB','Cuisine'],
+            y: [26,45,38],
+            type: 'bar'
+        };
+    data =[trace];
+    Plotly.newPlot(myDiv, data);
+</script>
+<?php // echo $ArrayCat ?>
 
 
 

@@ -44,7 +44,16 @@
             } ?>
             <li><p><a href="index.php?cible=utilisateurs&fonction=maison">Ma Maison</a></p>
                 <ul>
+                    <?php
+                    if (isset($_SESSION['adresseMail'])) {
+                    if ($_SESSION['niveau'] != 1) {
+                    ?>
                     <li><a href="index.php?cible=utilisateurs&fonction=stat">Statistiques</a></li>
+                        <?php
+                    }
+                    }
+                    ?>
+
                     <li><a href="index.php?cible=utilisateurs&fonction=mode">Mode de Fonctionnement</a></li>
                 </ul>
             </li>
