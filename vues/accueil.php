@@ -28,7 +28,7 @@
         <input type="password" name="motDePasseVerif" id="motDePasseVerif" placeholder="Entrez de nouveau votre mot de passe" size="26" maxlength="30" required/>
 
         <br/>
-        <label for="CGU">J'accepte les conditions générales d'utilisation</label> <input type="checkbox" name="CGU" id="CGU" required/>
+        <label for="CGU">J'accepte les <a href="index.php?cible=utilisateurs&fonction=conditionGene"> conditions générales d'utilisation  </a> </label> <input type="checkbox" name="CGU" id="CGU" required/>
 
         <br />
         <input type="submit" value="S'inscrire" />

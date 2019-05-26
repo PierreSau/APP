@@ -365,6 +365,10 @@ switch ($function) {
         $vue="mentionLegale";
         break;
 
+    case 'conditionGene':
+        $vue="conditionGene";
+        break;
+
     default:
         // si aucune fonction ne correspond au paramètre function passé en GET
         $vue = "erreur404";

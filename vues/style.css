@@ -776,3 +776,9 @@ td, th {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* pour les cgu et les mentions légales*/
+
+.fondmlcgu{
+    background-color: white;
+}
