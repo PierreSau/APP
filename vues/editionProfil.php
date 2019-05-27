@@ -1,6 +1,6 @@
 
 
-<form method="post" class="accueilFond" action="">
+<form method="post" class="accueilFond" action="" onClick="javascript:return confirm('Voulez vous modifier votre profil ?')">
 
     <fieldset>
         <label for= "nom"> Votre Nom : </label>
