@@ -10,7 +10,7 @@
 
 ?>
 
-<form action="vcontact.php" method="post" >
+<form action="index.php?cible=vcontact" method="post" >
 
     <fieldset>
         <p>Etes vous le proprietaire ? </p>
