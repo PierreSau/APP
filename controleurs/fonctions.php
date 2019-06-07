@@ -51,6 +51,7 @@ function enregistretrames(PDO $bdd,$trame){
     $c = substr($trame,6,1);
     $n = substr($trame,7,2);
     $v = substr($trame,9,4);
+    $v = transformevaleur($c,$v);
     $a = substr($trame,13,4);
     $x = substr($trame,17,2);
     $year = substr($trame,19,4);
@@ -60,10 +61,16 @@ function enregistretrames(PDO $bdd,$trame){
     $min = substr($trame,29,2);
     $sec = substr($trame,31,2);
     $time=$year . "-" . $month . "-" . $day . " " . $hour . ":" . $min . ":" . $sec;
-    $reponse=$bdd->query('SELECT idCemac FROM cemac WHERE numSerie='.$o.' ');
-    $reponse=$reponse->fetchAll();
-    for ($i=0;$i<count($reponse);$i++){
-        $bdd->exec('INSERT INTO `tramerecep` (`idTrameRecep`, `TRA`, `REQ`, `TYP`, `NUM`, `VAL`, `TIM`, `CHK`, `idCemac`) VALUES (NULL,\'' . $t . '\',\'' . $r . '\',\'' . $c . '\',\'' . $n . '\',\'' . $v . '\',\'' . $time . '\',\'' . $x . '\',\'' . $reponse[$i] . '\')');
+    $reponse=$bdd->query('SELECT idCemac FROM cemac WHERE numSerie=\'' . $o . '\' ');
+    if ($reponse) {
+        $reponse=$reponse->fetchAll();
+        for ($i = 0; $i < count($reponse); $i++) {
+            $doublon=$bdd->query('SELECT COUNT(*) FROM tramerecep WHERE (TRA=\'' . $t . '\' AND REQ=\'' . $r . '\' AND TYP=\'' . $c . '\' AND NUM=\'' . $n . '\' AND VAL=\'' . $v . '\' AND TIM=\'' . $time . '\' AND CHK=\'' . $x . '\' AND idCemac=\'' . $reponse[$i]['idCemac'] . '\')');
+            $doublon=$doublon->fetchALL();
+            if ($doublon[0][0]==0) {
+                $bdd->exec('INSERT INTO `tramerecep` (`idTrameRecep`, `TRA`, `REQ`, `TYP`, `NUM`, `VAL`, `TIM`, `CHK`, `idCemac`) VALUES (NULL,\'' . $t . '\',\'' . $r . '\',\'' . $c . '\',\'' . $n . '\',\'' . $v . '\',\'' . $time . '\',\'' . $x . '\',\'' . $reponse[$i]['idCemac'] . '\')');
+            }
+        }
     }
 
 
@@ -71,14 +78,37 @@ function enregistretrames(PDO $bdd,$trame){
 }
 
 function recuptrames(PDO $bdd) {
+    $data=file_get_contents("http://projets-tomcat.isep.fr:8080/appService/?ACTION=GETLOG&TEAM=007B");
+    /*
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=007B");
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $data = curl_exec($ch);
     curl_close($ch);
+    */
     $data_tab = str_split($data,33);
+    //echo "Raw Data:<br />";echo("$data");
     for($i=0, $size=count($data_tab);$i<$size;$i++){
         enregistretrames($bdd, $data_tab[$i]);
         }
+}
+
+function transformevaleur($type,$valeur){
+    $valeur=hexdec($valeur);
+switch ($type){
+    case 1:
+        $valeur=21.626/($valeur-0.1844);
+        if($valeur>80 or $valeur<0){
+            $valeur=99999;
+        }else {
+            $valeur = round($valeur, 2);
+        }
+        break;
+    case 5:
+        break;
+    default:
+        break;
+}
+return $valeur;
 }

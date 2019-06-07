@@ -15,6 +15,7 @@ include('modele/requetes.utilisateurs.php');
 include('modele/requetes.catalogue.php');
 include('modele/fonctionnement.php');
 include('modele/maison.php');
+recuptrames($bdd);
 
 
 // si la fonction n'est pas définie, on choisit d'afficher l'accueil
