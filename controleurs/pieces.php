@@ -147,6 +147,9 @@ switch ($function) {
                 if ($nombrecaptact > 0) {
                     $numcemac = recuperernumcemac($bdd, $captact[0][0]['idCemac']);
                 }
+                print_r($captact);
+                //creertrame($bdd,$captact,$idpiece);
+
             }
 
         } else {   //on passe à la vue pour modifier les modes de fonctionnements
@@ -166,6 +169,7 @@ switch ($function) {
             }
             $vue='heurefonct';
         }
+
 
 
 

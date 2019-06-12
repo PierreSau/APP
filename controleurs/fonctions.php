@@ -112,3 +112,16 @@ switch ($type){
 }
 return $valeur;
 }
+
+function creertrame(PDO $bdd, $captact, $mode){
+    for($i=0 ; $i<count($captact) ; $i++) {
+        for($j=0 ; $j<count($captact[$i]); $j++){
+            if ($captact[$i][$j]['CaptOuAct']==2){
+            $result=$bdd->query('SELECT Valeur FROM fonctionnement JOIN modification ON fonctionnement.idFonctionnement=modification.idFonctionnement WHERE (idPiece=\''.$captact[$i][$j]['idPiece'].'\' AND idCatalogue=\''.$captact[$i][$j]['idCatalogue'].'\' AND nom=\''.$mode[$i]['mode'].'\' )');
+
+            }
+
+        }
+    }
+
+}
