@@ -78,6 +78,9 @@ function enregistretrames(PDO $bdd,$trame){
 }
 
 function recuptrames(PDO $bdd) {
+    $nombre=$bdd->query('SELECT COUNT(*) FROM tramerecep');
+    $nombre=$nombre->fetchAll();
+
     $data=file_get_contents("http://projets-tomcat.isep.fr:8080/appService/?ACTION=GETLOG&TEAM=007B");
     /*
     $ch = curl_init();
@@ -87,7 +90,9 @@ function recuptrames(PDO $bdd) {
     $data = curl_exec($ch);
     curl_close($ch);
     */
+    $data=substr($data,$nombre[0][0]*33);
     $data_tab = str_split($data,33);
+
     //echo "Raw Data:<br />";echo("$data");
     for($i=0, $size=count($data_tab);$i<$size;$i++){
         enregistretrames($bdd, $data_tab[$i]);
@@ -98,7 +103,8 @@ function transformevaleur($type,$valeur){
     $valeur=hexdec($valeur);
 switch ($type){
     case 1:
-        $valeur=21.626/($valeur-0.1844);
+        //$valeur=21.626/($valeur-0.1844);
+        print $valeur;
         if($valeur>80 or $valeur<0){
             $valeur=99999;
         }else {
@@ -112,13 +118,39 @@ switch ($type){
 }
 return $valeur;
 }
+function ajouteZeros($val,$len){
+$zeros=$len-strlen($val);
+if ($zeros>=0){
+    for ($k=0 ; $k<$zeros ; $k++){
+        $val='0'.$val;
+    }
+    return $val;
+} else {
+    return False;
+}
 
-function creertrame(PDO $bdd, $captact, $mode){
+}
+
+
+function creertrame(PDO $bdd, $captact, $mode,$idmaison){
     for($i=0 ; $i<count($captact) ; $i++) {
         for($j=0 ; $j<count($captact[$i]); $j++){
             if ($captact[$i][$j]['CaptOuAct']==2){
-            $result=$bdd->query('SELECT Valeur FROM fonctionnement JOIN modification ON fonctionnement.idFonctionnement=modification.idFonctionnement WHERE (idPiece=\''.$captact[$i][$j]['idPiece'].'\' AND idCatalogue=\''.$captact[$i][$j]['idCatalogue'].'\' AND nom=\''.$mode[$i]['mode'].'\' )');
+            $result=$bdd->query('SELECT Valeur FROM fonctionnement WHERE (idHabitation=\''.$idmaison.'\' AND idCatalogue=\''.$captact[$i][$j]['idCatalogue'].'\' AND nom=\''.$mode[$i]['mode'].'\' )');
+            $result=$result->fetchAll();
+            $valeur=$result[0]['Valeur'];
+            $valeur=ajouteZeros($valeur,4);
+            $num=ajouteZeros($captact[$i][$j]['champNum'],2);
+            $trame='1007B2' . $captact[$i][$j]['champTYP'] . $num . $valeur ;
 
+            file_get_contents("http://projets-tomcat.isep.fr:8080/appService/?ACTION=COMMAND&TEAM=007B&TRAME=".$trame."");
+            /*    $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=007B". $trame);
+            curl_setopt($ch, CURLOPT_HEADER, FALSE);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_exec($ch);
+            curl_close($ch);
+            */
             }
 
         }

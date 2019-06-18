@@ -41,7 +41,10 @@ switch ($function) {
 
         $idmaison=idmaison($bdd,$_SESSION['idPersonne'],$maison);
 
-
+        if (isset($_POST['envoitrame'])) {
+            print_r($captact);
+            creertrame($bdd, $captact, $idpiece, $idmaison['idHabitation']);
+        }
         if (!isset($_GET['piece'])) {
 
 
@@ -147,8 +150,7 @@ switch ($function) {
                 if ($nombrecaptact > 0) {
                     $numcemac = recuperernumcemac($bdd, $captact[0][0]['idCemac']);
                 }
-                print_r($captact);
-                //creertrame($bdd,$captact,$idpiece);
+//                creertrame($bdd, $captact, $idpiece, $idmaison['idHabitation']);
 
             }
 

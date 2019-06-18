@@ -1,4 +1,18 @@
 
+<script>
+    function envoiTrame(){
+        let xmlhttp = new XMLHttpRequest();
+        if (xmlhttp.readyState === 4 && xmlhttp.status=== 200){
+            document.getElementById("button").innerHTML= xmlhttp.responseText;
+        }
+
+        xmlhttp.open("POST","controleurs/actionneurs.php",true);
+        xmlhttp.send("");
+
+
+    }
+
+</script>
 
 <h1>
 
@@ -6,6 +20,8 @@
 echo($idmaison)['adresse'];
 ?>
 </h1>
+<button type="button" onclick="envoiTrame()">MANGER!!!</button>
+
 <?php print($alerte);
 ?>
 

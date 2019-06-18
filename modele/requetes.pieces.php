@@ -14,11 +14,11 @@ function recuperercapt(PDO $bdd, $idPiece,$mode){
             $captact[$i]['valeur'] = '?';
             $captact[$i]['time'] = '?';
         } elseif ($captact[$i]['CaptOuAct']==1){
-            $captact[$i]['valeur'] = $val['VAL'];
+            $captact[$i]['valeur'] = valeurcaptact($val['VAL'],$captact[$i]['idCatalogue']);
             $captact[$i]['time'] = $val['TIM'];
         } else {
 
-            $captact[$i]['valeur'] = valeuractionneur($val['Valeur'],$captact[$i]['idCatalogue']);
+            $captact[$i]['valeur'] = valeurcaptact($val['Valeur'],$captact[$i]['idCatalogue']);
             $captact[$i]['time'] =' ';
         }
     }
@@ -26,7 +26,7 @@ function recuperercapt(PDO $bdd, $idPiece,$mode){
 }
 
 //fonction qui donne une valeur lisible à l'utilisateur pour les actionneurs
-function valeuractionneur($val,$catalogue){
+function valeurcaptact($val,$catalogue){
     if ($catalogue==1){
         return $val;  //température c'est OK!
     } elseif ($catalogue==2){  //luminosité
@@ -49,7 +49,14 @@ function valeuractionneur($val,$catalogue){
                 return "allumé";
         }
 
-    } else {
+    }elseif ($catalogue==6){ //lampe
+        if ($val>800){
+            return "élevée";
+        }else {
+            return "faible";
+        }
+
+    }else {
         return $val;
     }
 }
