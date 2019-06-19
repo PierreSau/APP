@@ -1,13 +1,15 @@
-
+<p id="demo">aze</p>
 <script>
+
     function envoiTrame(){
         let xmlhttp = new XMLHttpRequest();
-        if (xmlhttp.readyState === 4 && xmlhttp.status=== 200){
-            document.getElementById("button").innerHTML= xmlhttp.responseText;
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200){
+            alert(xmlhttp.responseText);
         }
 
-        xmlhttp.open("POST","controleurs/actionneurs.php",true);
-        xmlhttp.send("");
+        xmlhttp.open('POST','controleurs/actionneurs.php');
+        xmlhttp.send('123=4');
+        document.getElementById("demo").innerHTML = "1234567890";
 
 
     }
@@ -20,7 +22,7 @@
 echo($idmaison)['adresse'];
 ?>
 </h1>
-<button type="button" onclick="envoiTrame()">MANGER!!!</button>
+<button type="button" id="button" onclick="envoiTrame()">MANGER!!!</button>
 
 <?php print($alerte);
 ?>
